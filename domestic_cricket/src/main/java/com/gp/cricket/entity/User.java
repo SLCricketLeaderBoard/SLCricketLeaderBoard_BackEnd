@@ -45,7 +45,7 @@ public class User {
 	@NotNull
 	@Min(1)
 	@Max(5)
-	Byte type;
+	Byte role;
 
 	@NotBlank(message = "Email is mandatory")
 	@Email(message = "Email should be valid")
@@ -87,7 +87,7 @@ public class User {
 		this.nameWithInitial = nameWithInitial;
 		this.nic = nic;
 		this.contactNumber = contactNumber;
-		this.type = type;
+		this.role = type;
 		this.email = email;
 		this.password = password;
 		this.address = address;
@@ -143,12 +143,12 @@ public class User {
 		this.contactNumber = contactNumber;
 	}
 
-	public Byte getType() {
-		return type;
+	public Byte getRole() {
+		return role;
 	}
 
-	public void setType(Byte type) {
-		this.type = type;
+	public void setRole(Byte type) {
+		this.role = type;
 	}
 
 	public String getEmail() {
@@ -194,7 +194,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", userName=" + userName + ", fullName=" + fullName + ", nameWithInitial="
-				+ nameWithInitial + ", nic=" + nic + ", contactNumber=" + contactNumber + ", type=" + type + ", email="
+				+ nameWithInitial + ", nic=" + nic + ", contactNumber=" + contactNumber + ", role=" + role + ", email="
 				+ email + ", password=" + password + ", address=" + address + ", regDate=" + regDate + ", status="
 				+ status + "]";
 	}
