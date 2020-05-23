@@ -2,6 +2,7 @@ package com.gp.cricket.entity;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +24,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
+	@Column(name="user_id")
 	Integer userId;
 
 	@NotBlank(message = "User name is mandatory")

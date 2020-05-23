@@ -1,6 +1,7 @@
 package com.gp.cricket.controller;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class UserController {
 	
 	
 	@GetMapping("user/{email}")
-	public ResponseEntity<User> getUser(@NotBlank @PathVariable("email") String email) {	
+	public ResponseEntity<User> getUser(@NotNull @PathVariable("email") String email) {	
 		User reply = userService.getUser(email);	
 		if(reply != null) {
 			return ResponseEntity.ok(reply);
