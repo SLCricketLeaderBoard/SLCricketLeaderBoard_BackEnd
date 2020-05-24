@@ -1,0 +1,32 @@
+package com.gp.cricket.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.gp.cricket.config.security.JwtInMemoryUserDetailsService;
+import com.gp.cricket.entity.Manager;
+import com.gp.cricket.entity.User;
+import com.gp.cricket.repository.ManagerRepository;
+
+@Service
+public class ManagerService {
+
+		@Autowired
+		ManagerRepository managerRepository;
+		
+		@Autowired
+		UserService userService;
+		
+		@Autowired
+		JwtInMemoryUserDetailsService jwtUser;
+		
+	
+		public Manager saveManager(User user) {
+			User tempUser=userService.saveUser(user);
+			Manager manager = new Manager(null,tempUser);
+			jwtUser.addNewUserInMemory(user);
+			
+			return this.managerRepository.save(manager);
+			
+		}
+}
