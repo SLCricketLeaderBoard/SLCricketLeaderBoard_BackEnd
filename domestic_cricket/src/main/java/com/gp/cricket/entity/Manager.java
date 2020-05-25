@@ -23,6 +23,13 @@ public class Manager {
 	@OneToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	private User userId;
+	
+	
+
+	public Manager() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public Manager(Integer managerId, @NotNull User userId) {
 		super();

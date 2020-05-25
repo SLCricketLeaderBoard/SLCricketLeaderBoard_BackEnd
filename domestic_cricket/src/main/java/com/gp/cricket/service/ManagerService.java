@@ -1,5 +1,7 @@
 package com.gp.cricket.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +24,17 @@ public class ManagerService {
 		
 	
 		public Manager saveManager(User user) {
+			Byte x =1;
+			user.setStatus(x);
 			User tempUser=userService.saveUser(user);
 			Manager manager = new Manager(null,tempUser);
 			jwtUser.addNewUserInMemory(user);
-			
 			return this.managerRepository.save(manager);
+		}
+		
+		public List<Manager> getAllManagers() {
+			System.out.println("Get all managers here");
+			return this.managerRepository.findAll();
 			
 		}
 }
