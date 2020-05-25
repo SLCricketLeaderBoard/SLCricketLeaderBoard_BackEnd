@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -19,7 +18,6 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "club")
 public class Club {
 
 	@Id
@@ -27,10 +25,10 @@ public class Club {
 	@Column(name = "club_id")
 	private Integer clubId;
 
-	@NotBlank(message = "Club name is mandatory")
+	@NotNull(message = "Club name is mandatory")
 	private String clubName;
 
-	@NotBlank(message = "Address is mandatory")
+	@NotNull(message = "Address is mandatory")
 	private String address;
 
 	@NotBlank(message = "Email is mandatory")
@@ -39,7 +37,7 @@ public class Club {
 
 	@NotBlank(message = "Contact number is mandatory")
 	@Size(min = 10, max = 10, message = "Contact number size should be 10")
-	private String contactNum;
+	private String contactNumber;
 
 	@NotNull
 	@Min(0)
@@ -62,10 +60,14 @@ public class Club {
 	@JoinColumn(name = "manager_id", referencedColumnName = "manager_id")
 	private Manager managerId;
 
-	public Club(Integer clubId, @NotBlank(message = "Club name is mandatory") String clubName,
-			@NotBlank(message = "Address is mandatory") String address,
+	public Club() {
+
+	}
+
+	public Club(Integer clubId, @NotNull(message = "Club name is mandatory") String clubName,
+			@NotNull(message = "Address is mandatory") String address,
 			@NotBlank(message = "Email is mandatory") @Email(message = "Email should be valid") String email,
-			@NotBlank(message = "Contact number is mandatory") @Size(min = 10, max = 10, message = "Contact number size should be 10") String contactNum,
+			@NotBlank(message = "Contact number is mandatory") @Size(min = 10, max = 10, message = "Contact number size should be 10") String contactNumber,
 			@NotNull @Min(0) Integer winMatch, @NotNull @Min(0) Integer failMatch, @NotNull @Min(0) Integer growMatch,
 			@NotNull LocalDate regDate, @NotNull Manager managerId) {
 		super();
@@ -73,7 +75,7 @@ public class Club {
 		this.clubName = clubName;
 		this.address = address;
 		this.email = email;
-		this.contactNum = contactNum;
+		this.contactNumber = contactNumber;
 		this.winMatch = winMatch;
 		this.failMatch = failMatch;
 		this.growMatch = growMatch;
@@ -113,12 +115,12 @@ public class Club {
 		this.email = email;
 	}
 
-	public String getContactNum() {
-		return contactNum;
+	public String getContactNumber() {
+		return contactNumber;
 	}
 
-	public void setContactNum(String contactNum) {
-		this.contactNum = contactNum;
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
 	}
 
 	public Integer getWinMatch() {
@@ -164,8 +166,8 @@ public class Club {
 	@Override
 	public String toString() {
 		return "Club [clubId=" + clubId + ", clubName=" + clubName + ", address=" + address + ", email=" + email
-				+ ", contactNum=" + contactNum + ", winMatch=" + winMatch + ", failMatch=" + failMatch + ", growMatch="
-				+ growMatch + ", regDate=" + regDate + ", managerId=" + managerId + "]";
+				+ ", contactNumber=" + contactNumber + ", winMatch=" + winMatch + ", failMatch=" + failMatch
+				+ ", growMatch=" + growMatch + ", regDate=" + regDate + ", managerId=" + managerId + "]";
 	}
 
 }
