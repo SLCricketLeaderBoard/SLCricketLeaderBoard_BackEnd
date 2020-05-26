@@ -23,6 +23,7 @@ public class ManagerService {
 		JwtInMemoryUserDetailsService jwtUser;
 		
 	
+//		save manager first save user then save manager 
 		public Manager saveManager(User user) {
 			Byte x =1;
 			user.setStatus(x);

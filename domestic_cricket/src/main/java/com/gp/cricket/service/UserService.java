@@ -51,4 +51,13 @@ public class UserService {
 	public User saveUser(User user) {
 		return this.userRepository.save(user);
 	}
+	
+	public User updateUser(User user) {
+		return user;
+	}
+	
+	public User getUserByUserId(String userId) {
+		Integer x = Integer.parseInt(userId);
+		return this.userRepository.findById(x).get();
+	}
 }

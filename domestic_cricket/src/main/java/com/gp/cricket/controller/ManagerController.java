@@ -35,5 +35,6 @@ public class ManagerController {
 	 public List<Manager> getAllManagers(){
 		 return this.managerService.getAllManagers();
 	 }
+	 
 
 }

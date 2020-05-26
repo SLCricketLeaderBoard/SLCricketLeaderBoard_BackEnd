@@ -36,4 +36,17 @@ public class UserController {
 		}
 		return ResponseEntity.notFound().build();
 	}
+	
+	
+	@GetMapping("profile/{userId}")
+	public ResponseEntity<User> getUserByUserName(@NotNull @PathVariable("userId") String userId) {	
+		User reply = userService.getUserByUserId(userId);	
+		if(reply != null) {
+			return ResponseEntity.ok(reply);
+		}
+		return ResponseEntity.notFound().build();
+		
+	}
+	
+	
 }
