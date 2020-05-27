@@ -19,17 +19,15 @@ public class ManagerService {
 		@Autowired
 		UserService userService;
 		
-		@Autowired
-		JwtInMemoryUserDetailsService jwtUser;
+		
 		
 	
 //		save manager first save user then save manager 
 		public Manager saveManager(User user) {
 			Byte x =1;
 			user.setStatus(x);
-			User tempUser=userService.saveUser(user);
+			User tempUser=userService.registerUser(user);
 			Manager manager = new Manager(null,tempUser);
-			jwtUser.addNewUserInMemory(user);
 			return this.managerRepository.save(manager);
 		}
 		
