@@ -17,6 +17,7 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+
 @Entity
 public class Club {
 
@@ -25,10 +26,10 @@ public class Club {
 	@Column(name = "club_id")
 	private Integer clubId;
 
-	@NotNull(message = "Club name is mandatory")
+	@NotBlank(message = "Club name is mandatory")
 	private String clubName;
 
-	@NotNull(message = "Address is mandatory")
+	@NotBlank(message = "Address is mandatory")
 	private String address;
 
 	@NotBlank(message = "Email is mandatory")
@@ -64,8 +65,8 @@ public class Club {
 
 	}
 
-	public Club(Integer clubId, @NotNull(message = "Club name is mandatory") String clubName,
-			@NotNull(message = "Address is mandatory") String address,
+	public Club(Integer clubId, @NotBlank(message = "Club name is mandatory") String clubName,
+			@NotBlank(message = "Address is mandatory") String address,
 			@NotBlank(message = "Email is mandatory") @Email(message = "Email should be valid") String email,
 			@NotBlank(message = "Contact number is mandatory") @Size(min = 10, max = 10, message = "Contact number size should be 10") String contactNumber,
 			@NotNull @Min(0) Integer winMatch, @NotNull @Min(0) Integer failMatch, @NotNull @Min(0) Integer growMatch,

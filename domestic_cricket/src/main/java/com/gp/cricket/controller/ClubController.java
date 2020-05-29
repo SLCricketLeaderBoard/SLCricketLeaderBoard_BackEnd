@@ -21,10 +21,12 @@ public class ClubController {
 	ClubService clubService;
 
 	@PostMapping("club")
-	public ResponseEntity<Integer> clubRegister(@Valid @RequestBody Club club) {
+	public ResponseEntity<Integer> clubRegister(@Validated @RequestBody Club club) {
 		
 		Integer result = clubService.clubRegister(club);
-		return ResponseEntity.ok(result);
-		
+		if(result!=null) {
+			return ResponseEntity.ok(result);
+		}
+		return ResponseEntity.badRequest().build();		
 	}
 }
