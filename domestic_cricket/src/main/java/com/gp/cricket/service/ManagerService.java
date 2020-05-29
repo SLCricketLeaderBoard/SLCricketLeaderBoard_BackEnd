@@ -13,7 +13,6 @@ import com.gp.cricket.repository.ManagerRepository;
 @Service
 public class ManagerService {
 
-<<<<<<< HEAD
 	@Autowired
 	ManagerRepository managerRepository;
 
@@ -23,14 +22,14 @@ public class ManagerService {
 	@Autowired
 	JwtInMemoryUserDetailsService jwtUser;
 
-	//		save manager first save user then save manager 
-		public Manager saveManager(User user) {
-			Byte x =1;
-			user.setStatus(x);
-			User tempUser=userService.registerUser(user);
-			Manager manager = new Manager(null,tempUser);
-			return this.managerRepository.save(manager);
-		}
+	// save manager first save user then save manager
+	public Manager saveManager(User user) {
+		Byte x = 1;
+		user.setStatus(x);
+		User tempUser = userService.registerUser(user);
+		Manager manager = new Manager(null, tempUser);
+		return this.managerRepository.save(manager);
+	}
 
 	public List<Manager> getAllManagers() {
 		System.out.println("Get all managers here");
