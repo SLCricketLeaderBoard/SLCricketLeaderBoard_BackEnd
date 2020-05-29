@@ -36,9 +36,11 @@ public class ManagerController {
 		 return this.managerService.getAllManagers();
 	 }
 	 
+
 	 @GetMapping("/manager/available")
 	 public List<Manager> getAvailableManagers(){
 		 return managerService.getAvailableManagers();
 	 }
+
 
 }

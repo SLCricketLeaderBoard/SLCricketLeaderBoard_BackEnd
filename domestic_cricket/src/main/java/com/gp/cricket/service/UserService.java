@@ -1,8 +1,10 @@
 package com.gp.cricket.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.gp.cricket.config.security.JwtInMemoryUserDetailsService;
 import com.gp.cricket.entity.User;
 import com.gp.cricket.repository.UserRepository;
 
@@ -11,6 +13,9 @@ public class UserService {
 
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	JwtInMemoryUserDetailsService jwtUser;
 
 	public User userRegister(User user) {
 
@@ -48,7 +53,34 @@ public class UserService {
 		return false;
 	}
 	
-	public User saveUser(User user) {
-		return this.userRepository.save(user);
+	
+	public User getUserByUserId(String userId) {
+		Integer x = Integer.parseInt(userId);
+		return this.userRepository.findById(x).get();
+	}
+	
+	public User registerUser(User user) {
+		
+		if(!(isEmailHas(user.getEmail())||isNicHas(user.getNic()))) {
+			
+			//password encryption object   
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			
+			//update password encrypted
+			user.setPassword(encoder.encode(user.getPassword()));
+			
+			//save user on the database
+			user = this.userRepository.save(user);
+			
+			//add user in the in memory
+			jwtUser.addNewUserInMemory(user);
+			
+			return user;
+		}
+		return null;
 	}
 }
+
+	
+	
+	
