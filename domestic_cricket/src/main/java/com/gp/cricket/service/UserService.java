@@ -69,6 +69,10 @@ public class UserService {
 			//update password encrypted
 			user.setPassword(encoder.encode(user.getPassword()));
 			
+			//set user status to 1
+			Byte x = 1;
+			user.setStatus(x);
+
 			//save user on the database
 			user = this.userRepository.save(user);
 			
@@ -78,6 +82,28 @@ public class UserService {
 			return user;
 		}
 		return null;
+	}
+	
+	public User resetPassword(User user) {
+		
+		// remove the users in current jwt memory
+		User userTemp = this.getUser(user.getEmail());
+		
+		jwtUser.removeNewUserInMemory(userTemp);		
+		
+		
+//		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//		//encrypt the password here
+//		user.setPassword(encoder.encode(user.getPassword()));
+//		
+//		//set User status to 1			
+//		Byte x = 1;
+//		user.setStatus(x);
+//		
+//		//Update the record
+//		user = this.userRepository.save(user);
+//		jwtUser.addNewUserInMemory(user);
+		return user;
 	}
 }
 
