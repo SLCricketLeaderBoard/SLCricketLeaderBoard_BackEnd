@@ -10,13 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
 
 @Entity
 public class Club {
@@ -57,6 +57,11 @@ public class Club {
 	private LocalDate regDate;
 
 	@NotNull
+	@Min(0)
+	@Max(1)
+	private Byte status;
+
+	@NotNull
 	@OneToOne
 	@JoinColumn(name = "manager_id", referencedColumnName = "manager_id")
 	private Manager managerId;
@@ -70,7 +75,7 @@ public class Club {
 			@NotBlank(message = "Email is mandatory") @Email(message = "Email should be valid") String email,
 			@NotBlank(message = "Contact number is mandatory") @Size(min = 10, max = 10, message = "Contact number size should be 10") String contactNumber,
 			@NotNull @Min(0) Integer winMatch, @NotNull @Min(0) Integer failMatch, @NotNull @Min(0) Integer growMatch,
-			@NotNull LocalDate regDate, @NotNull Manager managerId) {
+			@NotNull LocalDate regDate, @NotNull @Min(0) @Max(1) Byte status, @NotNull Manager managerId) {
 		super();
 		this.clubId = clubId;
 		this.clubName = clubName;
@@ -81,6 +86,7 @@ public class Club {
 		this.failMatch = failMatch;
 		this.growMatch = growMatch;
 		this.regDate = regDate;
+		this.status = status;
 		this.managerId = managerId;
 	}
 
@@ -156,6 +162,14 @@ public class Club {
 		this.regDate = regDate;
 	}
 
+	public Byte getStatus() {
+		return status;
+	}
+
+	public void setStatus(Byte status) {
+		this.status = status;
+	}
+
 	public Manager getManagerId() {
 		return managerId;
 	}
@@ -168,7 +182,8 @@ public class Club {
 	public String toString() {
 		return "Club [clubId=" + clubId + ", clubName=" + clubName + ", address=" + address + ", email=" + email
 				+ ", contactNumber=" + contactNumber + ", winMatch=" + winMatch + ", failMatch=" + failMatch
-				+ ", growMatch=" + growMatch + ", regDate=" + regDate + ", managerId=" + managerId + "]";
+				+ ", growMatch=" + growMatch + ", regDate=" + regDate + ", status=" + status + ", managerId="
+				+ managerId + "]";
 	}
 
 }

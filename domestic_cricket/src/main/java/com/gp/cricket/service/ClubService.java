@@ -44,8 +44,8 @@ public class ClubService {
 		return null;
 	}
 
-	public List<Club> getClubs() {
-		return clubRepository.findAll();
+	public List<Club> getClubs(Byte status) {
+		return clubRepository.findByClubStatus(status);
 	}
 
 	public Optional<Club> getClubData(Integer clubId) {
