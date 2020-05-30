@@ -48,9 +48,9 @@ public class ClubController {
 		return ResponseEntity.badRequest().build();
 	}
 	
-	@GetMapping("club")
-	public List<Club> getClubs(){
-		return clubService.getClubs();
+	@GetMapping("club/list/{status}")
+	public List<Club> getClubs(@PathVariable Byte status){
+		return clubService.getClubs(status);
 	}
 	
 	@GetMapping("club/{clubId}")
