@@ -65,4 +65,13 @@ public class ClubController {
 		}
 		return ResponseEntity.badRequest().build();
 	}
+	
+	@GetMapping("club/manager/{userId}")
+	public ResponseEntity<Club> getClubDataOfManager(@NotNull @Min(1) @PathVariable Integer userId){
+		Club object = clubService.getClubDataOfManager(userId);
+		if(object!=null) {
+			return ResponseEntity.ok(object);
+		}
+		return ResponseEntity.badRequest().build();
+	}
 }

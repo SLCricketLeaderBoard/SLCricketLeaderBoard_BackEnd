@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.gp.cricket.entity.Club;
 import com.gp.cricket.repository.ClubRepository;
 
-
 @Service
 public class ClubService {
 
@@ -30,36 +29,39 @@ public class ClubService {
 		}
 		return null;
 	}
-	
-	
+
 	public Integer clubUpdate(Club club) {
-		if(isValidClubObject(club) && club.getClubId()>0) {
-			Club existClub = clubRepository.findClubByNotExistClubId(club.getClubName(), club.getEmail(), club.getContactNumber(),
-					club.getAddress(), club.getClubId());
-			System.out.println("##############################");
-			System.out.println(existClub);
-			System.out.println(club);
-			if(existClub == null) {
+		if (isValidClubObject(club) && club.getClubId() > 0) {
+			Club existClub = clubRepository.findClubByNotExistClubId(club.getClubName(), club.getEmail(),
+					club.getContactNumber(), club.getAddress(), club.getClubId());
+
+			if (existClub == null) {
 				clubRepository.save(club);
-				return 1;//update successful
+				return 1;// update successful
 			}
-			return 0;//There exist another club with same clubName or email or contactNum or address
+			return 0;// There exist another club with same clubName or email or contactNum or address
 		}
 		return null;
 	}
-	
-	
-	public List<Club> getClubs(){
+
+	public List<Club> getClubs() {
 		return clubRepository.findAll();
 	}
-	
-	
+
 	public Optional<Club> getClubData(Integer clubId) {
-		if(clubId!=null && clubId>0) {
+		if (clubId != null && clubId > 0) {
 			Optional<Club> object = clubRepository.findById(clubId);
 			return object;
 		}
 		return null;
+	}
+	
+	public Club getClubDataOfManager(Integer userId) {
+		Club club = null;
+		if(userId!=null && userId>0) {
+			club = clubRepository.findClubByUserId(userId);
+		}
+		return club;
 	}
 
 	// club object validation
