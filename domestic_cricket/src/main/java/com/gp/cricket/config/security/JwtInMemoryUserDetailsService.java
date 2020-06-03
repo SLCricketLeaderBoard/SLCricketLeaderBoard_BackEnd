@@ -66,12 +66,16 @@ public class JwtInMemoryUserDetailsService implements UserDetailsService {
 	}
 	
 		
-	public void removeNewUserInMemory(User user) {
-		
-		int x =inMemoryUserList.indexOf(new JwtUserDetails(user.getUserId().longValue(),user.getEmail(),user.getPassword(),user.getRole().toString()));
-		System.out.println(x);
-		System.out.println(inMemoryUserList.size());
-//		System.out.println(inMemoryUserList.remove(x));
+	
+	public void updateUserInMemory(User oldUser,User updatedUser) {
+		JwtUserDetails oldUserData = new JwtUserDetails(oldUser.getUserId().longValue(),oldUser.getEmail() , oldUser.getPassword(), oldUser.getRole().toString());
+		for(JwtUserDetails userData : inMemoryUserList) {
+			if(userData.equals(oldUserData)) {
+				JwtUserDetails updateUserData = new JwtUserDetails(updatedUser.getUserId().longValue(),updatedUser.getEmail(),updatedUser.getPassword() , updatedUser.getRole().toString());
+				userData = updateUserData;
+				break;
+			}
+		}
 	}
 
 }
