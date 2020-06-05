@@ -1,5 +1,15 @@
 package com.gp.cricket.service;
 
-public class MatchTypeService {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.gp.cricket.repository.MatchTypeRepository;
+
+@Service
+public class MatchTypeService {
+	
+	@Autowired
+	MatchTypeRepository repository;
+	
+	
 }
