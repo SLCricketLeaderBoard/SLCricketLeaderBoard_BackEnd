@@ -29,6 +29,7 @@ public class ManagerController {
 	 public Manager saveStudent(@RequestBody User user) {
 		 System.out.println(user);
 		 return managerService.saveManager(user);
+		//  registerung managers
 	 }
 	 
 	 @GetMapping("/managers")
