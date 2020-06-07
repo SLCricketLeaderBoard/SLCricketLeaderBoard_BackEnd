@@ -21,6 +21,9 @@ public interface ClubRepository extends JpaRepository<Club, Integer>{
 	
 	@Query("FROM Club c WHERE c.status = :status")
 	public List<Club> findByClubStatus(@Param("status") Byte status);
+	
+	@Query("FROM Club c WHERE c.clubId = :clubId")
+	public Club findClubByClubId(@Param("clubId") Integer clubId);
 }	
 
 
