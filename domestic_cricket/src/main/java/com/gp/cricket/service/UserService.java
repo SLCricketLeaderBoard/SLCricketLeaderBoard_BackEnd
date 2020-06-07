@@ -89,20 +89,20 @@ public class UserService {
 		// remove the users in current jwt memory
 		User userTemp = this.getUser(user.getEmail());
 		
-		jwtUser.removeNewUserInMemory(userTemp);		
+		// jwtUser.removeNewUserInMemory(userTemp);		
 		
 		
-//		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-//		//encrypt the password here
-//		user.setPassword(encoder.encode(user.getPassword()));
-//		
-//		//set User status to 1			
-//		Byte x = 1;
-//		user.setStatus(x);
-//		
-//		//Update the record
-//		user = this.userRepository.save(user);
-//		jwtUser.addNewUserInMemory(user);
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		//encrypt the password here
+		user.setPassword(encoder.encode(user.getPassword()));
+		
+		//set User status to 1			
+		Byte x = 1;
+		user.setStatus(x);
+		
+		//Update the record
+		user = this.userRepository.save(user);
+		jwtUser.updateUserInMemory(userTemp, user);
 		return user;
 	}
 }

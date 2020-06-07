@@ -1,10 +1,15 @@
 package com.gp.cricket.controller;
 
+import java.math.MathContext;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gp.cricket.entity.Match;
+import com.gp.cricket.entity.Manager;
+import com.gp.cricket.entity.MatchType;
 import com.gp.cricket.service.MatchService;
 
 @RestController
@@ -12,10 +17,11 @@ import com.gp.cricket.service.MatchService;
 public class MatchController {
 
 	@Autowired
-	MatchService service;
+	MatchService matchService;
 	
-	public Match getMatch(Integer id) {
-		
-		return service.getMatch(id);
-	}
+	// get match types test odi T20 
+	 @GetMapping("/matchType")
+	 public List<MatchType> getAllManagers(){
+		 return matchService.getMathcTypes();
+	 }
 }

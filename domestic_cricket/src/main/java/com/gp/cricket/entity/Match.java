@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -83,6 +83,10 @@ public class Match {
 	@OneToOne
 	@JoinColumn(name = "match_type_id", referencedColumnName = "match_type_id")
 	private MatchType matchType;
+	
+	@OneToOne
+	@JoinColumn(name = "stadium_id", referencedColumnName = "stadium_id")
+	private Stadium stadium;
 	
 	
 }

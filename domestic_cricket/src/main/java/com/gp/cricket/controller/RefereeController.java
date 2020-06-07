@@ -9,38 +9,36 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gp.cricket.entity.Manager;
+import com.gp.cricket.entity.Referee;
 import com.gp.cricket.entity.User;
-import com.gp.cricket.service.ManagerService;
+import com.gp.cricket.service.RefereeService;
 import com.gp.cricket.service.UserService;
-
 
 @RestController
 @CrossOrigin(origins="*",allowedHeaders="*",maxAge=3600)
-public class ManagerController {
+public class RefereeController {
 	
 	@Autowired
-	ManagerService managerService;
+	RefereeService refereeService;
 	
 	@Autowired
 	UserService userService;
 		
-	 @PostMapping("/managerRegister")
-	 public Manager saveStudent(@RequestBody User user) {
+	 @PostMapping("/refereeRegister")
+	 public Referee saveStudent(@RequestBody User user) {
 		 System.out.println(user);
-		 return managerService.saveManager(user);
-		//  registerung managers
+		 return refereeService.saveReferee(user);
 	 }
 	 
-	 @GetMapping("/managers")
-	 public List<Manager> getAllManagers(){
-		 return this.managerService.getAllManagers();
+	 @GetMapping("/referees")
+	 public List<Referee> getAllReferees(){
+		 return this.refereeService.getAllReferees();
 	 }
 	 
 
-	 @GetMapping("/manager/available")
-	 public List<Manager> getAvailableManagers(){
-		 return managerService.getAvailableManagers();
+	 @GetMapping("/referee/available")
+	 public List<Referee> getAvailableReferees(){
+		 return refereeService.getAvailableReferees();
 	 }
 
 
