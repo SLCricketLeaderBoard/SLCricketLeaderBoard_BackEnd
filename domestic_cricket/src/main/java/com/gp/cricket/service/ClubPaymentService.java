@@ -10,10 +10,12 @@ import java.util.Optional;
 import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.gp.cricket.entity.Club;
 import com.gp.cricket.entity.ClubPayment;
+import com.gp.cricket.mapobject.PaymentEmailBody;
 import com.gp.cricket.repository.ClubPaymentRepository;
 import com.gp.cricket.repository.ClubRepository;
 
@@ -25,6 +27,12 @@ public class ClubPaymentService {
 	
 	@Autowired
 	ClubRepository clubRepository;
+	
+	@Autowired
+	EmailService emailService;
+	
+	@Value("${spring.mail.username}")
+	private String username;
 	
 
 	public Integer addClubPayment(ClubPayment clubPayment) {
@@ -38,15 +46,30 @@ public class ClubPaymentService {
 				Boolean isClubStatusChanged =false;
 				
 				//check club is deactivate.If deactivate if payment for currentYear then activate club
-				Integer currentYear = getLocalCurrentYear();
-				if(clubPayment.getPaymentForYear() == currentYear) {
+				Integer currentYear = getLocalCurrentYear();		
+				Integer differenceOfYear = clubPayment.getPaymentForYear() - currentYear;
+				
+				if(differenceOfYear==0) {
 					if(clubPayment.getClubId().getStatus()==0) {
-						clubPayment.getClubId().setStatus((byte) 1);
+						Club club = clubPayment.getClubId();
+						club.setStatus((byte) 1);
+						clubRepository.save(club);
 						isClubStatusChanged = true;
 					}
 				}
 				
 				clubPaymentRepository.save(clubPayment);
+				
+				//send email
+				PaymentEmailBody paymentEmailBody = new PaymentEmailBody();
+				paymentEmailBody.setClub(clubPayment.getClubId().getClubName());
+				paymentEmailBody.setYear(clubPayment.getPaymentForYear());
+				paymentEmailBody.setAmount(clubPayment.amount);
+				paymentEmailBody.setDate(clubPayment.getDate());
+				
+				emailService.setUpEmailInstance(username, clubPayment.getClubId().getEmail(), "CrickDom Annuual Payment", paymentEmailBody);
+			
+				
 				if(isClubStatusChanged) {
 					return 2;//payment success and club activated
 				}	
