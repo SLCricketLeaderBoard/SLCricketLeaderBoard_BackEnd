@@ -62,5 +62,18 @@ public class UserController {
 		
 	}
 	
+	@PostMapping("user/updateProfile")
+	public String updateProfile(@RequestBody User user){
+		try {
+			this.userService.updateUserProfile(user);
+			return "Updating successfull!";
+			
+		} catch (Exception e) {
+			System.out.println(e);
+			return "Updating failed";
+		}
+		
+	}
+	
 	
 }

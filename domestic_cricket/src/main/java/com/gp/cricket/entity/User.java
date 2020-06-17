@@ -66,6 +66,10 @@ public class User {
 	@Min(0)
 	@Max(1)
 	Byte status;
+	
+	
+	@Column(name = "profile_image")
+	String profileImage;
 
 	public User() {
 		super();
@@ -80,7 +84,8 @@ public class User {
 			@NotBlank(message = "Email is mandatory") @Email(message = "Email should be valid") String email,
 			@NotBlank(message = "Password is mandatory") String password,
 			@NotBlank(message = "Address is mandatory") String address, @NotNull LocalDate regDate,
-			@NotNull @Min(0) @Max(1) Byte status) {
+			@NotNull @Min(0) @Max(1) Byte status,
+			@NotNull String profileImage) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
@@ -94,6 +99,7 @@ public class User {
 		this.address = address;
 		this.regDate = regDate;
 		this.status = status;
+		this.profileImage = profileImage;
 	}
 
 	public Integer getUserId() {
@@ -191,13 +197,22 @@ public class User {
 	public void setStatus(Byte status) {
 		this.status = status;
 	}
+	
+	
+	public String getProfileImage() {
+		return profileImage;
+	}
+
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
+	}
 
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", userName=" + userName + ", fullName=" + fullName + ", nameWithInitial="
 				+ nameWithInitial + ", nic=" + nic + ", contactNumber=" + contactNumber + ", role=" + role + ", email="
 				+ email + ", password=" + password + ", address=" + address + ", regDate=" + regDate + ", status="
-				+ status + "]";
+				+ status + "profile image ="+profileImage+ "]";
 	}
 
 }

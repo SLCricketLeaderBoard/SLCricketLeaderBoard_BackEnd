@@ -105,6 +105,12 @@ public class UserService {
 		jwtUser.updateUserInMemory(userTemp, user);
 		return user;
 	}
+	
+	public User updateUserProfile(User user) {
+		
+		return this.userRepository.save(user);
+		
+	}
 }
 
 	
