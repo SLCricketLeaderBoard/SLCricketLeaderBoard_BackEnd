@@ -1,14 +1,11 @@
 package com.gp.cricket.repository;
 
-import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
-import com.gp.cricket.entity.Stadium;
+import com.gp.cricket.entity.Tournament;
 
-public interface TournamentRepository extends JpaRepository<Stadium, Integer> {
+public interface TournamentRepository extends JpaRepository<Tournament, Integer> {
 
     //////////////////// Hiernate code
 
