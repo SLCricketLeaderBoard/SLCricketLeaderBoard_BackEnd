@@ -1,6 +1,7 @@
 package com.gp.cricket.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,16 +13,21 @@ import com.gp.cricket.repository.TournamentRepository;
 public class TournamentService {
 
     @Autowired
-    TournamentRepository tournamentService;
+    TournamentRepository tournamentRepo;
 
     public Tournament registerTournament(Tournament tournament) {
     	
-        return this.tournamentService.save(tournament);
+        return this.tournamentRepo.save(tournament);
     }
 
     public List<Tournament> getTournaments() {
         System.out.println("Get all Tournament here");
-        
-        return this.tournamentService.findAll();
+        return this.tournamentRepo.findAll();
+    }
+    
+    public Optional<Tournament> getTournamentById(Integer id) {
+    	
+    	return this.tournamentRepo.findById(id);
+    
     }
 }

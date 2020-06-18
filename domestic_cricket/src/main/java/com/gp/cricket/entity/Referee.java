@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.persistence.Column;
 
 @Entity
+@Table(name = "referee")
 public class Referee {
 	
 	@Id
