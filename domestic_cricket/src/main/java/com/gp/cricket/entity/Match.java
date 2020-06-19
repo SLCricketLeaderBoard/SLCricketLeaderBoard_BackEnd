@@ -75,7 +75,7 @@ public class Match {
 	private String startTime;
 	
 	@Column(name="win_team")
-	private Integer winwinTeamIdTeam;
+	private Integer winTeamId;
 	
 	@Column(name="sponsor")
 	private String sponsor;
@@ -119,7 +119,7 @@ public class Match {
 			@NotBlank(message = "Club1 wicket is mandatory") Integer club1Wicket,
 			@NotBlank(message = "Club2 wicket is mandatory") Integer club2Wicket,
 			@NotBlank(message = "tournement round is mandotory") Integer tournementRound, LocalDate startdate,
-			LocalDate finishDate, String startTime, Integer winwinTeamIdTeam, String sponsor, MatchType matchTypeId,
+			LocalDate finishDate, String startTime, Integer winTeamId, String sponsor, MatchType matchTypeId,
 			Tournament tournamentId, Stadium stadiumId, Referee refereeId, Integer umpire1Id, Integer umpire2Id,
 			Integer umpire3Id) {
 		super();
@@ -136,7 +136,7 @@ public class Match {
 		this.startdate = startdate;
 		this.finishDate = finishDate;
 		this.startTime = startTime;
-		this.winwinTeamIdTeam = winwinTeamIdTeam;
+		this.winTeamId = winTeamId;
 		this.sponsor = sponsor;
 		this.matchTypeId = matchTypeId;
 		this.tournamentId = tournamentId;
@@ -251,12 +251,12 @@ public class Match {
 		this.startTime = startTime;
 	}
 
-	public Integer getWinwinTeamIdTeam() {
-		return winwinTeamIdTeam;
+	public Integer getWinTeamId() {
+		return winTeamId;
 	}
 
-	public void setWinwinTeamIdTeam(Integer winwinTeamIdTeam) {
-		this.winwinTeamIdTeam = winwinTeamIdTeam;
+	public void setWinTeamId(Integer winTeamId) {
+		this.winTeamId = winTeamId;
 	}
 
 	public String getSponsor() {
@@ -329,12 +329,11 @@ public class Match {
 				+ captainClub1 + ", captainClub2=" + captainClub2 + ", club1Mark=" + club1Mark + ", club2Mark="
 				+ club2Mark + ", club1Wicket=" + club1Wicket + ", club2Wicket=" + club2Wicket + ", tournementRound="
 				+ tournementRound + ", startdate=" + startdate + ", finishDate=" + finishDate + ", startTime="
-				+ startTime + ", winwinTeamIdTeam=" + winwinTeamIdTeam + ", sponsor=" + sponsor + ", matchTypeId="
-				+ matchTypeId + ", tournamentId=" + tournamentId + ", stadiumId=" + stadiumId + ", refereeId="
-				+ refereeId + ", umpire1Id=" + umpire1Id + ", umpire2Id=" + umpire2Id + ", umpire3Id=" + umpire3Id
-				+ "]";
+				+ startTime + ", winTeamId=" + winTeamId + ", sponsor=" + sponsor + ", matchTypeId=" + matchTypeId
+				+ ", tournamentId=" + tournamentId + ", stadiumId=" + stadiumId + ", refereeId=" + refereeId
+				+ ", umpire1Id=" + umpire1Id + ", umpire2Id=" + umpire2Id + ", umpire3Id=" + umpire3Id + "]";
 	}
-	
+
 	
 	
 	
