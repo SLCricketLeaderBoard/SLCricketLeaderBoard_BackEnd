@@ -3,6 +3,8 @@ package com.gp.cricket.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +31,7 @@ public class MatchController {
 	 }
 	 
 	 @PostMapping("/createMatch")
-	 public Match createMathc(@RequestBody Match match) {
+	 public Match createMathc(@Valid @RequestBody Match match) {
 		 System.out.println(match);
 		 return matchService.createMatch(match);
 		//  registerung managers

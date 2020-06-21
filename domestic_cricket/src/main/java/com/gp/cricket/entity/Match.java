@@ -1,6 +1,5 @@
 package com.gp.cricket.entity;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -9,10 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -24,116 +22,114 @@ public class Match {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "match_id")
 	private Integer matchId;
-	
-	@NotBlank(message = "Club1 id is mandatory")
-	@Column(name = "club1_id")
-	private Integer club1Id;
-	
-	@NotBlank(message = "Club2 name is mandatory")
-	@Column(name = "club2_id")
-	private Integer club2Id;
-	
-	@NotBlank(message = "Club1 captain name is mandatory")
-	@Column(name = "captain_club1")
-	private Integer captainClub1;
-	
 
-	@NotBlank(message = "Club2 captain name is mandatory")
-	@Column(name = "captain_club2")
-	private Integer captainClub2;
-	
+	@NotNull(message = "Club1 id is mandatory")
+	@Column(name = "club_one_id")
+	private Integer clubOneId;
 
-	@NotBlank(message = "Club1 mark is mandatory")	
-	@Column(name = "club1_mark")
-	private Integer club1Mark;
-	
-	@NotBlank(message = "Club2 mark is mandatory")	
-	@Column(name = "club2_mark")
-	private Integer club2Mark;
-	
-	@NotBlank(message = "Club1 wicket is mandatory")	
-	@Column(name="club1_wicket")
-	private Integer club1Wicket;
-	
-	@NotBlank(message = "Club2 wicket is mandatory")	
-	@Column(name = "club2_wicket")
-	private Integer club2Wicket;
-	
-	@NotBlank(message = "tournement round is mandotory")	
-	@Column(name ="tournement_round")
+	@NotNull(message = "Club2 name is mandatory")
+	@Column(name = "club_two_id")
+	private Integer clubTwoId;
+
+	@NotNull(message = "Club1 captain name is mandatory")
+	@Column(name = "captain_club_one")
+	private Integer captainClubOne;
+
+	@NotNull(message = "Club2 captain name is mandatory")
+	@Column(name = "captain_club_two")
+	private Integer captainClubTwo;
+
+	@NotNull(message = "Club1 mark is mandatory")
+	@Column(name = "club_one_mark")
+	private Integer clubOneMark;
+
+	@NotNull(message = "Club2 mark is mandatory")
+	@Column(name = "club_two_mark")
+	private Integer clubTwoMark;
+
+	@NotNull(message = "Club1 wicket is mandatory")
+	@Column(name = "club_one_wicket")
+	private Integer clubOneWicket;
+
+	@NotNull(message = "Club2 wicket is mandatory")
+	@Column(name = "club_two_wicket")
+	private Integer clubTwoWicket;
+
+	@NotNull(message = "tournement round is mandotory")
+	@Column(name = "tournement_round")
 	private Integer tournementRound;
-	
+
 	@Column(name = "start_date")
 	@DateTimeFormat(pattern = "MM-dd-YYYY")
-	private LocalDate startdate;
-	
-	@Column(name="finish_date")
+	private LocalDate startDate;
+
+	@Column(name = "finish_date")
 	@DateTimeFormat(pattern = "MM-dd-YYYY")
 	private LocalDate finishDate;
-	
+
 	@Column(name = "start_time")
 	private String startTime;
-	
-	@Column(name="win_team")
+
+	@Column(name = "win_team_id")
 	private Integer winTeamId;
-	
-	@Column(name="sponsor")
+
+	@Column(name = "sponsor")
 	private String sponsor;
-	
-	@OneToOne
+
+	@ManyToOne
 	@JoinColumn(name = "match_type_id", referencedColumnName = "match_type_id")
 	private MatchType matchTypeId;
-	
-	@OneToOne
+
+	@ManyToOne
 	@JoinColumn(name = "tournement_id", referencedColumnName = "tournement_id")
-	private  Tournament tournamentId;
-	
-	@OneToOne
+	private Tournament tournamentId;
+
+	@ManyToOne
 	@JoinColumn(name = "stadium_id", referencedColumnName = "stadium_id")
 	private Stadium stadiumId;
-	
-	@OneToOne
+
+	@ManyToOne
 	@JoinColumn(name = "referee_id", referencedColumnName = "referee_id")
 	private Referee refereeId;
-	
-	@Column(name="umpire1_id")
-	private Integer umpire1Id;
 
-	@Column(name="umpire2_id")
-	private Integer umpire2Id;
+	@Column(name = "umpire_one_id")
+	private Integer umpireOneId;
 
-	@Column(name="umpire3_id")
-	private Integer umpire3Id;
+	@Column(name = "umpire_two_id")
+	private Integer umpireTwoId;
+
+	@Column(name = "umpire_three_id")
+	private Integer umpireThreeId;
 
 	public Match() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Match(Integer matchId, @NotBlank(message = "Club1 id is mandatory") Integer club1Id,
-			@NotBlank(message = "Club2 name is mandatory") Integer club2Id,
-			@NotBlank(message = "Club1 captain name is mandatory") Integer captainClub1,
-			@NotBlank(message = "Club2 captain name is mandatory") Integer captainClub2,
-			@NotBlank(message = "Club1 mark is mandatory") Integer club1Mark,
-			@NotBlank(message = "Club2 mark is mandatory") Integer club2Mark,
-			@NotBlank(message = "Club1 wicket is mandatory") Integer club1Wicket,
-			@NotBlank(message = "Club2 wicket is mandatory") Integer club2Wicket,
-			@NotBlank(message = "tournement round is mandotory") Integer tournementRound, LocalDate startdate,
+	public Match(Integer matchId, @NotNull(message = "Club1 id is mandatory") Integer clubOneId,
+			@NotNull(message = "Club2 name is mandatory") Integer clubTwoId,
+			@NotNull(message = "Club1 captain name is mandatory") Integer captainClubOne,
+			@NotNull(message = "Club2 captain name is mandatory") Integer captainClubTwo,
+			@NotNull(message = "Club1 mark is mandatory") Integer clubOneMark,
+			@NotNull(message = "Club2 mark is mandatory") Integer clubTwoMark,
+			@NotNull(message = "Club1 wicket is mandatory") Integer clubOneWicket,
+			@NotNull(message = "Club2 wicket is mandatory") Integer clubTwoWicket,
+			@NotNull(message = "tournement round is mandotory") Integer tournementRound, LocalDate startdate,
 			LocalDate finishDate, String startTime, Integer winTeamId, String sponsor, MatchType matchTypeId,
-			Tournament tournamentId, Stadium stadiumId, Referee refereeId, Integer umpire1Id, Integer umpire2Id,
-			Integer umpire3Id) {
+			Tournament tournamentId, Stadium stadiumId, Referee refereeId, Integer umpireOneId, Integer umpireTwoId,
+			Integer umpireThreeId) {
 		super();
 		this.matchId = matchId;
-		this.club1Id = club1Id;
-		this.club2Id = club2Id;
-		this.captainClub1 = captainClub1;
-		this.captainClub2 = captainClub2;
-		this.club1Mark = club1Mark;
-		this.club2Mark = club2Mark;
-		this.club1Wicket = club1Wicket;
-		this.club2Wicket = club2Wicket;
+		this.clubOneId = clubOneId;
+		this.clubTwoId = clubTwoId;
+		this.captainClubOne = captainClubOne;
+		this.captainClubTwo = captainClubTwo;
+		this.clubOneMark = clubOneMark;
+		this.clubTwoMark = clubTwoMark;
+		this.clubOneWicket = clubOneWicket;
+		this.clubTwoWicket = clubTwoWicket;
 		this.tournementRound = tournementRound;
-		this.startdate = startdate;
+		this.startDate = startdate;
 		this.finishDate = finishDate;
 		this.startTime = startTime;
 		this.winTeamId = winTeamId;
@@ -142,9 +138,9 @@ public class Match {
 		this.tournamentId = tournamentId;
 		this.stadiumId = stadiumId;
 		this.refereeId = refereeId;
-		this.umpire1Id = umpire1Id;
-		this.umpire2Id = umpire2Id;
-		this.umpire3Id = umpire3Id;
+		this.umpireOneId = umpireOneId;
+		this.umpireTwoId = umpireTwoId;
+		this.umpireThreeId = umpireThreeId;
 	}
 
 	public Integer getMatchId() {
@@ -155,68 +151,68 @@ public class Match {
 		this.matchId = matchId;
 	}
 
-	public Integer getClub1Id() {
-		return club1Id;
+	public Integer getClubOneId() {
+		return clubOneId;
 	}
 
-	public void setClub1Id(Integer club1Id) {
-		this.club1Id = club1Id;
+	public void setClubOneId(Integer clubOneId) {
+		this.clubOneId = clubOneId;
 	}
 
-	public Integer getClub2Id() {
-		return club2Id;
+	public Integer getClubTwoId() {
+		return clubTwoId;
 	}
 
-	public void setClub2Id(Integer club2Id) {
-		this.club2Id = club2Id;
+	public void setClubTwoId(Integer clubTwoId) {
+		this.clubTwoId = clubTwoId;
 	}
 
-	public Integer getCaptainClub1() {
-		return captainClub1;
+	public Integer getCaptainClubOne() {
+		return captainClubOne;
 	}
 
-	public void setCaptainClub1(Integer captainClub1) {
-		this.captainClub1 = captainClub1;
+	public void setCaptainClubOne(Integer captainClubOne) {
+		this.captainClubOne = captainClubOne;
 	}
 
-	public Integer getCaptainClub2() {
-		return captainClub2;
+	public Integer getCaptainClubTwo() {
+		return captainClubTwo;
 	}
 
-	public void setCaptainClub2(Integer captainClub2) {
-		this.captainClub2 = captainClub2;
+	public void setCaptainClubTwo(Integer captainClubTwo) {
+		this.captainClubTwo = captainClubTwo;
 	}
 
-	public Integer getClub1Mark() {
-		return club1Mark;
+	public Integer getClubOneMark() {
+		return clubOneMark;
 	}
 
-	public void setClub1Mark(Integer club1Mark) {
-		this.club1Mark = club1Mark;
+	public void setClubOneMark(Integer clubOneMark) {
+		this.clubOneMark = clubOneMark;
 	}
 
-	public Integer getClub2Mark() {
-		return club2Mark;
+	public Integer getClubTwoMark() {
+		return clubTwoMark;
 	}
 
-	public void setClub2Mark(Integer club2Mark) {
-		this.club2Mark = club2Mark;
+	public void setClubTwoMark(Integer clubTwoMark) {
+		this.clubTwoMark = clubTwoMark;
 	}
 
-	public Integer getClub1Wicket() {
-		return club1Wicket;
+	public Integer getClubOneWicket() {
+		return clubOneWicket;
 	}
 
-	public void setClub1Wicket(Integer club1Wicket) {
-		this.club1Wicket = club1Wicket;
+	public void setClubOneWicket(Integer clubOneWicket) {
+		this.clubOneWicket = clubOneWicket;
 	}
 
-	public Integer getClub2Wicket() {
-		return club2Wicket;
+	public Integer getClubTwoWicket() {
+		return clubTwoWicket;
 	}
 
-	public void setClub2Wicket(Integer club2Wicket) {
-		this.club2Wicket = club2Wicket;
+	public void setClubTwoWicket(Integer clubTwoWicket) {
+		this.clubTwoWicket = clubTwoWicket;
 	}
 
 	public Integer getTournementRound() {
@@ -228,11 +224,11 @@ public class Match {
 	}
 
 	public LocalDate getStartdate() {
-		return startdate;
+		return startDate;
 	}
 
 	public void setStartdate(LocalDate startdate) {
-		this.startdate = startdate;
+		this.startDate = startdate;
 	}
 
 	public LocalDate getFinishDate() {
@@ -299,43 +295,40 @@ public class Match {
 		this.refereeId = refereeId;
 	}
 
-	public Integer getUmpire1Id() {
-		return umpire1Id;
+	public Integer getUmpireOneId() {
+		return umpireOneId;
 	}
 
-	public void setUmpire1Id(Integer umpire1Id) {
-		this.umpire1Id = umpire1Id;
+	public void setUmpireOneId(Integer umpireOneId) {
+		this.umpireOneId = umpireOneId;
 	}
 
-	public Integer getUmpire2Id() {
-		return umpire2Id;
+	public Integer getUmpireTwoId() {
+		return umpireTwoId;
 	}
 
-	public void setUmpire2Id(Integer umpire2Id) {
-		this.umpire2Id = umpire2Id;
+	public void setUmpireTwoId(Integer umpireTwoId) {
+		this.umpireTwoId = umpireTwoId;
 	}
 
-	public Integer getUmpire3Id() {
-		return umpire3Id;
+	public Integer getUmpireThreeId() {
+		return umpireThreeId;
 	}
 
-	public void setUmpire3Id(Integer umpire3Id) {
-		this.umpire3Id = umpire3Id;
+	public void setUmpireThreeId(Integer umpireThreeId) {
+		this.umpireThreeId = umpireThreeId;
 	}
 
 	@Override
 	public String toString() {
-		return "Match [matchId=" + matchId + ", club1Id=" + club1Id + ", club2Id=" + club2Id + ", captainClub1="
-				+ captainClub1 + ", captainClub2=" + captainClub2 + ", club1Mark=" + club1Mark + ", club2Mark="
-				+ club2Mark + ", club1Wicket=" + club1Wicket + ", club2Wicket=" + club2Wicket + ", tournementRound="
-				+ tournementRound + ", startdate=" + startdate + ", finishDate=" + finishDate + ", startTime="
-				+ startTime + ", winTeamId=" + winTeamId + ", sponsor=" + sponsor + ", matchTypeId=" + matchTypeId
-				+ ", tournamentId=" + tournamentId + ", stadiumId=" + stadiumId + ", refereeId=" + refereeId
-				+ ", umpire1Id=" + umpire1Id + ", umpire2Id=" + umpire2Id + ", umpire3Id=" + umpire3Id + "]";
+		return "Match [matchId=" + matchId + ", clubOneId=" + clubOneId + ", clubTwoId=" + clubTwoId
+				+ ", captainClubOne=" + captainClubOne + ", captainClubTwo=" + captainClubTwo + ", clubOneMark="
+				+ clubOneMark + ", clubTwoMark=" + clubTwoMark + ", clubOneWicket=" + clubOneWicket + ", clubTwoWicket="
+				+ clubTwoWicket + ", tournementRound=" + tournementRound + ", startdate=" + startDate + ", finishDate="
+				+ finishDate + ", startTime=" + startTime + ", winTeamId=" + winTeamId + ", sponsor=" + sponsor
+				+ ", matchTypeId=" + matchTypeId + ", tournamentId=" + tournamentId + ", stadiumId=" + stadiumId
+				+ ", refereeId=" + refereeId + ", umpireOneId=" + umpireOneId + ", umpireTwoId=" + umpireTwoId
+				+ ", umpireThreeId=" + umpireThreeId + "]";
 	}
 
-	
-	
-	
-	
 }

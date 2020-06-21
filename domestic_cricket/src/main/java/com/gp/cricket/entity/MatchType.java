@@ -10,14 +10,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "match_type")
 public class MatchType {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="match_type_id")
+	@Column(name = "match_type_id")
 	private Integer matchTypeId;
-	
+
 	@Column(name = "match_type")
-	private String type;
+	private String matchType;
 
 	public MatchType() {
 		super();
@@ -27,7 +27,7 @@ public class MatchType {
 	public MatchType(Integer matchTypeId, String type) {
 		super();
 		this.matchTypeId = matchTypeId;
-		this.type = type;
+		this.matchType = type;
 	}
 
 	public Integer getMatchTypeId() {
@@ -38,19 +38,17 @@ public class MatchType {
 		this.matchTypeId = matchTypeId;
 	}
 
-	public String getType() {
-		return type;
+	public String getMatchType() {
+		return matchType;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setMatchType(String matchType) {
+		this.matchType = matchType;
 	}
 
 	@Override
 	public String toString() {
-		return "MatchType [matchTypeId=" + matchTypeId + ", type=" + type + "]";
+		return "MatchType [matchTypeId=" + matchTypeId + ", matchType=" + matchType + "]";
 	}
-	
-	
 
 }
