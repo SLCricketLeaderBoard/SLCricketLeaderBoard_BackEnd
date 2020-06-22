@@ -42,4 +42,8 @@ public class UmpireService {
 		public List<Umpire> getAvailableUmpires() {
 			return umpireRepository.getAvailableUmpires();
 		}
+		
+		public Umpire getAvailableUmpire(Integer id) {
+			return umpireRepository.getAvailableUmpire(id);
+		}
 }
