@@ -23,6 +23,15 @@ public class PlayerController {
 	@Autowired
 	PlayerService playerService;
 	
+	@PostMapping("player/signup")
+	public ResponseEntity<Integer> playerSignUp(@Valid @RequestBody Player player){
+		Integer result = playerService.playerSignup(player);
+		if(result!=null) {
+			return ResponseEntity.ok(result);
+		}
+		return ResponseEntity.badRequest().build();
+	}
+	
 	@PostMapping("player")
 	public ResponseEntity<Integer> playerRegister(@Valid @RequestBody Player player){
 		Integer result = playerService.playerRegister(player);

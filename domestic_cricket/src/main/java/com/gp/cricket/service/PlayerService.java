@@ -21,6 +21,21 @@ public class PlayerService {
 
 	@Autowired
 	UserService userService;
+	
+	public Integer playerSignup(Player player) {
+		System.out.println("##########");
+		System.out.println(player);
+		if (validPlayerObject(player)) {
+			User user = userService.signupUser(player.getUserId());
+			if (user != null) {
+				player.setUserId(user);
+				playerRepository.save(player);
+				return 1;
+			}
+			return 0;
+		}
+		return null;
+	}
 
 	public Integer playerRegister(Player player) {
 		if (validPlayerObject(player)) {
