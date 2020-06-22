@@ -13,7 +13,7 @@ public class UserService {
 
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Autowired
 	JwtInMemoryUserDetailsService jwtUser;
 
@@ -22,13 +22,10 @@ public class UserService {
 		return null;
 	}
 
-		
-	public User getUser(String email) {		
+	public User getUser(String email) {
 		return userRepository.findByEmail(email);
 	}
 
-	
-	
 	public Boolean isEmailHas(String email) {
 		User user = userRepository.findUserByEmail(email);
 		if (user != null && email.equals(user.getEmail())) {
@@ -52,67 +49,75 @@ public class UserService {
 		}
 		return false;
 	}
-	
-	
+
 	public User getUserByUserId(String userId) {
 		Integer x = Integer.parseInt(userId);
 		return this.userRepository.findById(x).get();
 	}
-	
-	public User registerUser(User user) {
-		
-		if(!(isEmailHas(user.getEmail())||isNicHas(user.getNic()))) {
-			
-			//password encryption object   
-			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-			
-			//update password encrypted
-			user.setPassword(encoder.encode(user.getPassword()));
-			
-			//set user status to 1
-			Byte x = 1;
-			user.setStatus(x);
 
-			//save user on the database
+	public User signupUser(User user) {
+
+		if (!(isEmailHas(user.getEmail()) || isNicHas(user.getNic()))) {
+
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			user.setPassword(encoder.encode(user.getPassword()));
+			user.setStatus((byte) 0);
+			
 			user = this.userRepository.save(user);
-			
-			//add user in the in memory
-			jwtUser.addNewUserInMemory(user);
-			
 			return user;
 		}
 		return null;
 	}
-	
+
+	public User registerUser(User user) {
+
+		if (!(isEmailHas(user.getEmail()) || isNicHas(user.getNic()))) {
+
+			// password encryption object
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+			// update password encrypted
+			user.setPassword(encoder.encode(user.getPassword()));
+
+			// set user status to 1
+			Byte x = 1;
+			user.setStatus(x);
+
+			// save user on the database
+			user = this.userRepository.save(user);
+
+			// add user in the in memory
+			jwtUser.addNewUserInMemory(user);
+
+			return user;
+		}
+		return null;
+	}
+
 	public User resetPassword(User user) {
-		
+
 		// remove the users in current jwt memory
 		User userTemp = this.getUser(user.getEmail());
-		
-		// jwtUser.removeNewUserInMemory(userTemp);		
-		
-		
+
+		// jwtUser.removeNewUserInMemory(userTemp);
+
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		//encrypt the password here
+		// encrypt the password here
 		user.setPassword(encoder.encode(user.getPassword()));
-		
-		//set User status to 1			
+
+		// set User status to 1
 		Byte x = 1;
 		user.setStatus(x);
-		
-		//Update the record
+
+		// Update the record
 		user = this.userRepository.save(user);
 		jwtUser.updateUserInMemory(userTemp, user);
 		return user;
 	}
-	
+
 	public User updateUserProfile(User user) {
-		
+
 		return this.userRepository.save(user);
-		
+
 	}
 }
-
-	
-	
-	
