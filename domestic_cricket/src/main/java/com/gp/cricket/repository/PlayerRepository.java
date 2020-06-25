@@ -11,6 +11,9 @@ import com.gp.cricket.entity.Player;
 
 public interface PlayerRepository extends JpaRepository<Player, Integer>{
 	
-	@Query("FROM Player p WHERE p.clubId = :clubId AND p.userId.status = 1")
-	List<Player> findPlayerByClubId(@Param("clubId") Club clubId);
+	@Query("FROM Player p WHERE p.clubId = :clubId AND p.userId.status = :status ORDER BY p.userId.nameWithInitial ASC")
+	List<Player> findPlayerByClubId(@Param("clubId") Club clubId, @Param("status") Byte status);
+	
+	@Query("FROM Player p WHERE p.playerId = :playerId")
+	Player findPlayerById(@Param("playerId") Integer playerId);
 }

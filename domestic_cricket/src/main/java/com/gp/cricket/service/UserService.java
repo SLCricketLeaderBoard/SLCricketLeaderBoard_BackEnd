@@ -1,5 +1,7 @@
 package com.gp.cricket.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -62,7 +64,7 @@ public class UserService {
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			user.setPassword(encoder.encode(user.getPassword()));
 			user.setStatus((byte) 0);
-			
+
 			user = this.userRepository.save(user);
 			return user;
 		}
@@ -116,8 +118,35 @@ public class UserService {
 	}
 
 	public User updateUserProfile(User user) {
-
 		return this.userRepository.save(user);
 
+	}
+
+	public Integer updateUser(User user) {
+		User anotherUserExist = userRepository.findByNicAndEmail(user.getNic(), user.getEmail(), user.getUserId());
+		if (anotherUserExist == null) {// User update data(NIC/Email) is unique)
+			// Check password change or not
+			User userPreviousData = userRepository.findByUserId(user.getUserId());
+			String pwd1 = userPreviousData.getPassword();
+			String pwd2 = user.getPassword();
+			if (!pwd1.equals(pwd2)) {//If password changed
+				BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+				String encryptedUpdatedPassword = encoder.encode(user.getPassword());
+				user.setPassword(encryptedUpdatedPassword);
+			}
+			userRepository.save(user);
+			return 1;
+		}
+		return 0;//same Email or NIC has another person
+	}
+	
+	public Integer userAccountDeactivate(Integer userId) {
+		if(userId!=null && userId>0 && userRepository.existsById(userId)) {
+			User user = userRepository.findByUserId(userId);
+			user.setStatus((byte)0);
+			userRepository.save(user);
+			return 1;
+		}
+		return null;
 	}
 }

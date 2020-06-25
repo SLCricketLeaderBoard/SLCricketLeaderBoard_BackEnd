@@ -9,22 +9,21 @@ import com.gp.cricket.entity.Player;
 import com.gp.cricket.entity.User;
 import com.gp.cricket.repository.ClubRepository;
 import com.gp.cricket.repository.PlayerRepository;
+import com.gp.cricket.repository.UserRepository;
 
 @Service
 public class PlayerService {
 
 	@Autowired
 	PlayerRepository playerRepository;
-	
+
 	@Autowired
 	ClubRepository clubRepository;
 
 	@Autowired
 	UserService userService;
-	
+
 	public Integer playerSignup(Player player) {
-		System.out.println("##########");
-		System.out.println(player);
 		if (validPlayerObject(player)) {
 			User user = userService.signupUser(player.getUserId());
 			if (user != null) {
@@ -37,15 +36,13 @@ public class PlayerService {
 		return null;
 	}
 
-	public Integer playerRegister(Player player) {
+	public Integer playerUpdate(Player player) {
 		if (validPlayerObject(player)) {
-			User user = userService.registerUser(player.getUserId());
-			if (user != null) {
-				player.setUserId(user);
+			Integer userUpdateResult = userService.updateUser(player.getUserId());
+			if(userUpdateResult==1) {
 				playerRepository.save(player);
-				return 1;
 			}
-			return 0;
+			return userUpdateResult;
 		}
 		return null;
 	}
@@ -57,10 +54,17 @@ public class PlayerService {
 		}
 		return false;
 	}
-	
-	public List<Player> getClubPlayerList(Integer clubId){
-		if(clubId!=null && clubId>0) {
-			return playerRepository.findPlayerByClubId(clubRepository.findClubByClubId(clubId));
+
+	public List<Player> getClubPlayerList(Integer clubId, Byte status) {
+		if (clubId != null && clubId > 0 && status >= 0 && status <= 1) {
+			return playerRepository.findPlayerByClubId(clubRepository.findClubByClubId(clubId), status);
+		}
+		return null;
+	}
+
+	public Player getPlayer(Integer playerId) {
+		if (playerId != null && playerId > 0) {
+			return playerRepository.findPlayerById(playerId);
 		}
 		return null;
 	}
