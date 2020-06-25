@@ -43,33 +43,14 @@ public class MatchService {
 	}
 
 	// for saving the data of match
-	public Match createMatch(Match match) {
-
-		System.out.println("############################");
-		System.out.println(match);
-		
-		Stadium s = match.getStadiumId();
-		Referee r = match.getRefereeId();
-		Tournament t = match.getTournamentId();
-		MatchType m = match.getMatchTypeId();
-		
-		
-		stadiumRepository.save(s);
-		refereeRepository.save(r);
-		tournamentRepository.save(t);
-		matchTypeRepository.save(m);
-		
-		System.out.println("#############################");
-		
-		System.out.println(s);
-		System.out.println(r);
-		System.out.println(t);
-		System.out.println(m);
-		
+	public Match createMatch(Match match) {		
 		return matchRepo.save(match);
 	}
 
-//	public List<Match> getMathchesByTournamentId(Integer tournamentId){
-////		return matchRepo.
-//	}
+
+	public List<Match> findMatchesByTournamentId(Integer tournamentId) {
+		// TODO Auto-generated method stub
+		return matchRepo.findMatchesByTournamentId(tournamentId);	
+	}
+	
 }

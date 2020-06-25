@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,13 +28,18 @@ public class UmpireController {
 	 }
 	
 	@GetMapping("/umpires")
-	 public List<Umpire> getAllManagers(){
+	 public List<Umpire> getAllUmpires(){
 		 return this.umpireService.getAllUmpires();
 	 }
 	 
 
 	 @GetMapping("umpire/available")
-	 public List<Umpire> getAvailableManagers(){
+	 public List<Umpire> getAvailableUmpires(){
 		 return umpireService.getAvailableUmpires();
+	 }
+	 
+	 @GetMapping("umpire/{id}")
+	 public Umpire getAvailableUmpire(@PathVariable Integer id){
+		 return umpireService.getAvailableUmpire(id);
 	 }
 }

@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,9 +38,14 @@ public class MatchController {
 		//  registerung managers
 	 }
 	 
-//	 @GetMapping("/matches/{tournamentId}")
-//	 public List<MatchType> getAllManagers(@PathVariable("tournamentId")Integer tournamentId){
-//		 return matchService.getMathchesByTournamentId(tournamentId);
+	 @GetMapping("/matches/{tournamentId}")
+	 public List<Match> getAllManagers(@PathVariable("tournamentId")Integer tournamentId){
+		 return matchService.findMatchesByTournamentId(tournamentId);
+	 }
+	 
+//	 @GetMapping("matches")
+//	 public List<Match> matchList (){
+//		 return matchService.getMatchs();
 //	 }
 	 
 }
