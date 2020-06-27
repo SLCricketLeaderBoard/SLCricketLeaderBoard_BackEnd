@@ -31,6 +31,12 @@ public class TournamentClub {
 	@ManyToOne
 	@JoinColumn(name = "tournament_id", referencedColumnName = "tournament_id")
 	private Tournament tournamentId;
+	
+	
+
+	public TournamentClub() {
+		
+	}
 
 	public TournamentClub(Integer tournamentClubId, @NotNull Byte status, @NotNull Club clubId,
 			@NotNull Tournament tournamentId) {

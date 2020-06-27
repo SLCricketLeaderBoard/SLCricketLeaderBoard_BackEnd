@@ -29,6 +29,9 @@ public class TournamentClubPlayer {
 	@JoinColumn(name = "player_id", referencedColumnName = "player_id")
 	private Player playerId;
 
+	public TournamentClubPlayer() {
+	}
+
 	public TournamentClubPlayer(Integer tournamentClubPlayerId, @NotNull TournamentClub tournamentClubId,
 			@NotNull Player playerId) {
 		super();
