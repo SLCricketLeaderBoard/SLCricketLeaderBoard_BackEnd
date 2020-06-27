@@ -1,5 +1,7 @@
 package com.gp.cricket.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +38,13 @@ public class TournamentClubService {
 			return true;
 		}
 		return false;
+	}
+
+	public List<TournamentClub> getClubRegisteredTournaments(Integer clubId) {
+		if(clubId!=null && clubRepository.existsById(clubId)) {
+			return tournamentClubRepository.findByclubId(clubRepository.findClubByClubId(clubId));
+		}
+		return null;
 	}
 
 }
