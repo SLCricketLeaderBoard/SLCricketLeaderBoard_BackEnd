@@ -46,6 +46,8 @@ public class PlayerService {
 		}
 		return null;
 	}
+	
+
 
 	public Boolean validPlayerObject(Player player) {
 		if (player.getUserId() != null && player.getSpecialType() != null && player.getBatmanTypeId() != null

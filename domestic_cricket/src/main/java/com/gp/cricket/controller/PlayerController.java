@@ -60,5 +60,5 @@ public class PlayerController {
 		return ResponseEntity.notFound().build();
 	}
 	
-	 
+
 }

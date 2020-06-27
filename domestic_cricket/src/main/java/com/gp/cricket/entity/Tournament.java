@@ -1,6 +1,5 @@
 package com.gp.cricket.entity;
 
-
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,49 +10,45 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-
 @Entity
-@Table(name = "tournement")
+@Table(name = "tournament")
 public class Tournament {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "tournement_id")
-    private Integer tournamentId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "tournament_id")
+	private Integer tournamentId;
 
-    @NotBlank(message = "Tournament name is mandatory")
-    @Column(name = "tournement_name")
-    private String tournamentName;
+	@NotBlank(message = "Tournament name is mandatory")
+	@Column(name = "tournament_name")
+	private String tournamentName;
 
-    @NotBlank(message = "Start Date is mandatory")
-    @Column(name = "start_date")
-    private Date startDate;
+	@NotBlank(message = "Start Date is mandatory")
+	@Column(name = "start_date")
+	private Date startDate;
 
-    @NotBlank(message = "Enad Date is mandatory")
-    @Column(name = "end_date")
-    private Date endDate;
+	@NotBlank(message = "Enad Date is mandatory")
+	@Column(name = "end_date")
+	private Date endDate;
 
-    public Tournament() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	public Tournament() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-    public Tournament(Integer tournamentId,
-            @NotBlank(message = "Tournament id name is mandatory") String tournamentName,
-            @NotBlank(message = "Start Date is mandatory") Date startDate,
-            @NotBlank(message = "End Date is mandotaory") Date endDate
-            ) {
-        super();
-        this.tournamentName = tournamentName;
-        this.tournamentId = tournamentId;
-        this.startDate = startDate;
-        this.startDate = startDate;
+	public Tournament(Integer tournamentId,
+			@NotBlank(message = "Tournament id name is mandatory") String tournamentName,
+			@NotBlank(message = "Start Date is mandatory") Date startDate,
+			@NotBlank(message = "End Date is mandotaory") Date endDate) {
+		super();
+		this.tournamentName = tournamentName;
+		this.tournamentId = tournamentId;
+		this.startDate = startDate;
+		this.startDate = startDate;
 
-    }
+	}
 
-
-
-    public Integer getTournamentId() {
+	public Integer getTournamentId() {
 		return tournamentId;
 	}
 
@@ -86,9 +81,9 @@ public class Tournament {
 	}
 
 	@Override
-    public String toString() {
-        return "Tournament [tournamentId=" + tournamentId + ", tournamentName=" + tournamentName + ", startDate="
-                + startDate + ", endDate=" + endDate + "]";
-    }
+	public String toString() {
+		return "Tournament [tournamentId=" + tournamentId + ", tournamentName=" + tournamentName + ", startDate="
+				+ startDate + ", endDate=" + endDate + "]";
+	}
 
 }
