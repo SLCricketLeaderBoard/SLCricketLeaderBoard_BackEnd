@@ -23,7 +23,6 @@ public class Tournament {
 	@Column(name = "tournament_name")
 	private String tournamentName;
 
-
 	@NotBlank(message = "Start Date is mandatory")
 	@Column(name = "start_date")
 	private Date startDate;
@@ -32,17 +31,14 @@ public class Tournament {
 	@Column(name = "end_date")
 	private Date endDate;
 
-    
-    @NotBlank(message = "closing Date is mandatory")
-    @Column(name = "registration_closing_date")
-    private Date registartionCloseDate;
-    
-    
-    public Tournament() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	@NotBlank(message = "closing Date is mandatory")
+	@Column(name = "registration_closing_date")
+	private Date registartionCloseDate;
 
+	public Tournament() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public Tournament(Integer tournamentId, @NotBlank(message = "Tournament name is mandatory") String tournamentName,
 			@NotBlank(message = "Start Date is mandatory") Date startDate,
@@ -56,62 +52,50 @@ public class Tournament {
 		this.registartionCloseDate = registartionCloseDate;
 	}
 
-	}
-
 	public Integer getTournamentId() {
 		return tournamentId;
 	}
-
 
 	public void setTournamentId(Integer tournamentId) {
 		this.tournamentId = tournamentId;
 	}
 
-
 	public String getTournamentName() {
 		return tournamentName;
 	}
-
 
 	public void setTournamentName(String tournamentName) {
 		this.tournamentName = tournamentName;
 	}
 
-
 	public Date getStartDate() {
 		return startDate;
 	}
-
 
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
-
 	public Date getEndDate() {
 		return endDate;
 	}
-
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
-
 	public Date getRegistartionCloseDate() {
 		return registartionCloseDate;
 	}
-
 
 	public void setRegistartionCloseDate(Date registartionCloseDate) {
 		this.registartionCloseDate = registartionCloseDate;
 	}
 
-    @Override
+	@Override
 	public String toString() {
 		return "Tournament [tournamentId=" + tournamentId + ", tournamentName=" + tournamentName + ", startDate="
-				+ startDate + ", endDate=" + endDate + "]";
+				+ startDate + ", endDate=" + endDate + ", registartionCloseDate=" + registartionCloseDate + "]";
 	}
-
 
 }
