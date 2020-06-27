@@ -66,6 +66,7 @@ public class UserService {
 			user.setStatus((byte) 0);
 
 			user = this.userRepository.save(user);
+			jwtUser.addNewUserInMemory(user);
 			return user;
 		}
 		return null;
@@ -122,28 +123,50 @@ public class UserService {
 
 	}
 
-	public Integer updateUser(User user) {
-		User anotherUserExist = userRepository.findByNicAndEmail(user.getNic(), user.getEmail(), user.getUserId());
+	public Integer updateUser(User updateUser) {
+		User anotherUserExist = userRepository.findByNicAndEmail(updateUser.getNic(), updateUser.getEmail(),
+				updateUser.getUserId());
+
 		if (anotherUserExist == null) {// User update data(NIC/Email) is unique)
-			// Check password change or not
-			User userPreviousData = userRepository.findByUserId(user.getUserId());
-			String pwd1 = userPreviousData.getPassword();
-			String pwd2 = user.getPassword();
-			if (!pwd1.equals(pwd2)) {//If password changed
+
+			// 1. Check whether password change or not
+			User previousUser = userRepository.findByUserId(updateUser.getUserId());
+			String pwd1 = previousUser.getPassword();
+			String pwd2 = updateUser.getPassword();
+			Boolean isPasswordChanged = false;
+
+			if (!pwd1.equals(pwd2)) {// If password changed
 				BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-				String encryptedUpdatedPassword = encoder.encode(user.getPassword());
-				user.setPassword(encryptedUpdatedPassword);
+				String encryptedUpdatedPassword = encoder.encode(pwd2);
+				updateUser.setPassword(encryptedUpdatedPassword);
+				isPasswordChanged = true;
 			}
-			userRepository.save(user);
-			return 1;
+
+			// 2. check whether email changed or not
+			String email1 = previousUser.getEmail();
+			String email2 = updateUser.getEmail();
+			Boolean isEmailChaned = false;
+			if (!email1.equals(email2)) {// If email changed
+				isEmailChaned = true;
+			}
+
+			User result = userRepository.save(updateUser);
+
+			if (result != null) {
+				if ((isEmailChaned || isPasswordChanged)) {// If email or password changed then update JwtUserDetails						// List
+					jwtUser.updateUserInMemory(previousUser, updateUser);
+				}
+				return 1;// save success
+			}
+
 		}
-		return 0;//same Email or NIC has another person
+		return 0;// same Email or NIC has another person
 	}
-	
+
 	public Integer userAccountDeactivate(Integer userId) {
-		if(userId!=null && userId>0 && userRepository.existsById(userId)) {
+		if (userId != null && userId > 0 && userRepository.existsById(userId)) {
 			User user = userRepository.findByUserId(userId);
-			user.setStatus((byte)0);
+			user.setStatus((byte) 0);
 			userRepository.save(user);
 			return 1;
 		}

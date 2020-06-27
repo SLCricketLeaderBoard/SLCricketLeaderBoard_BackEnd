@@ -16,4 +16,5 @@ public interface PlayerRepository extends JpaRepository<Player, Integer>{
 	
 	@Query("FROM Player p WHERE p.playerId = :playerId")
 	Player findPlayerById(@Param("playerId") Integer playerId);
+	
 }

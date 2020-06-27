@@ -81,7 +81,7 @@ public class Match {
 	private MatchType matchTypeId;
 
 	@ManyToOne
-	@JoinColumn(name = "tournement_id", referencedColumnName = "tournement_id")
+	@JoinColumn(name = "tournament_id", referencedColumnName = "tournament_id")
 	private Tournament tournamentId;
 
 	@ManyToOne
