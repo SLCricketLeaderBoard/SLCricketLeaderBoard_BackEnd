@@ -125,7 +125,6 @@ public class Match {
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public Match(Integer matchId, @NotNull(message = "Club1 id is mandatory") Integer clubOneId,
 			@NotNull(message = "Club2 name is mandatory") Integer clubTwoId,
 			@NotNull(message = "Club1 captain name is mandatory") Integer captainClubOne,
@@ -137,7 +136,8 @@ public class Match {
 			@NotNull(message = "tournement round is mandotory") Integer tournementRound, LocalDate startDate,
 			LocalDate finishDate, String startTime, Integer winTeamId, String sponsor, MatchType matchTypeId,
 			Tournament tournamentId, Stadium stadiumId, Referee refereeId, Integer umpireOneId, Integer umpireTwoId,
-			Integer umpireThreeId, Integer tossWinTeam) {
+			Integer umpireThreeId, Integer tossWinTeam, Integer clubOneViceCaptain, Integer clubTwoViceCaptain,
+			Integer clubOneKeper, Integer clubTwoKeper) {
 		super();
 		this.matchId = matchId;
 		this.clubOneId = clubOneId;
@@ -162,8 +162,11 @@ public class Match {
 		this.umpireTwoId = umpireTwoId;
 		this.umpireThreeId = umpireThreeId;
 		this.tossWinTeam = tossWinTeam;
+		this.clubOneViceCaptain = clubOneViceCaptain;
+		this.clubTwoViceCaptain = clubTwoViceCaptain;
+		this.clubOneKeper = clubOneKeper;
+		this.clubTwoKeper = clubTwoKeper;
 	}
-
 
 	public Integer getMatchId() {
 		return matchId;
@@ -174,226 +177,213 @@ public class Match {
 		this.matchId = matchId;
 	}
 
-
 	public Integer getClubOneId() {
 		return clubOneId;
 	}
-
 
 	public void setClubOneId(Integer clubOneId) {
 		this.clubOneId = clubOneId;
 	}
 
-
 	public Integer getClubTwoId() {
 		return clubTwoId;
 	}
-
 
 	public void setClubTwoId(Integer clubTwoId) {
 		this.clubTwoId = clubTwoId;
 	}
 
-
 	public Integer getCaptainClubOne() {
 		return captainClubOne;
 	}
-
 
 	public void setCaptainClubOne(Integer captainClubOne) {
 		this.captainClubOne = captainClubOne;
 	}
 
-
 	public Integer getCaptainClubTwo() {
 		return captainClubTwo;
 	}
-
 
 	public void setCaptainClubTwo(Integer captainClubTwo) {
 		this.captainClubTwo = captainClubTwo;
 	}
 
-
 	public Integer getClubOneMark() {
 		return clubOneMark;
 	}
-
 
 	public void setClubOneMark(Integer clubOneMark) {
 		this.clubOneMark = clubOneMark;
 	}
 
-
 	public Integer getClubTwoMark() {
 		return clubTwoMark;
 	}
-
 
 	public void setClubTwoMark(Integer clubTwoMark) {
 		this.clubTwoMark = clubTwoMark;
 	}
 
-
 	public Integer getClubOneWicket() {
 		return clubOneWicket;
 	}
-
 
 	public void setClubOneWicket(Integer clubOneWicket) {
 		this.clubOneWicket = clubOneWicket;
 	}
 
-
 	public Integer getClubTwoWicket() {
 		return clubTwoWicket;
 	}
-
 
 	public void setClubTwoWicket(Integer clubTwoWicket) {
 		this.clubTwoWicket = clubTwoWicket;
 	}
 
-
 	public Integer getTournementRound() {
 		return tournementRound;
 	}
-
 
 	public void setTournementRound(Integer tournementRound) {
 		this.tournementRound = tournementRound;
 	}
 
-
 	public LocalDate getStartDate() {
 		return startDate;
 	}
-
 
 	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
-
 	public LocalDate getFinishDate() {
 		return finishDate;
 	}
-
 
 	public void setFinishDate(LocalDate finishDate) {
 		this.finishDate = finishDate;
 	}
 
-
 	public String getStartTime() {
 		return startTime;
 	}
-
 
 	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 
-
 	public Integer getWinTeamId() {
 		return winTeamId;
 	}
-
 
 	public void setWinTeamId(Integer winTeamId) {
 		this.winTeamId = winTeamId;
 	}
 
-
 	public String getSponsor() {
 		return sponsor;
 	}
-
 
 	public void setSponsor(String sponsor) {
 		this.sponsor = sponsor;
 	}
 
-
 	public MatchType getMatchTypeId() {
 		return matchTypeId;
 	}
-
 
 	public void setMatchTypeId(MatchType matchTypeId) {
 		this.matchTypeId = matchTypeId;
 	}
 
-
 	public Tournament getTournamentId() {
 		return tournamentId;
 	}
-
 
 	public void setTournamentId(Tournament tournamentId) {
 		this.tournamentId = tournamentId;
 	}
 
-
 	public Stadium getStadiumId() {
 		return stadiumId;
 	}
-
 
 	public void setStadiumId(Stadium stadiumId) {
 		this.stadiumId = stadiumId;
 	}
 
-
 	public Referee getRefereeId() {
 		return refereeId;
 	}
-
 
 	public void setRefereeId(Referee refereeId) {
 		this.refereeId = refereeId;
 	}
 
-
 	public Integer getUmpireOneId() {
 		return umpireOneId;
 	}
-
 
 	public void setUmpireOneId(Integer umpireOneId) {
 		this.umpireOneId = umpireOneId;
 	}
 
-
 	public Integer getUmpireTwoId() {
 		return umpireTwoId;
 	}
-
 
 	public void setUmpireTwoId(Integer umpireTwoId) {
 		this.umpireTwoId = umpireTwoId;
 	}
 
-
 	public Integer getUmpireThreeId() {
 		return umpireThreeId;
 	}
-
 
 	public void setUmpireThreeId(Integer umpireThreeId) {
 		this.umpireThreeId = umpireThreeId;
 	}
 
-
 	public Integer getTossWinTeam() {
 		return tossWinTeam;
 	}
-
 
 	public void setTossWinTeam(Integer tossWinTeam) {
 		this.tossWinTeam = tossWinTeam;
 	}
 
+	public Integer getClubOneViceCaptain() {
+		return clubOneViceCaptain;
+	}
+
+	public void setClubOneViceCaptain(Integer clubOneViceCaptain) {
+		this.clubOneViceCaptain = clubOneViceCaptain;
+	}
+
+	public Integer getClubTwoViceCaptain() {
+		return clubTwoViceCaptain;
+	}
+
+	public void setClubTwoViceCaptain(Integer clubTwoViceCaptain) {
+		this.clubTwoViceCaptain = clubTwoViceCaptain;
+	}
+
+	public Integer getClubOneKeper() {
+		return clubOneKeper;
+	}
+
+	public void setClubOneKeper(Integer clubOneKeper) {
+		this.clubOneKeper = clubOneKeper;
+	}
+
+	public Integer getClubTwoKeper() {
+		return clubTwoKeper;
+	}
+
+	public void setClubTwoKeper(Integer clubTwoKeper) {
+		this.clubTwoKeper = clubTwoKeper;
+	}
 
 	@Override
 	public String toString() {
@@ -404,8 +394,13 @@ public class Match {
 				+ finishDate + ", startTime=" + startTime + ", winTeamId=" + winTeamId + ", sponsor=" + sponsor
 				+ ", matchTypeId=" + matchTypeId + ", tournamentId=" + tournamentId + ", stadiumId=" + stadiumId
 				+ ", refereeId=" + refereeId + ", umpireOneId=" + umpireOneId + ", umpireTwoId=" + umpireTwoId
-				+ ", umpireThreeId=" + umpireThreeId + ", tossWinTeam=" + tossWinTeam + "]";
+				+ ", umpireThreeId=" + umpireThreeId + ", tossWinTeam=" + tossWinTeam + ", clubOneViceCaptain="
+				+ clubOneViceCaptain + ", clubTwoViceCaptain=" + clubTwoViceCaptain + ", clubOneKeper=" + clubOneKeper
+				+ ", clubTwoKeper=" + clubTwoKeper + "]";
 	}
+
+	
+	
 
 	
 
