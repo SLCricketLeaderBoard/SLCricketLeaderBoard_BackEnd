@@ -103,6 +103,21 @@ public class Match {
 	
 	@Column(name="toss_win_team")
 	private Integer tossWinTeam;
+	
+	@Column(name="club_one_vice_captain")
+	private Integer clubOneViceCaptain;
+	
+	@Column(name="club_two_vice_captain")
+	private Integer clubTwoViceCaptain;
+	
+	@Column(name="club_one_keper")
+	private Integer clubOneKeper;
+	
+	@Column(name="club_two_keper")
+	private Integer clubTwoKeper;
+	
+	
+	
 
 	
 	public Match() {
