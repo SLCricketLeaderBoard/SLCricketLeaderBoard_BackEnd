@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gp.cricket.entity.Club;
 import com.gp.cricket.entity.TournamentClub;
 import com.gp.cricket.service.TournamentClubService;
 
@@ -38,4 +39,15 @@ public class TournamentClubController {
 		}
 		return ResponseEntity.badRequest().build();
 	}
+	
+//	(udula) this function is for getting clubs for match creations 
+	@GetMapping("tournamentclub/registeredClubs/{tournamentId}")
+	public ResponseEntity<List<Club>> getClubsRegisteredTournament(@PathVariable("tournamentId") Integer tournamentId) {
+		List<Club> result = tournamentClubService.getClubsRegisteredTournament(tournamentId);
+		if(result!=null) {
+			return ResponseEntity.ok(result);
+		}
+		return ResponseEntity.badRequest().build();
+	}
+	
 }

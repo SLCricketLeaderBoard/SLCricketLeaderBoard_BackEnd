@@ -39,7 +39,7 @@ public class MatchController {
 	 }
 	 
 	 @GetMapping("/matches/{tournamentId}")
-	 public List<Match> getAllManagers(@PathVariable("tournamentId")Integer tournamentId){
+	 public List<Match> getMatchesByTournamentId(@PathVariable("tournamentId")Integer tournamentId){
 		 return matchService.findMatchesByTournamentId(tournamentId);
 	 }
 	 
@@ -47,5 +47,11 @@ public class MatchController {
 //	 public List<Match> matchList (){
 //		 return matchService.getMatchs();
 //	 }
+	 
+	 // (u) this is function for getting a match by match id
+	 @GetMapping("/match/{matchId}")
+	 public Match getMatcheById(@PathVariable("matchId")Integer matchId){
+		 return matchService.findMatchById(matchId);
+	 }
 	 
 }

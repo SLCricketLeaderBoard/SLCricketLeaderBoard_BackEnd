@@ -53,4 +53,9 @@ public class MatchService {
 		return matchRepo.findMatchesByTournamentId(tournamentId);	
 	}
 	
+	// this is for getting a match by match Id (u)
+	public Match findMatchById(Integer matchId) {
+		return this.matchRepo.findMatchById(matchId);
+	}
+	
 }

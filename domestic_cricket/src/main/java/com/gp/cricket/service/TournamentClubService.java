@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gp.cricket.entity.Club;
 import com.gp.cricket.entity.TournamentClub;
 import com.gp.cricket.repository.ClubRepository;
 import com.gp.cricket.repository.TournamentClubRepository;
@@ -45,6 +46,17 @@ public class TournamentClubService {
 			return tournamentClubRepository.findByclubId(clubRepository.findClubByClubId(clubId));
 		}
 		return null;
+	}
+	
+	
+	public List<Club> getClubsRegisteredTournament(Integer tournamentId) {
+		
+		return this.tournamentClubRepository.findClubsByTournamentId(tournamentId);
+		
+//		if(clubId!=null && clubRepository.existsById(clubId)) {
+//			return tournamentClubRepository.findByclubId(clubRepository.findClubByClubId(clubId));
+//		}
+//		return null;
 	}
 
 }

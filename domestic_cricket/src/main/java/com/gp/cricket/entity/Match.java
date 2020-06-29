@@ -116,10 +116,9 @@ public class Match {
 	@Column(name="club_two_keper")
 	private Integer clubTwoKeper;
 	
-	
-	
+	@Column(name = "man_ofthe_match")
+	private Integer manOfTheMatch;
 
-	
 	public Match() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -137,7 +136,7 @@ public class Match {
 			LocalDate finishDate, String startTime, Integer winTeamId, String sponsor, MatchType matchTypeId,
 			Tournament tournamentId, Stadium stadiumId, Referee refereeId, Integer umpireOneId, Integer umpireTwoId,
 			Integer umpireThreeId, Integer tossWinTeam, Integer clubOneViceCaptain, Integer clubTwoViceCaptain,
-			Integer clubOneKeper, Integer clubTwoKeper) {
+			Integer clubOneKeper, Integer clubTwoKeper, Integer manOfTheMatch) {
 		super();
 		this.matchId = matchId;
 		this.clubOneId = clubOneId;
@@ -166,12 +165,12 @@ public class Match {
 		this.clubTwoViceCaptain = clubTwoViceCaptain;
 		this.clubOneKeper = clubOneKeper;
 		this.clubTwoKeper = clubTwoKeper;
+		this.manOfTheMatch = manOfTheMatch;
 	}
 
 	public Integer getMatchId() {
 		return matchId;
 	}
-
 
 	public void setMatchId(Integer matchId) {
 		this.matchId = matchId;
@@ -385,6 +384,14 @@ public class Match {
 		this.clubTwoKeper = clubTwoKeper;
 	}
 
+	public Integer getManOfTheMatch() {
+		return manOfTheMatch;
+	}
+
+	public void setManOfTheMatch(Integer manOfTheMatch) {
+		this.manOfTheMatch = manOfTheMatch;
+	}
+
 	@Override
 	public String toString() {
 		return "Match [matchId=" + matchId + ", clubOneId=" + clubOneId + ", clubTwoId=" + clubTwoId
@@ -396,12 +403,11 @@ public class Match {
 				+ ", refereeId=" + refereeId + ", umpireOneId=" + umpireOneId + ", umpireTwoId=" + umpireTwoId
 				+ ", umpireThreeId=" + umpireThreeId + ", tossWinTeam=" + tossWinTeam + ", clubOneViceCaptain="
 				+ clubOneViceCaptain + ", clubTwoViceCaptain=" + clubTwoViceCaptain + ", clubOneKeper=" + clubOneKeper
-				+ ", clubTwoKeper=" + clubTwoKeper + "]";
+				+ ", clubTwoKeper=" + clubTwoKeper + ", manOfTheMatch=" + manOfTheMatch + "]";
 	}
-
-	
 	
 
+	
 	
 
 }

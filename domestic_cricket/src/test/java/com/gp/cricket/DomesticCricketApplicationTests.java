@@ -22,6 +22,7 @@ import com.gp.cricket.repository.MatchTypeRepository;
 import com.gp.cricket.repository.RefereeRepository;
 import com.gp.cricket.repository.StadiumRepository;
 import com.gp.cricket.repository.TournamentRepository;
+import com.gp.cricket.service.TournamentClubService;
 
 
 @RunWith(SpringRunner.class)
@@ -82,5 +83,17 @@ class DomesticCricketApplicationTests {
 //		Match result = matchRepo.save(x);
 ////		System.out.println(result);
 //	}
+	
+	
+	
+	// @Autowired
+	// TournamentClubService x;
+	
+	// @Test
+	// void getClubsformatches(){
+	
+	// 	x.getClubsRegisteredTournament(1);
+		
+	// }
 	
 }
