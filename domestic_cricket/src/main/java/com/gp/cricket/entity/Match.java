@@ -391,6 +391,10 @@ public class Match {
 	public void setManOfTheMatch(Integer manOfTheMatch) {
 		this.manOfTheMatch = manOfTheMatch;
 	}
+	
+	public Integer getTournamentIdValue() {
+		return this.tournamentId.getTournamentId();
+	}
 
 	@Override
 	public String toString() {

@@ -17,5 +17,10 @@ public interface TournamentClubRepository extends JpaRepository<TournamentClub, 
 	
 	@Query("SELECT t.clubId FROM TournamentClub t WHERE t.tournamentId.tournamentId = :tournamentId AND t.status=1 ORDER By t.tournamentId.startDate DESC")
 	List<Club>findClubsByTournamentId(@Param("tournamentId") Integer tournamentId);
+	
+	
+	@Query("SELECT t.tournamentClubId FROM TournamentClub t WHERE t.tournamentId.tournamentId = :tournamentId AND t.clubId.clubId = :clubId  AND t.status=1  ORDER By t.tournamentId.startDate DESC")
+	Integer findIdByTournamentAndClub(@Param("tournamentId") Integer tournamentId,@Param("clubId") Integer clubId);
+	
 
 }

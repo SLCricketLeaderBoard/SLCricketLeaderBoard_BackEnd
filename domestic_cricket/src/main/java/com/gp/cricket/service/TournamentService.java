@@ -1,5 +1,6 @@
 package com.gp.cricket.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,15 +20,25 @@ public class TournamentService {
     	
         return this.tournamentRepo.save(tournament);
     }
+    
+    public List<Tournament> getAllTournaments() {
+     
+        return tournamentRepo.findAll();
+    }
 
-    public List<Tournament> getTournaments() {
-        System.out.println("Get all Tournament here");
-        return this.tournamentRepo.findAll();
+    public List<Tournament> getRegistrationClosedTournaments() {
+        Date currentDate = new Date();
+        return tournamentRepo.closedTournaments(currentDate);
+    }
+    
+    public List<Tournament> getRegistrationOpenedTournaments() {
+        Date currentDate = new Date();
+        return tournamentRepo.pendingTournaments(currentDate);
     }
     
     public Optional<Tournament> getTournamentById(Integer id) {
-    	
     	return this.tournamentRepo.findById(id);
-    
     }
+    
+    
 }

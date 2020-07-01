@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gp.cricket.entity.Match;
 import com.gp.cricket.entity.MatchType;
+import com.gp.cricket.entity.Player;
 import com.gp.cricket.service.MatchService;
 
 @RestController
@@ -52,6 +53,11 @@ public class MatchController {
 	 @GetMapping("/match/{matchId}")
 	 public Match getMatcheById(@PathVariable("matchId")Integer matchId){
 		 return matchService.findMatchById(matchId);
+	 }
+	 
+	 @GetMapping("/match/players/{matchId}/{clubId}")
+	 public List<Player> getMatchePlayers(@PathVariable("matchId")Integer matchId,@PathVariable("clubId")Integer clubId){
+		 return matchService.selectedPlayers(matchId, clubId);
 	 }
 	 
 }

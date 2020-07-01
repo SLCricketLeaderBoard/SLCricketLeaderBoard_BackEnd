@@ -32,9 +32,19 @@ public class TournamentController {
         return tournamentService.registerTournament(tournament);
     }
 
+    @GetMapping("/tournaments/registrationOpened")
+    public List<Tournament> getRegistartionOpenedTournaments() {
+        return this.tournamentService.getRegistrationOpenedTournaments();
+    }
+    
+    @GetMapping("/tournaments/registrationClosed")
+    public List<Tournament> getRegistartionClosedTournaments() {
+        return this.tournamentService.getRegistrationClosedTournaments();
+    }
+    
     @GetMapping("/tournaments")
     public List<Tournament> getAlltournament() {
-        return this.tournamentService.getTournaments();
+        return this.tournamentService.getAllTournaments();
     }
     
 	@GetMapping("/tournament/{tournamentId}")
