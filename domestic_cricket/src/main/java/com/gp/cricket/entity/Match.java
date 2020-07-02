@@ -125,6 +125,11 @@ public class Match {
 	@Column(name = "club_two_overs")
 	private float clubTwoOvers;
 
+	
+	public Integer getTournamentIdValue() {
+		return this.tournamentId.getTournamentId();
+	}
+	
 	public Match() {
 		super();
 		// TODO Auto-generated constructor stub
