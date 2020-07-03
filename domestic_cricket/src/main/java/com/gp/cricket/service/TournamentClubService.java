@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gp.cricket.entity.Club;
+import com.gp.cricket.entity.Tournament;
 import com.gp.cricket.entity.TournamentClub;
 import com.gp.cricket.repository.ClubRepository;
 import com.gp.cricket.repository.TournamentClubRepository;
@@ -22,12 +24,14 @@ public class TournamentClubService {
 	@Autowired
 	ClubRepository clubRepository;
 
-	public TournamentClub tournementClubRegister(Integer clubId, Integer tournamentId) {
-		if (clubId != null && tournamentId != null) {
-			if (clubRepository.existsById(clubId) && tournamentRepository.existsById(tournamentId)) {
-				TournamentClub tournamentClub = new TournamentClub(0, (byte) 1, clubRepository.findClubByClubId(clubId),
-						tournamentRepository.findClubByTournamentId(tournamentId));
-				return tournamentClubRepository.save(tournamentClub);
+	public Integer tournementClubRegister(Club club, Tournament tournament) {
+		if (club != null && tournament != null) {
+			if (tournamentClubRepository.findByClubIdAndTournamentId(club, tournament) == null) {
+				TournamentClub tournamentClub = new TournamentClub(0, (byte) 1, club, tournament);
+				tournamentClubRepository.save(tournamentClub);
+				return 1;
+			} else {
+				return 0;// Already registered to the tournament
 			}
 		}
 		return null;
@@ -41,7 +45,7 @@ public class TournamentClubService {
 	}
 
 	public List<TournamentClub> getClubRegisteredTournaments(Integer clubId) {
-		if(clubId!=null && clubRepository.existsById(clubId)) {
+		if (clubId != null && clubRepository.existsById(clubId)) {
 			return tournamentClubRepository.findByclubId(clubRepository.findClubByClubId(clubId));
 		}
 		return null;

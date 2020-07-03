@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gp.cricket.entity.Player;
+import com.gp.cricket.entity.TournamentClub;
+import com.gp.cricket.entity.TournamentClubPlayer;
 import com.gp.cricket.entity.User;
 import com.gp.cricket.repository.ClubRepository;
 import com.gp.cricket.repository.PlayerRepository;
+import com.gp.cricket.repository.TournamentClubPlayerRepository;
 import com.gp.cricket.repository.UserRepository;
 
 @Service
@@ -19,7 +22,10 @@ public class PlayerService {
 
 	@Autowired
 	ClubRepository clubRepository;
-
+	
+	@Autowired
+	TournamentClubPlayerRepository tournamentClubPlayerRepository;
+	
 	@Autowired
 	UserService userService;
 
@@ -67,6 +73,18 @@ public class PlayerService {
 	public Player getPlayer(Integer playerId) {
 		if (playerId != null && playerId > 0) {
 			return playerRepository.findPlayerById(playerId);
+		}
+		return null;
+	}
+	
+	public Integer playerAccountDeactivate(Integer playerId) {
+		if(playerId!=null && playerRepository.existsById(playerId)) {
+			Player player = playerRepository.findPlayerById(playerId);
+			List<TournamentClubPlayer> tournamentClubPlayer = tournamentClubPlayerRepository.findPlayerTournamentStatus(player);
+			if( !(tournamentClubPlayer!=null && tournamentClubPlayer.size()>0) ) {//Player currently not play any match.Also not play tournament in the future
+				return userService.userAccountDeactivate(player.getUserId().getUserId());//if user account deactivate then return 1
+			}
+			return 0;//Player already play tournament or play tournament in the future
 		}
 		return null;
 	}

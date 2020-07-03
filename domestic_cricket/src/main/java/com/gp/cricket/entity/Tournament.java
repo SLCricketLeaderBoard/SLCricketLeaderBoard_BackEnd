@@ -23,6 +23,7 @@ public class Tournament {
 	@Column(name = "tournament_name")
 	private String tournamentName;
 
+	
 	@NotBlank(message = "Start Date is mandatory")
 	@Column(name = "start_date")
 	private Date startDate;
