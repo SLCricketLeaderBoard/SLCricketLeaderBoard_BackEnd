@@ -31,10 +31,10 @@ public class TournamentController {
 		return tournamentService.registerTournament(tournament);
 	}
 
-	@GetMapping("/tournaments")
-	public List<Tournament> getAlltournament() {
-		return this.tournamentService.getTournaments();
-	}
+//	@GetMapping("/tournaments")
+//	public List<Tournament> getAlltournament() {
+//		return this.tournamentService.getTournaments();
+//	}
 
 
     @GetMapping("/tournaments/registrationOpened")
