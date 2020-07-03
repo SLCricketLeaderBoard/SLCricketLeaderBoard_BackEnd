@@ -98,5 +98,10 @@ public class Tournament {
 		return "Tournament [tournamentId=" + tournamentId + ", tournamentName=" + tournamentName + ", startDate="
 				+ startDate + ", endDate=" + endDate + ", registartionCloseDate=" + registartionCloseDate + "]";
 	}
+	
+	public Date cuurentDate() {
+		 Date curentDate = new Date();
+		 return curentDate;
+	}
 
 }

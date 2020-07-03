@@ -13,4 +13,6 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
 	@Query("FROM Match m WHERE m.tournamentId.tournamentId = :tournamentId ORDER BY m.tournementRound ASC")
 	public List<Match> findMatchesByTournamentId(@Param("tournamentId") Integer tournamentId);
 
+	@Query("FROM Match m WHERE m.matchId = :matchId")
+	public Match findMatchById(@Param("matchId") Integer matchId);
 }

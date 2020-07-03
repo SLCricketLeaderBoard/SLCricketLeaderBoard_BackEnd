@@ -36,6 +36,23 @@ public class TournamentController {
 		return this.tournamentService.getTournaments();
 	}
 
+
+    @GetMapping("/tournaments/registrationOpened")
+    public List<Tournament> getRegistartionOpenedTournaments() {
+        return this.tournamentService.getRegistrationOpenedTournaments();
+    }
+    
+    @GetMapping("/tournaments/registrationClosed")
+    public List<Tournament> getRegistartionClosedTournaments() {
+        return this.tournamentService.getRegistrationClosedTournaments();
+    }
+    
+    @GetMapping("/tournaments")
+    public List<Tournament> getAlltournament() {
+        return this.tournamentService.getAllTournaments();
+    }
+    
+
 	@GetMapping("/tournament/{tournamentId}")
 	public ResponseEntity<Tournament> getTournament(@PathVariable Integer tournamentId) {
 		Optional<Tournament> object = tournamentService.getTournamentById(tournamentId);

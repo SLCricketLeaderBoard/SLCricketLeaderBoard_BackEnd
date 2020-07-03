@@ -1,5 +1,7 @@
 package com.gp.cricket.repository;
 
+
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,9 +18,15 @@ public interface TournamentRepository extends JpaRepository<Tournament, Integer>
 
 	//////////////////// Hiernate code
 
+	@Query("FROM Tournament t WHERE t.registartionCloseDate >:currenDate ORDER By t.startDate DESC")
+	List<Tournament> pendingTournaments(@Param("currenDate") Date currenDate);
+	
+	@Query("FROM Tournament t WHERE t.registartionCloseDate <:currenDate ORDER By t.startDate DESC")
+	List<Tournament> closedTournaments(@Param("currenDate") Date currenDate);
+
 	@Query(value = "SELECT * FROM tournament  WHERE current_date() <= registration_closing_date AND "
 				 + "tournament_id NOT IN (SELECT tournament_id FROM tournament_club  "
 				 + "WHERE club_id = :clubId)", nativeQuery = true)
 	List<Tournament> findUpcomingTournamentForClubByClubId(Club clubId);
-
+	
 }

@@ -2,6 +2,7 @@ package com.gp.cricket.repository;
 
 import java.util.List;
 
+
 import javax.persistence.QueryHint;
 import javax.transaction.Transactional;
 
@@ -33,4 +34,7 @@ public interface TournamentClubPlayerRepository extends JpaRepository<Tournament
 	@QueryHints(@QueryHint(name = "MAX_ROW", value = "1"))
 	List<TournamentClubPlayer> findPlayerTournamentStatus(@Param("playerId") Player playerId);
 
+	@Query("SELECT t.playerId FROM TournamentClubPlayer t WHERE t.tournamentClubId.tournamentClubId = :tournamentClubId")
+	List<Player> findPlayersForMatch(@Param("tournamentClubId") Integer tournamentClubId);
+	
 }
