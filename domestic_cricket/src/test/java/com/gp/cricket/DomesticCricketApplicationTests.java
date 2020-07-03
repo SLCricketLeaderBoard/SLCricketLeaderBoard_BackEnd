@@ -127,7 +127,8 @@ class DomesticCricketApplicationTests {
 	
 	@Test
 	public void selectedPlayers() {
-		matchService.selectedPlayers(53,2);
+//		matchService.selectedPlayers(53,2);
+//		matchService.playedMatches(1);
 	}
 	
 }
