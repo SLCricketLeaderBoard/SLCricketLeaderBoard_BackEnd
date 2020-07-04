@@ -60,4 +60,15 @@ public class MatchController {
 		 return matchService.selectedPlayers(matchId, clubId);
 	 }
 	 
+	 // (u) this is for played matches according to the tournament id
+	 @GetMapping("/playedMatches/{tournamentId}")
+	 public List<Match> getPlayedMatches(@PathVariable("tournamentId")Integer tournamentId){
+		 return matchService.playedMatches(tournamentId);
+	 }
+	 
+	 // (u) this is for to be played matches according to the tournament id
+	 @GetMapping("/toPlayMatches/{tournamentId}")
+	 public List<Match> getToPlayMatches(@PathVariable("tournamentId")Integer tournamentId){
+		 return matchService.toPlayMatches(tournamentId);
+	 }
 }

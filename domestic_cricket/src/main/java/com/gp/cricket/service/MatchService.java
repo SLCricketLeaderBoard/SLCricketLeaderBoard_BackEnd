@@ -1,18 +1,14 @@
 package com.gp.cricket.service;
 
-import java.util.List;
 
+import java.time.LocalDate;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.gp.cricket.entity.Match;
 import com.gp.cricket.entity.MatchType;
 import com.gp.cricket.entity.Player;
-import com.gp.cricket.entity.Referee;
 import com.gp.cricket.entity.SelectedPlayer;
-import com.gp.cricket.entity.Stadium;
-import com.gp.cricket.entity.Tournament;
-import com.gp.cricket.entity.TournamentClub;
 import com.gp.cricket.repository.MatchRepository;
 import com.gp.cricket.repository.MatchTypeRepository;
 import com.gp.cricket.repository.RefereeRepository;
@@ -99,5 +95,17 @@ public class MatchService {
 	public List<Player> selectedPlayers(Integer matchId,Integer clubId){
 		return selectedPlayerRepository.selectedPlayersForMatch(matchId,clubId);
 	}
+	
+	public List<Match> playedMatches(Integer tournamentId){
+		LocalDate currentDate = LocalDate.now();
+        return matchRepo.getPlayedMatches(currentDate,tournamentId);
+	}
+	
+	public List<Match> toPlayMatches(Integer tournamentId){
+		LocalDate currentDate = LocalDate.now();
+        return matchRepo.getToPlayMatches(currentDate,tournamentId);
+	}
+	
+	
 	
 }
