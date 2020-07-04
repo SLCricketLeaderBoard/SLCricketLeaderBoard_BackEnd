@@ -124,6 +124,9 @@ public class Match {
 	
 	@Column(name = "club_two_overs")
 	private float clubTwoOvers;
+	
+	@Column(name = "state")
+	private Integer state;
 
 	
 	public Integer getTournamentIdValue() {
@@ -134,6 +137,8 @@ public class Match {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+
 
 	public Match(Integer matchId, @NotNull(message = "Club1 id is mandatory") Integer clubOneId,
 			@NotNull(message = "Club2 name is mandatory") Integer clubTwoId,
@@ -147,7 +152,8 @@ public class Match {
 			LocalDate finishDate, String startTime, Integer winTeamId, String sponsor, MatchType matchTypeId,
 			Tournament tournamentId, Stadium stadiumId, Referee refereeId, Integer umpireOneId, Integer umpireTwoId,
 			Integer umpireThreeId, Integer tossWinTeam, Integer clubOneViceCaptain, Integer clubTwoViceCaptain,
-			Integer clubOneKeper, Integer clubTwoKeper, Integer manOfTheMatch, float clubOneOvers, float clubTwoOvers) {
+			Integer clubOneKeper, Integer clubTwoKeper, Integer manOfTheMatch, float clubOneOvers, float clubTwoOvers,
+			Integer state) {
 		super();
 		this.matchId = matchId;
 		this.clubOneId = clubOneId;
@@ -179,6 +185,7 @@ public class Match {
 		this.manOfTheMatch = manOfTheMatch;
 		this.clubOneOvers = clubOneOvers;
 		this.clubTwoOvers = clubTwoOvers;
+		this.state = state;
 	}
 
 	public Integer getMatchId() {
@@ -419,6 +426,14 @@ public class Match {
 
 	public void setClubTwoOvers(float clubTwoOvers) {
 		this.clubTwoOvers = clubTwoOvers;
+	}
+
+	public Integer getState() {
+		return state;
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
 	}
 
 		

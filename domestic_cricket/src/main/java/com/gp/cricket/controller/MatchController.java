@@ -71,4 +71,18 @@ public class MatchController {
 	 public List<Match> getToPlayMatches(@PathVariable("tournamentId")Integer tournamentId){
 		 return matchService.toPlayMatches(tournamentId);
 	 }
+	 
+	 @GetMapping("refereeMatchesUpcomming/{tournamentId}/{refereeId}")
+	 public List<Match> getRefereeMatchesUpcommig(@PathVariable("tournamentId")Integer tournamentId,@PathVariable("refereeId")Integer refereeId){
+		 return matchService.refereeMatchesUpcomming(tournamentId,refereeId);
+	 }
+	 @GetMapping("refereeMatchesPlayed/{tournamentId}/{refereeId}")
+	 public List<Match> getRefereeMatchesPlayed(@PathVariable("tournamentId")Integer tournamentId,@PathVariable("refereeId")Integer refereeId){
+		 return matchService.refereeMatchesPlayed(tournamentId,refereeId);
+	 }
+	 
+	 @GetMapping("refereeMatchesPlayedUpdated/{tournamentId}/{refereeId}")
+	 public List<Match> getRefereeMatchesPlayedUpdated(@PathVariable("tournamentId")Integer tournamentId,@PathVariable("refereeId")Integer refereeId){
+		 return matchService.refereeMatchesPlayedUpdated(tournamentId,refereeId);
+	 }
 }

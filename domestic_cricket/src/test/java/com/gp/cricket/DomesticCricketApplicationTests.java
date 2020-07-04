@@ -129,6 +129,10 @@ class DomesticCricketApplicationTests {
 	public void selectedPlayers() {
 //		matchService.selectedPlayers(53,2);
 //		matchService.playedMatches(1);
+//		matchService.refereeMatchesPlayed(1,"26");
+//		matchService.refereeMatchesUpcomming(1,"26");
+		
+		
 	}
 	
 }
