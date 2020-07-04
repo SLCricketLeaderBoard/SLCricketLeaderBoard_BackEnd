@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gp.cricket.entity.Club;
 import com.gp.cricket.entity.Manager;
 import com.gp.cricket.entity.User;
 import com.gp.cricket.service.ManagerService;
@@ -51,5 +52,22 @@ public class ManagerController {
 		}
 		return ResponseEntity.badRequest().build();
 	}
+	
+	@GetMapping("/manager/registrationAccepted")
+	public List<Manager> getAcceptedManagers() {
+		return managerService.getAcceptedManagers();
+	}
+	
+	@GetMapping("/manager/registrationRequested")
+	public List<Manager> getRequestedManagers() {
+		return managerService.getRequestedManagers();
+	}
+	
+	@GetMapping("/manager/club/{managerId}")
+	public Club getManagerClub(@PathVariable("managerId")Integer managerId) {
+		return managerService.getManagerClub(managerId);
+	}
+	
+	
 
 }

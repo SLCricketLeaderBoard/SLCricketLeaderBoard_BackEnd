@@ -3,11 +3,14 @@ package com.gp.cricket.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.gp.cricket.config.security.JwtInMemoryUserDetailsService;
+import com.gp.cricket.entity.Club;
 import com.gp.cricket.entity.Manager;
 import com.gp.cricket.entity.User;
+import com.gp.cricket.repository.ClubRepository;
 import com.gp.cricket.repository.ManagerRepository;
 import com.gp.cricket.repository.UserRepository;
 
@@ -22,6 +25,9 @@ public class ManagerService {
 	
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	ClubRepository clubRepository;
 
 	@Autowired
 	JwtInMemoryUserDetailsService jwtUser;
@@ -52,6 +58,19 @@ public class ManagerService {
 			return managerRepository.getManager(user);
 		}
 		return null;
+	}
+	
+	public List<Manager> getAcceptedManagers(){
+		return managerRepository.getAcceptedManagers();
+	}
+	
+	
+	public List<Manager> getRequestedManagers(){
+		return managerRepository.getRequestedManagers();
+	}
+	
+	public Club getManagerClub(Integer managerId) {
+		return clubRepository.findClubByManagerId(managerId);
 	}
 
 }
