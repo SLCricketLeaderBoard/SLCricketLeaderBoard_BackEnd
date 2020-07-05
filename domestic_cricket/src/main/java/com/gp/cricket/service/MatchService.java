@@ -9,6 +9,7 @@ import com.gp.cricket.entity.Match;
 import com.gp.cricket.entity.MatchType;
 import com.gp.cricket.entity.Player;
 import com.gp.cricket.entity.SelectedPlayer;
+import com.gp.cricket.repository.ClubRepository;
 import com.gp.cricket.repository.MatchRepository;
 import com.gp.cricket.repository.MatchTypeRepository;
 import com.gp.cricket.repository.RefereeRepository;
@@ -50,6 +51,9 @@ public class MatchService {
 	
 	@Autowired
 	SelectedPlayerService selectedPlayerService;
+	
+	@Autowired
+	ClubRepository clubRepository;
 
 	// For geting match type test t20 odi
 	public List<MatchType> getMathcTypes() {
@@ -106,6 +110,11 @@ public class MatchService {
         return matchRepo.getToPlayMatches(currentDate,tournamentId);
 	}
 	
-	
+	public List<Match> getPlayedMatchList(Integer clubId){
+		if(clubId!=null && clubRepository.existsById(clubId)) {
+			return matchRepo.findByClubId(clubId);
+		}
+		return null;
+	}
 	
 }

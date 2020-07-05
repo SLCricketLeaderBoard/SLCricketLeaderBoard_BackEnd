@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -70,5 +71,14 @@ public class MatchController {
 	 @GetMapping("/toPlayMatches/{tournamentId}")
 	 public List<Match> getToPlayMatches(@PathVariable("tournamentId")Integer tournamentId){
 		 return matchService.toPlayMatches(tournamentId);
+	 }
+	 
+	 @GetMapping("match/played/{clubId}")
+	 public ResponseEntity<List<Match>> getPlayedMatchList(@PathVariable("clubId") Integer clubId){
+		 List<Match> result = matchService.getPlayedMatchList(clubId);
+		 if(result!=null) {
+			 return ResponseEntity.ok(result);
+		 }
+		 return ResponseEntity.badRequest().build();
 	 }
 }
