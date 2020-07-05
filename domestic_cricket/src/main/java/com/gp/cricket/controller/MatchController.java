@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gp.cricket.entity.Match;
 import com.gp.cricket.entity.MatchType;
+import com.gp.cricket.entity.Player;
 import com.gp.cricket.service.MatchService;
 
 @RestController
@@ -39,7 +41,7 @@ public class MatchController {
 	 }
 	 
 	 @GetMapping("/matches/{tournamentId}")
-	 public List<Match> getAllManagers(@PathVariable("tournamentId")Integer tournamentId){
+	 public List<Match> getMatchesByTournamentId(@PathVariable("tournamentId")Integer tournamentId){
 		 return matchService.findMatchesByTournamentId(tournamentId);
 	 }
 	 
@@ -48,4 +50,51 @@ public class MatchController {
 //		 return matchService.getMatchs();
 //	 }
 	 
+	 // (u) this is function for getting a match by match id
+	 @GetMapping("/match/{matchId}")
+	 public Match getMatcheById(@PathVariable("matchId")Integer matchId){
+		 return matchService.findMatchById(matchId);
+	 }
+	 
+	 @GetMapping("/match/players/{matchId}/{clubId}")
+	 public List<Player> getMatchePlayers(@PathVariable("matchId")Integer matchId,@PathVariable("clubId")Integer clubId){
+		 return matchService.selectedPlayers(matchId, clubId);
+	 }
+	 
+	 // (u) this is for played matches according to the tournament id
+	 @GetMapping("/playedMatches/{tournamentId}")
+	 public List<Match> getPlayedMatches(@PathVariable("tournamentId")Integer tournamentId){
+		 return matchService.playedMatches(tournamentId);
+	 }
+	 
+	 // (u) this is for to be played matches according to the tournament id
+	 @GetMapping("/toPlayMatches/{tournamentId}")
+	 public List<Match> getToPlayMatches(@PathVariable("tournamentId")Integer tournamentId){
+		 return matchService.toPlayMatches(tournamentId);
+	 }
+	 
+
+	 @GetMapping("match/played/{clubId}")
+	 public ResponseEntity<List<Match>> getPlayedMatchList(@PathVariable("clubId") Integer clubId){
+		 List<Match> result = matchService.getPlayedMatchList(clubId);
+		 if(result!=null) {
+			 return ResponseEntity.ok(result);
+		 }
+		 return ResponseEntity.badRequest().build();
+	 }
+
+	 @GetMapping("refereeMatchesUpcomming/{tournamentId}/{refereeId}")
+	 public List<Match> getRefereeMatchesUpcommig(@PathVariable("tournamentId")Integer tournamentId,@PathVariable("refereeId")Integer refereeId){
+		 return matchService.refereeMatchesUpcomming(tournamentId,refereeId);
+	 }
+	 @GetMapping("refereeMatchesPlayed/{tournamentId}/{refereeId}")
+	 public List<Match> getRefereeMatchesPlayed(@PathVariable("tournamentId")Integer tournamentId,@PathVariable("refereeId")Integer refereeId){
+		 return matchService.refereeMatchesPlayed(tournamentId,refereeId);
+	 }
+	 
+	 @GetMapping("refereeMatchesPlayedUpdated/{tournamentId}/{refereeId}")
+	 public List<Match> getRefereeMatchesPlayedUpdated(@PathVariable("tournamentId")Integer tournamentId,@PathVariable("refereeId")Integer refereeId){
+		 return matchService.refereeMatchesPlayedUpdated(tournamentId,refereeId);
+
+	 }
 }

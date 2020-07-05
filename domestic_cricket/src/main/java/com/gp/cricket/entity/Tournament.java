@@ -23,6 +23,7 @@ public class Tournament {
 	@Column(name = "tournament_name")
 	private String tournamentName;
 
+	
 	@NotBlank(message = "Start Date is mandatory")
 	@Column(name = "start_date")
 	private Date startDate;
@@ -96,6 +97,11 @@ public class Tournament {
 	public String toString() {
 		return "Tournament [tournamentId=" + tournamentId + ", tournamentName=" + tournamentName + ", startDate="
 				+ startDate + ", endDate=" + endDate + ", registartionCloseDate=" + registartionCloseDate + "]";
+	}
+	
+	public Date cuurentDate() {
+		 Date curentDate = new Date();
+		 return curentDate;
 	}
 
 }

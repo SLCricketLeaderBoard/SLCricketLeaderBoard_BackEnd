@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.gp.cricket.entity.Tournament;
 import com.gp.cricket.service.TournamentService;
 
@@ -23,32 +22,67 @@ import com.gp.cricket.service.TournamentService;
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 public class TournamentController {
 
-    @Autowired
-    TournamentService tournamentService;
+	@Autowired
+	TournamentService tournamentService;
 
-    @PostMapping("registerTournament")
-    public Tournament  registerTournament(@RequestBody Tournament tournament) {
-        System.out.println(tournament);
-        return tournamentService.registerTournament(tournament);
-    }
+	@PostMapping("registerTournament")
+	public String registerTournament(@RequestBody Tournament tournament) {
+		try {
+			 Tournament x = tournamentService.registerTournament(tournament);	
+			 if(x!=null) {
+				 return "Creation successfull";				 
+			 }else {
+				 return "Creation Faild";
+			 }
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+			return "Creation Faild";
+		}
+	}
 
-    @GetMapping("/tournaments")
-    public List<Tournament> getAlltournament() {
-        return this.tournamentService.getTournaments();
+//	@GetMapping("/tournaments")
+//	public List<Tournament> getAlltournament() {
+//		return this.tournamentService.getTournaments();
+//	}
+
+
+    @GetMapping("/tournaments/registrationOpened")
+    public List<Tournament> getRegistartionOpenedTournaments() {
+        return this.tournamentService.getRegistrationOpenedTournaments();
     }
     
+    @GetMapping("/tournaments/registrationClosed")
+    public List<Tournament> getRegistartionClosedTournaments() {
+        return this.tournamentService.getRegistrationClosedTournaments();
+    }
+    
+    @GetMapping("/tournaments")
+    public List<Tournament> getAlltournament() {
+        return this.tournamentService.getAllTournaments();
+    }
+    
+
 	@GetMapping("/tournament/{tournamentId}")
-	public ResponseEntity<Tournament> getTournament(@PathVariable Integer tournamentId){
+	public ResponseEntity<Tournament> getTournament(@PathVariable Integer tournamentId) {
 		Optional<Tournament> object = tournamentService.getTournamentById(tournamentId);
-		if(object!=null) {
-			if(object.isPresent()) {
+		if (object != null) {
+			if (object.isPresent()) {
 				return ResponseEntity.ok(object.get());
-			}else {
+			} else {
 				return ResponseEntity.notFound().build();
 			}
 		}
 		return ResponseEntity.badRequest().build();
 	}
-    
+
+	@GetMapping("/tournament/upcoming/{clubId}")
+	public ResponseEntity<List<Tournament>> getUpcomingTournamentForClub(@PathVariable("clubId") Integer clubId) {
+		List<Tournament> result = tournamentService.getUpcomingTournamentForClub(clubId);
+		if(result!=null) {
+			return ResponseEntity.ok(result);
+		}
+		return ResponseEntity.badRequest().build();
+	}
 
 }

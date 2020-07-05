@@ -8,12 +8,18 @@ import org.springframework.stereotype.Service;
 
 import com.gp.cricket.entity.Club;
 import com.gp.cricket.repository.ClubRepository;
+import com.gp.cricket.repository.ManagerRepository;
+import com.gp.cricket.repository.PlayerRepository;
 
 @Service
 public class ClubService {
 
 	@Autowired
 	ClubRepository clubRepository;
+	
+	@Autowired
+	PlayerRepository playerRepository;
+	
 
 	public Integer clubRegister(Club club) {
 
@@ -71,5 +77,16 @@ public class ClubService {
 			return true;
 		}
 		return false;
+	}
+	
+	public List<String> getClubMembers(Integer clubId){
+		if(clubId!=null && clubRepository.existsById(clubId)) {
+			Club club = clubRepository.findClubByClubId(clubId);
+			List<String> playerListNic = playerRepository.findPlayerByClubId(club);
+			String managerNic = club.getManagerId().getUserId().getNic();
+			playerListNic.add(managerNic);
+			return playerListNic;
+		}
+		return null;
 	}
 }

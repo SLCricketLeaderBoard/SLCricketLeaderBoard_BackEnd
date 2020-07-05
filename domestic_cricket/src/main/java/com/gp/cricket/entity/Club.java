@@ -61,6 +61,8 @@ public class Club {
 	@Max(1)
 	private Byte status;
 
+	private String clubLogo;
+
 	@NotNull
 	@OneToOne
 	@JoinColumn(name = "manager_id", referencedColumnName = "manager_id")
@@ -75,7 +77,8 @@ public class Club {
 			@NotBlank(message = "Email is mandatory") @Email(message = "Email should be valid") String email,
 			@NotBlank(message = "Contact number is mandatory") @Size(min = 10, max = 10, message = "Contact number size should be 10") String contactNumber,
 			@NotNull @Min(0) Integer winMatch, @NotNull @Min(0) Integer failMatch, @NotNull @Min(0) Integer growMatch,
-			@NotNull LocalDate regDate, @NotNull @Min(0) @Max(1) Byte status, @NotNull Manager managerId) {
+			@NotNull LocalDate regDate, @NotNull @Min(0) @Max(1) Byte status, String clubLogo,
+			@NotNull Manager managerId) {
 		super();
 		this.clubId = clubId;
 		this.clubName = clubName;
@@ -87,6 +90,7 @@ public class Club {
 		this.growMatch = growMatch;
 		this.regDate = regDate;
 		this.status = status;
+		this.clubLogo = clubLogo;
 		this.managerId = managerId;
 	}
 
@@ -178,12 +182,20 @@ public class Club {
 		this.managerId = managerId;
 	}
 
+	public String getClubLogo() {
+		return clubLogo;
+	}
+
+	public void setClubLogo(String clubLogo) {
+		this.clubLogo = clubLogo;
+	}
+
 	@Override
 	public String toString() {
 		return "Club [clubId=" + clubId + ", clubName=" + clubName + ", address=" + address + ", email=" + email
 				+ ", contactNumber=" + contactNumber + ", winMatch=" + winMatch + ", failMatch=" + failMatch
-				+ ", growMatch=" + growMatch + ", regDate=" + regDate + ", status=" + status + ", managerId="
-				+ managerId + "]";
+				+ ", growMatch=" + growMatch + ", regDate=" + regDate + ", status=" + status + ", clubLogo=" + clubLogo
+				+ ", managerId=" + managerId + "]";
 	}
 
 }

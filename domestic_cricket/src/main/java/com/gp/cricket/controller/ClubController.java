@@ -74,4 +74,13 @@ public class ClubController {
 		}
 		return ResponseEntity.badRequest().build();
 	}
+	
+	@GetMapping("club/members/{clubId}")
+	public ResponseEntity<List<String>> getClubMembers(@PathVariable("clubId") Integer clubId){
+		List<String> result = clubService.getClubMembers(clubId);
+		if(result!=null) {
+			return ResponseEntity.ok(result);
+		}
+		return ResponseEntity.badRequest().build();
+	}
 }

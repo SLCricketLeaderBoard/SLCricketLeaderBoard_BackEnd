@@ -60,5 +60,14 @@ public class PlayerController {
 		return ResponseEntity.notFound().build();
 	}
 	
+	@PutMapping("player/deactivate/{playerId}")
+	public ResponseEntity<Integer> playerAccountDeactivate(@PathVariable("playerId")Integer playerId){
+		Integer result = playerService.playerAccountDeactivate(playerId);
+		if(result!=null) {
+			return ResponseEntity.ok(result);
+		}
+		return ResponseEntity.badRequest().build();
+	}
+	
 
 }
