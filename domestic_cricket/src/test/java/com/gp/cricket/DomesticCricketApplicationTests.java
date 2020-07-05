@@ -27,6 +27,7 @@ import com.gp.cricket.repository.TournamentClubPlayerRepository;
 import com.gp.cricket.repository.TournamentClubRepository;
 import com.gp.cricket.repository.TournamentRepository;
 import com.gp.cricket.service.MatchService;
+import com.gp.cricket.service.SponsorService;
 import com.gp.cricket.service.TournamentClubService;
 
 
@@ -51,6 +52,9 @@ class DomesticCricketApplicationTests {
 	
 	@Autowired
 	MatchService matchService;
+	
+	@Autowired
+	SponsorService sponserservicel;
 	
 //	private Integer matchId = null;
 //	private Integer club1Id = 2;
@@ -131,6 +135,7 @@ class DomesticCricketApplicationTests {
 //		matchService.playedMatches(1);
 //		matchService.refereeMatchesPlayed(1,"26");
 //		matchService.refereeMatchesUpcomming(1,"26");
+		sponserservicel.getNonregsponsors().forEach((p)->{System.out.println(p.getUserId());});
 		
 		
 	}

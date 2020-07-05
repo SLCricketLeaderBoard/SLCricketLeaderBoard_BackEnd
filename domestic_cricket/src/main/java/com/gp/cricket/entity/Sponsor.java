@@ -15,6 +15,12 @@ public class Sponsor {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="sponsor_id")
 	private Integer sponsorId;
+	
+	@Column(name = "company_name")
+	private String companyName;
+	
+	@Column(name = "responsible_person")
+	private String responsiblePerson;
 
 	@NotNull
 	@OneToOne
@@ -25,19 +31,51 @@ public class Sponsor {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 
-	public Sponsor(Integer sponsorId, @NotNull User userId) {
+	public Sponsor(Integer sponsorId, String companyName, String responsiblePerson, @NotNull User userId) {
 		super();
 		this.sponsorId = sponsorId;
+		this.companyName = companyName;
+		this.responsiblePerson = responsiblePerson;
 		this.userId = userId;
 	}
-	
+
+
+
 	public Integer getSponsorId() {
 		return sponsorId;
 	}
-	
+
+	public void setSponsorId(Integer sponsorId) {
+		this.sponsorId = sponsorId;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	public String getResponsiblePerson() {
+		return responsiblePerson;
+	}
+
+	public void setResponsiblePerson(String responsiblePerson) {
+		this.responsiblePerson = responsiblePerson;
+	}
+
 	public User getUserId() {
 		return userId;
 	}
+
+	public void setUserId(User userId) {
+		this.userId = userId;
+	}
+
+	
 	
 }
