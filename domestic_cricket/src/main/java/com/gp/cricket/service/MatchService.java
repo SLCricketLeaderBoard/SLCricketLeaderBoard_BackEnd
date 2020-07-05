@@ -110,11 +110,34 @@ public class MatchService {
         return matchRepo.getToPlayMatches(currentDate,tournamentId);
 	}
 	
+	
 	public List<Match> getPlayedMatchList(Integer clubId){
 		if(clubId!=null && clubRepository.existsById(clubId)) {
 			return matchRepo.findByClubId(clubId);
 		}
 		return null;
 	}
+
+	public List<Match> refereeMatchesUpcomming(Integer tournamentId,Integer refreeId){
+		
+		
+		LocalDate currentDate = LocalDate.now();
+        return matchRepo.getRefereeMatchesUpcomming(currentDate,tournamentId,refreeId);
+	}
+	
+	public List<Match> refereeMatchesPlayed(Integer tournamentId,Integer refreeId){
+		
+		LocalDate currentDate = LocalDate.now();
+        return matchRepo.getRefereeMatchesPlayed(currentDate,tournamentId,refreeId);
+	}
+	
+	public List<Match> refereeMatchesPlayedUpdated(Integer tournamentId,Integer refereeId){
+		
+		LocalDate currentDate = LocalDate.now();
+        return matchRepo.getRefereeMatchesPlayedUpdated(currentDate, tournamentId, refereeId);
+	}
+	
+	
+
 	
 }

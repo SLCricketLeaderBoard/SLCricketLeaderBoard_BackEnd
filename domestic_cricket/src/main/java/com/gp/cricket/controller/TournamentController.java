@@ -26,9 +26,19 @@ public class TournamentController {
 	TournamentService tournamentService;
 
 	@PostMapping("registerTournament")
-	public Tournament registerTournament(@RequestBody Tournament tournament) {
-		System.out.println(tournament);
-		return tournamentService.registerTournament(tournament);
+	public String registerTournament(@RequestBody Tournament tournament) {
+		try {
+			 Tournament x = tournamentService.registerTournament(tournament);	
+			 if(x!=null) {
+				 return "Creation successfull";				 
+			 }else {
+				 return "Creation Faild";
+			 }
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+			return "Creation Faild";
+		}
 	}
 
 //	@GetMapping("/tournaments")

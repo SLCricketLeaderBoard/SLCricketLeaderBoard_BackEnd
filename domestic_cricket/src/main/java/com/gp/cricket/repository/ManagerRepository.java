@@ -18,5 +18,15 @@ public interface ManagerRepository extends JpaRepository<Manager, Integer>{
 	
 	@Query("FROM Manager m WHERE m.userId = :userId")
 	public Manager getManager(@Param("userId")User user);
+	
+	
+	@Query("FROM Manager m WHERE  m.userId.status = 1")
+	public List<Manager> getAcceptedManagers();
+	
+	
+	@Query("FROM Manager m WHERE  m.userId.status = 0")
+	public List<Manager> getRequestedManagers();
+	
+	
 
 }
