@@ -81,6 +81,7 @@ public class MatchController {
 			 return ResponseEntity.ok(result);
 		 }
 		 return ResponseEntity.badRequest().build();
+	 }
 
 	 @GetMapping("refereeMatchesUpcomming/{tournamentId}/{refereeId}")
 	 public List<Match> getRefereeMatchesUpcommig(@PathVariable("tournamentId")Integer tournamentId,@PathVariable("refereeId")Integer refereeId){
