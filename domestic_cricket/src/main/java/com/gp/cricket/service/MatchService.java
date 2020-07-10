@@ -72,12 +72,12 @@ public class MatchService {
 		List<Player> club2Players=tournamnetClubPlayerRepository.findPlayersForMatch(tournamentClubIdforclub12);
 		
 		club1Players.forEach((p)->{
-			SelectedPlayer record = new SelectedPlayer(null,createdMatch,p);
+			SelectedPlayer record = new SelectedPlayer(null,createdMatch,p,0);
 			selectedPlayerService.saveSelectedPlayer(record);
 		});
 		
 		club2Players.forEach((p)->{
-			SelectedPlayer record = new SelectedPlayer(null,createdMatch,p);
+			SelectedPlayer record = new SelectedPlayer(null,createdMatch,p,0);
 			selectedPlayerService.saveSelectedPlayer(record);
 		});
 		

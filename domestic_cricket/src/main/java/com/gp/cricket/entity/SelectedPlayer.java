@@ -26,18 +26,26 @@ public class SelectedPlayer {
 	@ManyToOne
 	@JoinColumn(name = "player_id", referencedColumnName = "player_id")
 	private Player playerId;
+	
+	@Column(name = "state")
+	private Integer state;
 
 	public SelectedPlayer() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public SelectedPlayer(Integer selectedPlayerId, Match matchId, Player playerId) {
+	
+
+	public SelectedPlayer(Integer selectedPlayerId, Match matchId, Player playerId, Integer state) {
 		super();
 		this.selectedPlayerId = selectedPlayerId;
 		this.matchId = matchId;
 		this.playerId = playerId;
+		this.state = state;
 	}
+
+
 
 	public Integer getSelectedPlayerId() {
 		return selectedPlayerId;
@@ -63,5 +71,18 @@ public class SelectedPlayer {
 		this.playerId = playerId;
 	}
 
+
+
+	public Integer getState() {
+		return state;
+	}
+
+
+
+	public void setState(Integer state) {
+		this.state = state;
+	}
+
+	
 	
 }

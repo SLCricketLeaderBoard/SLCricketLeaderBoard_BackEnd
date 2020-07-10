@@ -15,4 +15,8 @@ public interface SelectedPlayerRepository extends JpaRepository<SelectedPlayer, 
 	List<Player>selectedPlayersForMatch(@Param("matchId") Integer matchId,@Param("clubId") Integer clubId);
 	
 	
+	@Query("SELECT s FROM SelectedPlayer s WHERE s.matchId.matchId =:matchId AND s.playerId.clubId.clubId =:clubId")
+	List<SelectedPlayer>selectedPlayersMatchIdClubId(@Param("matchId") Integer matchId,@Param("clubId") Integer clubId);
+	
+	
 }

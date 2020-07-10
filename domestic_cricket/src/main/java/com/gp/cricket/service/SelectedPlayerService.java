@@ -1,5 +1,7 @@
 package com.gp.cricket.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,12 @@ public class SelectedPlayerService {
 	
 	public SelectedPlayer saveSelectedPlayer(SelectedPlayer player) {
 		return selectedPlayerRepository.save(player);
+	}
+
+
+	public List<SelectedPlayer> getSelectedPlayers(Integer matchId, Integer clubId) {
+	
+		return selectedPlayerRepository.selectedPlayersMatchIdClubId(matchId,clubId);
 	}
 	
 	
