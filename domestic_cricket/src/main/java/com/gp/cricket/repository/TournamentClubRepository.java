@@ -25,5 +25,5 @@ public interface TournamentClubRepository extends JpaRepository<TournamentClub, 
 	@Query("FROM TournamentClub t WHERE t.clubId = :clubId AND t.tournamentId = :tournamentId")
 	TournamentClub findByClubIdAndTournamentId(@Param("clubId")Club clubId,@Param("tournamentId") Tournament tournamentId);
 	
-
+	
 }

@@ -28,7 +28,7 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
 	
 
 	@Query("FROM Match m WHERE (m.clubOneId = :clubId OR m.clubTwoId = :clubId) AND m.finishDate < current_date() ORDER BY m.finishDate DESC ")
-	public List<Match> findByClubId(@Param("clubId")Integer clubId);
+	public List<Match> findPlayedMatchesByClubId(@Param("clubId")Integer clubId);
 
 	
 	@Query("FROM Match m WHERE m.finishDate >:currentDate AND m.tournamentId.tournamentId = :tournamentId AND m.refereeId.userId.userId =:refereeId AND m.state = 0 ORDER BY m.tournementRound ASC")
@@ -40,6 +40,9 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
 		
 	@Query("FROM Match m WHERE m.finishDate <:currentDate AND m.tournamentId.tournamentId = :tournamentId AND m.refereeId.userId.userId =:refereeId AND m.state =1 ORDER BY m.tournementRound ASC")
 	public List<Match> getRefereeMatchesPlayedUpdated(@Param("currentDate") LocalDate currentDate,@Param("tournamentId") Integer tournamentId,@Param("refereeId") Integer refereeId);
+
+	@Query("FROM Match m WHERE (m.clubOneId = :clubId OR m.clubTwoId = :clubId) AND m.startDate >= current_date() ORDER BY m.startDate ASC ")
+	public List<Match> findUpcomingMatchesByClubId(@Param("clubId") Integer clubId);
 	
 
 }

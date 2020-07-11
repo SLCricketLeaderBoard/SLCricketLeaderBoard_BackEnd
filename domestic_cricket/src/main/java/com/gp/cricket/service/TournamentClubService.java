@@ -25,14 +25,13 @@ public class TournamentClubService {
 	@Autowired
 	ClubRepository clubRepository;
 
-	public Integer tournementClubRegister(Club club, Tournament tournament) {
+	public TournamentClub tournementClubRegister(Club club, Tournament tournament) {
 		if (club != null && tournament != null) {
 			if (tournamentClubRepository.findByClubIdAndTournamentId(club, tournament) == null) {
 				TournamentClub tournamentClub = new TournamentClub(0, (byte) 1, club, tournament);
-				tournamentClubRepository.save(tournamentClub);
-				return 1;
+				return tournamentClubRepository.save(tournamentClub);
 			} else {
-				return 0;// Already registered to the tournament
+				return null;// Already registered to the tournament
 			}
 		}
 		return null;

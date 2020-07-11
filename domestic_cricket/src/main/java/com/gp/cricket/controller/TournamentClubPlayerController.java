@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gp.cricket.entity.Player;
+import com.gp.cricket.entity.TournamentClub;
 import com.gp.cricket.entity.TournamentClubPlayer;
 import com.gp.cricket.service.TournamentClubPlayerService;
 import com.gp.cricket.wrapper.PlayerWrapper;
@@ -25,9 +26,9 @@ public class TournamentClubPlayerController {
 	TournamentClubPlayerService tournamentClubPlayerService;
 
 	@PostMapping("tournamentclubplayer/{clubId}/{tournamentId}")
-	public ResponseEntity<Integer> tournamentClubPlayerRegister(@RequestBody PlayerWrapper playerWrapper,
+	public ResponseEntity<TournamentClub> tournamentClubPlayerRegister(@RequestBody PlayerWrapper playerWrapper,
 			@PathVariable("clubId") Integer clubId, @PathVariable("tournamentId") Integer tournamentId) {
-		Integer result = tournamentClubPlayerService.tournamentClubPlayerRegister(playerWrapper, clubId, tournamentId);
+		TournamentClub result = tournamentClubPlayerService.tournamentClubPlayerRegister(playerWrapper, clubId, tournamentId);
 		if (result != null) {
 			return ResponseEntity.ok(result);
 		}
@@ -44,9 +45,9 @@ public class TournamentClubPlayerController {
 	}
 	
 	@PutMapping("tournamentclubplayer/{clubId}/{tournamentId}")
-	public ResponseEntity<Integer> tournamentClubPlayerUpdate(@RequestBody PlayerWrapper playerWrapper,
+	public ResponseEntity<TournamentClub> tournamentClubPlayerUpdate(@RequestBody PlayerWrapper playerWrapper,
 			@PathVariable("clubId") Integer clubId, @PathVariable("tournamentId") Integer tournamentId) {
-		Integer result = tournamentClubPlayerService.tournamentClubPlayerUpdate(playerWrapper, clubId, tournamentId);
+		TournamentClub result = tournamentClubPlayerService.tournamentClubPlayerUpdate(playerWrapper, clubId, tournamentId);
 		if (result != null) {
 			return ResponseEntity.ok(result);
 		}

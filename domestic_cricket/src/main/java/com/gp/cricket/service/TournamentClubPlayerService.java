@@ -34,21 +34,21 @@ public class TournamentClubPlayerService {
 	@Autowired
 	TournamentRepository tournamentRepository;
 
-	public Integer tournamentClubPlayerRegister(PlayerWrapper playerWrapper, Integer clubId, Integer tournamentId) {
+	public TournamentClub tournamentClubPlayerRegister(PlayerWrapper playerWrapper, Integer clubId, Integer tournamentId) {
 		if (clubId != null && tournamentId != null && playerWrapper != null
 				&& tournamentRepository.existsById(tournamentId) && clubRepository.existsById(clubId)) {
 			Club club = clubRepository.findClubByClubId(clubId);
 			Tournament tournament = tournamentRepository.findByTournamentId(tournamentId);
-			Integer result = tournamentClubService.tournementClubRegister(club, tournament);
-			if (result != null && result != 0) {
+			TournamentClub result = tournamentClubService.tournementClubRegister(club, tournament);
+			if (result != null) {
 				TournamentClub tournamentClub = tournamentClubRepository.findByClubIdAndTournamentId(club, tournament);
 				for (Player player : playerWrapper.getPlayerList()) {
 					TournamentClubPlayer tournamentClubPlayer = new TournamentClubPlayer(0, tournamentClub, player);
 					tournamentClubPlayerRepository.save(tournamentClubPlayer);
 				}
-				return 1;
+				return result;
 			}
-			return 0;// Already registered
+			return null;// Already registered
 		}
 		return null;
 	}
@@ -67,7 +67,7 @@ public class TournamentClubPlayerService {
 		return null;
 	}
 
-	public Integer tournamentClubPlayerUpdate(PlayerWrapper playerWrapper, Integer clubId, Integer tournamentId) {
+	public TournamentClub tournamentClubPlayerUpdate(PlayerWrapper playerWrapper, Integer clubId, Integer tournamentId) {
 		if (clubId != null && tournamentId != null && playerWrapper != null
 				&& tournamentRepository.existsById(tournamentId) && clubRepository.existsById(clubId)) {
 
@@ -82,7 +82,7 @@ public class TournamentClubPlayerService {
 					TournamentClubPlayer tournamentClubPlayer = new TournamentClubPlayer(0, tournamentClub, player);
 					tournamentClubPlayerRepository.save(tournamentClubPlayer);
 				}
-				return 1;
+				return tournamentClub;
 			}
 
 		}

@@ -9,12 +9,16 @@ import com.gp.cricket.entity.Match;
 import com.gp.cricket.entity.MatchType;
 import com.gp.cricket.entity.Player;
 import com.gp.cricket.entity.SelectedPlayer;
+import com.gp.cricket.entity.Tournament;
+import com.gp.cricket.entity.TournamentClub;
+import com.gp.cricket.entity.TournamentClubCaptain;
 import com.gp.cricket.repository.ClubRepository;
 import com.gp.cricket.repository.MatchRepository;
 import com.gp.cricket.repository.MatchTypeRepository;
 import com.gp.cricket.repository.RefereeRepository;
 import com.gp.cricket.repository.SelectedPlayerRepository;
 import com.gp.cricket.repository.StadiumRepository;
+import com.gp.cricket.repository.TournamentClubCaptainRepository;
 import com.gp.cricket.repository.TournamentClubPlayerRepository;
 import com.gp.cricket.repository.TournamentClubRepository;
 import com.gp.cricket.repository.TournamentRepository;
@@ -54,6 +58,12 @@ public class MatchService {
 	
 	@Autowired
 	ClubRepository clubRepository;
+	
+	@Autowired
+	TournamentClubCaptainRepository tournamentClubCaptainRepository;
+	
+	@Autowired
+	TournamentClubRepository tournamentClubRepository;
 
 	// For geting match type test t20 odi
 	public List<MatchType> getMathcTypes() {
@@ -63,6 +73,8 @@ public class MatchService {
 	// for saving the data of match
 	public Match createMatch(Match match) {	
 		
+		//get captain and vice captain
+		getCaptainsForMatch(match);
 		Match createdMatch = matchRepo.save(match);
 		
 		Integer tournamentClubIdforclub1 = tournamnetClubRepository.findIdByTournamentAndClub(match.getTournamentIdValue(),match.getClubOneId());
@@ -82,6 +94,32 @@ public class MatchService {
 		});
 		
 		return createdMatch;
+	}
+	
+	private void getCaptainsForMatch(Match match) {
+		Integer club1 = match.getClubOneId();
+		Integer club2 = match.getClubTwoId();
+		Tournament tournament = match.getTournamentId();
+		
+		if(club1!=null && club2!=null && tournament!=null) {
+			if(clubRepository.existsById(club1) && clubRepository.existsById(club2) && tournamentRepository.existsById(tournament.getTournamentId())) {
+				//Club1
+				TournamentClub tc1 = tournamentClubRepository.findByClubIdAndTournamentId(clubRepository.findClubByClubId(club1), tournament);
+				TournamentClubCaptain c1 = tournamentClubCaptainRepository.findByTournamentClubId(tc1);
+				if(c1!=null) {
+					match.setCaptainClubOne(c1.getCaptainId());
+					match.setClubOneViceCaptain(c1.getViceCaptainId());
+				}
+				
+				//club2
+				TournamentClub tc2 = tournamentClubRepository.findByClubIdAndTournamentId(clubRepository.findClubByClubId(club2), tournament);
+				TournamentClubCaptain c2 = tournamentClubCaptainRepository.findByTournamentClubId(tc2);
+				if(c2!=null) {
+					match.setCaptainClubTwo(c2.getCaptainId());
+					match.setClubTwoViceCaptain(c2.getViceCaptainId());
+				}
+			}
+		}
 	}
 
 
@@ -113,7 +151,7 @@ public class MatchService {
 	
 	public List<Match> getPlayedMatchList(Integer clubId){
 		if(clubId!=null && clubRepository.existsById(clubId)) {
-			return matchRepo.findByClubId(clubId);
+			return matchRepo.findPlayedMatchesByClubId(clubId);
 		}
 		return null;
 	}
@@ -137,6 +175,12 @@ public class MatchService {
         return matchRepo.getRefereeMatchesPlayedUpdated(currentDate, tournamentId, refereeId);
 	}
 	
+	public List<Match> upComingMatchList(Integer clubId){
+		if(clubId!=null && clubRepository.existsById(clubId)) {
+			return matchRepo.findUpcomingMatchesByClubId(clubId);
+		}
+		return null;
+	}
 	
 
 	
