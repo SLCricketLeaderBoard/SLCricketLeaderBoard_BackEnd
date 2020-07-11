@@ -3,6 +3,7 @@ package com.gp.cricket.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gp.cricket.entity.BatmanRecord;
 import com.gp.cricket.entity.FieldingRecord;
 import com.gp.cricket.repository.FieldingRecordRepository;
 
@@ -14,6 +15,11 @@ public class FieldingRecordService {
 	
 	public FieldingRecord saveRecord(FieldingRecord record) {
 		return fieldingRecordRepository.save(record);
+	}
+	
+	
+	public FieldingRecord getFieldingRecordBtSelectedPlayerId(Integer selectedPlayerId) {
+		return fieldingRecordRepository.getFieldingRecordBtSelectedPlayerId(selectedPlayerId);
 	}
 
 

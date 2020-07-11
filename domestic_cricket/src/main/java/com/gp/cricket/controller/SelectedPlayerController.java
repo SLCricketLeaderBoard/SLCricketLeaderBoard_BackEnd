@@ -22,5 +22,20 @@ public class SelectedPlayerController {
 	 public List<SelectedPlayer> getMatchePlayers(@PathVariable("matchId")Integer matchId,@PathVariable("clubId")Integer clubId){
 		 return selectedPlayerService.getSelectedPlayers(matchId, clubId);
 	 }
+	 
+	 @GetMapping("/selectedPlayer/{id}")
+	 public SelectedPlayer getMatchePlayers(@PathVariable("id")Integer id){
+		 return selectedPlayerService.getSelectedPlayerById(id);
+	 }
+	 
+	 @GetMapping("/match/selectedPlayersUpdated/{matchId}/{clubId}")
+	 public List<SelectedPlayer> getMatchePlayersUpdated(@PathVariable("matchId")Integer matchId,@PathVariable("clubId")Integer clubId){
+		 return selectedPlayerService.getSelectedPlayersUpdated(matchId, clubId);
+	 }
+	 
+	 @GetMapping("/match/selectedPlayersNotUpdated/{matchId}/{clubId}")
+	 public List<SelectedPlayer> getMatchePlayersNotUpdated(@PathVariable("matchId")Integer matchId,@PathVariable("clubId")Integer clubId){
+		 return selectedPlayerService.getSelectedPlayersNotUpdated(matchId, clubId);
+	 }
 
 }
