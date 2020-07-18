@@ -30,7 +30,6 @@ public class FieldingRecordService {
 		
 		if(fieldingScore==null) {
 			fieldingScore = new FieldingScore();
-			System.out.println("Player Null in score table");
 			fieldingScore.setFieldingId(null);
 			fieldingScore.setPlayerId(record.getSelectedPlayerId().getPlayerId());
 			fieldingScore.setMatchTypeId(record.getSelectedPlayerId().getMatchId().getMatchTypeId());

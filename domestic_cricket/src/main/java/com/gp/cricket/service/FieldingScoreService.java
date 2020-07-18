@@ -15,13 +15,8 @@ public class FieldingScoreService {
 	public FieldingScore saveFieldingRecord(FieldingScore record) {
 		return fieldingScoreRepository.save(record);
 	}
-	
 	public FieldingScore getRecordByPlayerIdMatchType(Integer playerId,String matchTypeString) {
 		
 		return fieldingScoreRepository.getRecordByPlayerIdMatchType(playerId,matchTypeString);
 	}
-	
-	
-	
-
 }

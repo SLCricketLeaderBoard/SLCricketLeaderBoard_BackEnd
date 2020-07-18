@@ -28,7 +28,6 @@ public class BatmanRecordService {
 		
 		if(batmanScore==null) {
 			batmanScore = new BatmanScore();
-			System.out.println("Player Null in score table");
 			batmanScore.setBatmanScoreId(null);
 			batmanScore.setPlayerId(record.getSelectedPlayerId().getPlayerId());
 			batmanScore.setMatchTypeId(record.getSelectedPlayerId().getMatchId().getMatchTypeId());

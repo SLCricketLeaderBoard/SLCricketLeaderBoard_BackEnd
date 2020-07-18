@@ -24,16 +24,13 @@ public class BallerRecordService {
 		Integer playerId =  record.getSelectedPlayerId().getPlayerId().getPlayerId();
 		String matchTypeString = record.getSelectedPlayerId().getMatchId().getMatchTypeId().getMatchType();
 		
-		System.out.println(playerId+""+matchTypeString);
-		
+				
 		BallerScore ballerScore;
 		
 		ballerScore = ballerScoreService.getRecordByPlayerIdMatchType(playerId,matchTypeString);
 		
 		if(ballerScore==null) {
 			ballerScore = new BallerScore();
-			System.out.println("This the null here");
-			System.out.println("Player Null in score table");
 			ballerScore.setBallerScoredId(null);
 			ballerScore.setPlayerId(record.getSelectedPlayerId().getPlayerId());
 			ballerScore.setMatchTypeId(record.getSelectedPlayerId().getMatchId().getMatchTypeId());
