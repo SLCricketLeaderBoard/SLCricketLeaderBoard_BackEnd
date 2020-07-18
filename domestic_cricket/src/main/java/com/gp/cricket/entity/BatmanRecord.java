@@ -59,21 +59,19 @@ public class BatmanRecord {
 	
 	@Column(name = "batting_points")
 	private Double battingPoints;
+	
+	@Column(name = "strike_rate")
+	private Double strikeRate;
+	
 
 	public BatmanRecord() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-
-
-
-
-
-
+	
 	public BatmanRecord(Integer batmanRecordId, Integer battingRuns, Integer facedBalls, Integer fours, Integer sixes,
 			Byte notOut, SelectedPlayer selectedPlayerId, Byte halfentury, Byte sentury, Byte doubleSentury,
-			Byte tripleSentury, Byte foubleSentury, Byte fivebleSentury, Double battingPoints) {
+			Byte tripleSentury, Byte foubleSentury, Byte fivebleSentury, Double battingPoints, Double strikeRate) {
 		super();
 		this.batmanRecordId = batmanRecordId;
 		this.battingRuns = battingRuns;
@@ -89,20 +87,7 @@ public class BatmanRecord {
 		this.foubleSentury = foubleSentury;
 		this.fivebleSentury = fivebleSentury;
 		this.battingPoints = battingPoints;
-	}
-
-
-
-
-
-	
-
-	public Integer getBallerRecordId() {
-		return batmanRecordId;
-	}
-
-	public void setBallerRecordId(Integer ballerRecordId) {
-		this.batmanRecordId = ballerRecordId;
+		this.strikeRate = strikeRate;
 	}
 
 	public Integer getBattingRuns() {
@@ -209,5 +194,23 @@ public class BatmanRecord {
 	public void setBattingPoints(Double battingPoints) {
 		this.battingPoints = battingPoints;
 	}
+
+	public Integer getBatmanRecordId() {
+		return batmanRecordId;
+	}
+
+	public void setBatmanRecordId(Integer batmanRecordId) {
+		this.batmanRecordId = batmanRecordId;
+	}
+
+	public Double getStrikeRate() {
+		return strikeRate;
+	}
+
+	public void setStrikeRate(Double strikeRate) {
+		this.strikeRate = strikeRate;
+	}
+	
+	
 	
 }
