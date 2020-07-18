@@ -25,6 +25,33 @@ public class SelectedPlayerService {
 	
 		return selectedPlayerRepository.selectedPlayersMatchIdClubId(matchId,clubId);
 	}
+
+
+	public SelectedPlayer getSelectedPlayerById(Integer id) {
+		// TODO Auto-generated method stub
+		return selectedPlayerRepository.findById(id).get();
+	}
+	
+	public Integer selectedPlayerStateUpdate(SelectedPlayer player) {
+		SelectedPlayer x = selectedPlayerRepository.save(player);
+		if(x!=null) {
+			return 1;
+		}else {
+			return 0;
+		}
+	}
+
+
+	public List<SelectedPlayer> getSelectedPlayersUpdated(Integer matchId, Integer clubId) {
+		
+		return selectedPlayerRepository.selectedPlayersMatchIdClubIdUpdated(matchId, clubId);
+	}
+
+
+	public List<SelectedPlayer> getSelectedPlayersNotUpdated(Integer matchId, Integer clubId) {
+		// TODO Auto-generated method stub
+		return selectedPlayerRepository.selectedPlayersMatchIdClubIdNotUpdated(matchId, clubId);
+	}
 	
 	
 	

@@ -16,5 +16,9 @@ public class BatmanRecordService {
 	public BatmanRecord saveRecord(BatmanRecord record) {
 		return batmanRecordService.save(record);
 	}
+	
+	public BatmanRecord getbatmanRecordBtSelectedPlayerId(Integer selectedPlayerId) {
+		return batmanRecordService.getbatmanRecordBtSelectedPlayerId(selectedPlayerId);
+	}
 
 }

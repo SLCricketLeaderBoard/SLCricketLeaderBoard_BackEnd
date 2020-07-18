@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gp.cricket.entity.BallerRecord;
+import com.gp.cricket.entity.BatmanRecord;
 import com.gp.cricket.repository.BallerRecordRepository;
 
 @Service
@@ -14,6 +15,10 @@ public class BallerRecordService {
 	
 	public BallerRecord saveRecord(BallerRecord record) {
 		return ballerRecordRepo.save(record);
+	}
+	
+	public BallerRecord getballerRecordBtSelectedPlayerId(Integer selectedPlayerId) {
+		return ballerRecordRepo.getballerRecordBtSelectedPlayerId(selectedPlayerId);
 	}
 
 }

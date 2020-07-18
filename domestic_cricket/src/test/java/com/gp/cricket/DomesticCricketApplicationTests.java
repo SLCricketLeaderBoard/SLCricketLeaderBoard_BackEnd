@@ -35,6 +35,7 @@ import com.gp.cricket.service.BallerRecordService;
 import com.gp.cricket.service.BatmanRecordService;
 import com.gp.cricket.service.FieldingRecordService;
 import com.gp.cricket.service.MatchService;
+import com.gp.cricket.service.PlayerRecordService;
 import com.gp.cricket.service.SponsorService;
 import com.gp.cricket.service.TournamentClubService;
 
@@ -77,6 +78,8 @@ class DomesticCricketApplicationTests {
 	@Autowired
 	FieldingRecordService fieldingRecordService;
 	
+	@Autowired
+	PlayerRecordService playerRecordService;
 //	private Integer matchId = null;
 //	private Integer club1Id = 2;
 //	private Integer club2Id = 2;
@@ -178,6 +181,8 @@ class DomesticCricketApplicationTests {
 //		
 //		ballerRecordService.saveRecord(baller);
 		
+		
+//		playerRecordService.getPlayerRecord(55);
 		
 	}
 	
