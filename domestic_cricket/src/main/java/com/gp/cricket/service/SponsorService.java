@@ -9,12 +9,16 @@ import com.gp.cricket.config.security.JwtInMemoryUserDetailsService;
 import com.gp.cricket.entity.Sponsor;
 import com.gp.cricket.entity.User;
 import com.gp.cricket.repository.SponsorRepository;
+import com.gp.cricket.repository.UserRepository;
 
 @Service
 public class SponsorService {
 
 	@Autowired
 	SponsorRepository sponsorRepository;
+	
+	@Autowired
+	UserRepository userRepository;
 
 	@Autowired
 	UserService userService;
@@ -26,5 +30,15 @@ public class SponsorService {
 		System.out.println("Get all non registered sponsors here");
 		return this.sponsorRepository.findAll();
 
+	}
+	
+	public Integer sponsorAccept(Integer userId) {
+		if (userId != null && userId > 0 && userRepository.existsById(userId)) {
+			User user = userRepository.findByUserId(userId);
+			user.setStatus((byte) 1);
+			userRepository.save(user);
+			return 1;
+		}
+		return null;
 	}
 }
