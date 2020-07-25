@@ -66,7 +66,7 @@ public class PlayerRecordController {
 		}
 		
 		Byte b =0;
-		return new PlayerRecord(new BatmanRecord(null,0,0,0,0,b,null,b,b,b,b,b,b,0.0),new BallerRecord(null,0.0,0,0,0,null,0.0),new FieldingRecord(null,0,null,0.0));
+		return new PlayerRecord(new BatmanRecord(null,0,0,0,0,b,null,b,b,b,b,b,b,0.0,0.0),new BallerRecord(null,0.0,0,0,0,null,0.0,0,0,0.0),new FieldingRecord(null,0,null,0.0));
 	}
 	
 }

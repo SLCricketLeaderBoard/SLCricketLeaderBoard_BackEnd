@@ -37,14 +37,27 @@ public class BallerRecord {
 	
 	@Column(name = "balling_points")
 	private Double ballingPoints;
+	
+	@Column(name = "num_of_wides")
+	private Integer numberOfWides;
+	
+	@Column(name = "num_of_nos")
+	private Integer numberOfNos;
+	
+	@Column(name = "avg_speed")
+	private Double avgSpeed;
+	
 
 	public BallerRecord() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+
+
 	public BallerRecord(Integer ballerRecordId, Double overs, Integer numberOfRunsAgainst, Integer wickets,
-			Integer hatTriks, SelectedPlayer selectedPlayerId, Double ballingPoints) {
+			Integer hatTriks, SelectedPlayer selectedPlayerId, Double ballingPoints, Integer numberOfWides,
+			Integer numberOfNos, Double avgSpeed) {
 		super();
 		this.ballerRecordId = ballerRecordId;
 		this.overs = overs;
@@ -53,7 +66,12 @@ public class BallerRecord {
 		this.hatTriks = hatTriks;
 		this.selectedPlayerId = selectedPlayerId;
 		this.ballingPoints = ballingPoints;
+		this.numberOfWides = numberOfWides;
+		this.numberOfNos = numberOfNos;
+		this.avgSpeed = avgSpeed;
 	}
+
+
 
 	public Integer getBallerRecordId() {
 		return ballerRecordId;
@@ -111,6 +129,43 @@ public class BallerRecord {
 		this.ballingPoints = ballingPoints;
 	}
 
+
+
+	public Integer getNumberOfWides() {
+		return numberOfWides;
+	}
+
+
+
+	public void setNumberOfWides(Integer numberOfWides) {
+		this.numberOfWides = numberOfWides;
+	}
+
+
+
+	public Integer getNumberOfNos() {
+		return numberOfNos;
+	}
+
+
+
+	public void setNumberOfNos(Integer numberOfNos) {
+		this.numberOfNos = numberOfNos;
+	}
+
+
+
+	public Double getAvgSpeed() {
+		return avgSpeed;
+	}
+
+
+
+	public void setAvgSpeed(Double avgSpeed) {
+		this.avgSpeed = avgSpeed;
+	}
+
+	
 	
 	
 	

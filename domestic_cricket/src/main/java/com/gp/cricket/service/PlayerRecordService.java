@@ -36,12 +36,12 @@ public class PlayerRecordService {
 		BatmanRecord bat = batmanRecordService.getbatmanRecordBtSelectedPlayerId(selectedPlayerId);
 		if(bat==null) {
 			Byte b =0;
-			bat = new BatmanRecord(null,0,0,0,0,b,player,b,b,b,b,b,b,0.0);			
+			bat = new BatmanRecord(null,0,0,0,0,b,player,b,b,b,b,b,b,0.0,0.0);			
 		}
 		
 		BallerRecord bal = ballerRecordService.getballerRecordBtSelectedPlayerId(selectedPlayerId);
 		if(bal==null) {
-			bal = new BallerRecord(null,0.0,0,0,0,player,0.0);			
+			bal = new BallerRecord(null,0.0,0,0,0,player,0.0,0,0,0.0);			
 		}
 		
 		FieldingRecord fied = fieldingRecordService.getFieldingRecordBtSelectedPlayerId(selectedPlayerId);
