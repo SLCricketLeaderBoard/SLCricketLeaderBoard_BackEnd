@@ -36,7 +36,7 @@ public class User {
 	String nameWithInitial;
 
 	@NotBlank(message = "NIC is mandatory")
-	@Size(min = 10, max = 12)
+	@Size(min = 10, max = 10)
 	String nic;
 
 	@NotBlank(message = "Contact number is mandatory")
