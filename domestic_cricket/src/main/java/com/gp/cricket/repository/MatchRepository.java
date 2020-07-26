@@ -43,6 +43,9 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
 
 	@Query("FROM Match m WHERE (m.clubOneId = :clubId OR m.clubTwoId = :clubId) AND m.startDate >= current_date() ORDER BY m.startDate ASC ")
 	public List<Match> findUpcomingMatchesByClubId(@Param("clubId") Integer clubId);
+
+	@Query("FROM Match m WHERE (m.startDate <= :currentDate AND m.finishDate >= :currentDate) AND m.refereeId.userId.userId =:refId ORDER BY m.startDate ASC ")
+	public List<Match> getLiveMatchForReferee(@Param("refId")Integer refId,@Param("currentDate") LocalDate currentDate);
 	
 
 }
