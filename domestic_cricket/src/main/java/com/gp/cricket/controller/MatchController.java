@@ -108,4 +108,17 @@ public class MatchController {
 		}
 		return ResponseEntity.badRequest().build();
 	}
+	
+	
+	
+	@GetMapping("getLiveMatchTodayForReferee/{refreeId}")
+	public ResponseEntity<List<Match>> getLivetodayMatchForReferee(@PathVariable("refreeId")String refreeId){
+		int refId = Integer.parseInt(refreeId);
+		List<Match> result = matchService.getLiveMatchForReferee(refId);
+		if(result!=null) {
+			return ResponseEntity.ok(result);
+		}
+		return ResponseEntity.badRequest().build();
+	}
+	
 }

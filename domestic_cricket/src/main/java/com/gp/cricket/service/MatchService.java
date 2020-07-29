@@ -181,6 +181,14 @@ public class MatchService {
 		}
 		return null;
 	}
+
+	public List<Match> getLiveMatchForReferee(int refId) {
+		
+		LocalDate currentDate = LocalDate.now();
+		
+		return matchRepo.getLiveMatchForReferee((Integer)refId,currentDate);
+		
+	}
 	
 
 	
