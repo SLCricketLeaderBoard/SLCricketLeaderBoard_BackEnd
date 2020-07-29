@@ -19,5 +19,21 @@ public interface PlayerRepository extends JpaRepository<Player, Integer>{
 	
 	@Query("SELECT p.userId.nic FROM Player p WHERE p.clubId = :clubId AND p.userId.status = 1")
 	List<String> findPlayerByClubId(@Param("clubId") Club clubId);
+
+	@Query("FROM Player p WHERE p.clubId = :clubId  "
+			+ "AND p.specialType = :playerType "
+			+ "AND p.userId.status = 1 "
+			+ "AND p.playerId NOT IN (SELECT b.playerId.playerId FROM BatmanScore b WHERE b.playerId.clubId = :clubId "
+			+ "AND b.playerId.specialType = :playerType "
+			+ "AND b.matchTypeId.matchTypeId = :matchTypeId) ")
+	List<Player> findRemainingBatmenPlayers(@Param("clubId")Club clubId,@Param("playerType") Integer playerType,@Param("matchTypeId") Integer matchTypeId);
+
+	@Query("FROM Player p WHERE p.clubId = :clubId  "
+			+ "AND p.specialType = :playerType "
+			+ "AND p.userId.status = 1 "
+			+ "AND p.playerId NOT IN (SELECT b.playerId.playerId FROM BallerScore b WHERE b.playerId.clubId = :clubId "
+			+ "AND b.playerId.specialType = :playerType "
+			+ "AND b.matchTypeId.matchTypeId = :matchTypeId) ")
+	List<Player> findRemainingBallerPlayers(@Param("clubId")Club club,@Param("playerType")Integer playerType,@Param("matchTypeId") Integer matchTypeId);
 	
 }
