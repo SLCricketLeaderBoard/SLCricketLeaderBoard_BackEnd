@@ -105,7 +105,7 @@ public class MatchService {
 	public Match updateMatch(Match match) {	
 		Match createdMatch = matchRepo.save(match);
 		return createdMatch;
-		}
+	}
 		
 	
 	
