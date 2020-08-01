@@ -64,6 +64,9 @@ public class MatchService {
 	
 	@Autowired
 	TournamentClubRepository tournamentClubRepository;
+	
+	@Autowired
+	ClubRankingService clubRankingService;
 
 	// For geting match type test t20 odi
 	public List<MatchType> getMathcTypes() {
@@ -76,6 +79,9 @@ public class MatchService {
 		//get captain and vice captain
 		getCaptainsForMatch(match);
 		Match createdMatch = matchRepo.save(match);
+		
+		//Club ranking
+		clubRankingService.clubRanking(createdMatch);
 		
 		Integer tournamentClubIdforclub1 = tournamnetClubRepository.findIdByTournamentAndClub(match.getTournamentIdValue(),match.getClubOneId());
 		Integer tournamentClubIdforclub12 = tournamnetClubRepository.findIdByTournamentAndClub(match.getTournamentIdValue(),match.getClubTwoId());
@@ -190,6 +196,6 @@ public class MatchService {
 		
 	}
 	
-
+	
 	
 }

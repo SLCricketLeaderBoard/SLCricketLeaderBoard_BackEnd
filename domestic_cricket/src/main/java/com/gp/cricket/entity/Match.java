@@ -127,7 +127,7 @@ public class Match {
 	
 	@Column(name = "state")
 	private Integer state;
-
+	
 	
 	public Integer getTournamentIdValue() {
 		return this.tournamentId.getTournamentId();
@@ -436,9 +436,6 @@ public class Match {
 		this.state = state;
 	}
 
-		
-	
-	
 	
 
 }

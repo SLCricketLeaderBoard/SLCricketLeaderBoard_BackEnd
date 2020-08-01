@@ -63,6 +63,8 @@ public class Club {
 
 	private String clubLogo;
 
+	private Double rating;
+
 	@NotNull
 	@OneToOne
 	@JoinColumn(name = "manager_id", referencedColumnName = "manager_id")
@@ -78,7 +80,7 @@ public class Club {
 			@NotBlank(message = "Contact number is mandatory") @Size(min = 10, max = 10, message = "Contact number size should be 10") String contactNumber,
 			@NotNull @Min(0) Integer winMatch, @NotNull @Min(0) Integer failMatch, @NotNull @Min(0) Integer growMatch,
 			@NotNull LocalDate regDate, @NotNull @Min(0) @Max(1) Byte status, String clubLogo,
-			@NotNull Manager managerId) {
+			@NotNull Manager managerId, Double rating) {
 		super();
 		this.clubId = clubId;
 		this.clubName = clubName;
@@ -92,6 +94,7 @@ public class Club {
 		this.status = status;
 		this.clubLogo = clubLogo;
 		this.managerId = managerId;
+		this.rating = rating;
 	}
 
 	public Integer getClubId() {
@@ -182,6 +185,14 @@ public class Club {
 		this.managerId = managerId;
 	}
 
+	public Double getRating() {
+		return rating;
+	}
+
+	public void setRating(Double rating) {
+		this.rating = rating;
+	}
+
 	public String getClubLogo() {
 		return clubLogo;
 	}
@@ -195,7 +206,7 @@ public class Club {
 		return "Club [clubId=" + clubId + ", clubName=" + clubName + ", address=" + address + ", email=" + email
 				+ ", contactNumber=" + contactNumber + ", winMatch=" + winMatch + ", failMatch=" + failMatch
 				+ ", growMatch=" + growMatch + ", regDate=" + regDate + ", status=" + status + ", clubLogo=" + clubLogo
-				+ ", managerId=" + managerId + "]";
+				+ ", rating=" + rating + ", managerId=" + managerId + "]";
 	}
 
 }
