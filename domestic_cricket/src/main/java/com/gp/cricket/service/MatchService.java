@@ -96,6 +96,13 @@ public class MatchService {
 		return createdMatch;
 	}
 	
+	public Match updateMatch(Match match) {	
+		Match createdMatch = matchRepo.save(match);
+		return createdMatch;
+		}
+		
+	
+	
 	private void getCaptainsForMatch(Match match) {
 		Integer club1 = match.getClubOneId();
 		Integer club2 = match.getClubTwoId();
