@@ -12,59 +12,59 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "batman_score")
 public class BatmanScore {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "batman_score_id")
 	private Integer batmanScoreId;
-	
-	@Column(name= "match_count")
+
+	@Column(name = "match_count")
 	private Integer matchCount;
-	
+
 	@Column(name = "not_out")
 	private Integer notOut;
-	
+
 	@Column(name = "face_ball")
 	private Integer facedBalls;
-	
+
 	@Column(name = "runs")
 	private Integer runs;
-	
+
 	@Column(name = "four")
 	private Integer four;
-	
+
 	@Column(name = "six")
 	private Integer six;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "player_id", referencedColumnName = "player_id")
 	private Player playerId;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "match_type_id", referencedColumnName = "match_type_id")
 	private MatchType matchTypeId;
-	
+
 	@Column(name = "points")
 	private Double points;
-	
+
 	@Column(name = "half_sentury")
 	private Integer halfCenturies;
-	
+
 	@Column(name = "sentury")
 	private Integer centuries;
-	
+
 	@Column(name = "double_sentury")
 	private Integer doubleCenturies;
-	
+
 	@Column(name = "triple_sentury")
 	private Integer tripleCenturies;
-	
+
 	@Column(name = "fourble_sentury")
 	private Integer fourbleCenturies;
-	
+
 	@Column(name = "fiveble_sentury")
 	private Integer fivebleCenturies;
-	
+
 	@Column(name = "strike_rate")
 	private Double strikeRate;
 
@@ -97,6 +97,10 @@ public class BatmanScore {
 		this.strikeRate = strikeRate;
 	}
 
+	public Player getPlayerId() {
+		return playerId;
+	}
+
 	public Integer getBatmanScoreId() {
 		return batmanScoreId;
 	}
@@ -112,9 +116,9 @@ public class BatmanScore {
 	public void setMatchCount(Integer matchCount) {
 		this.matchCount = matchCount;
 	}
-	
+
 	public void updateMatchCount(Integer matchCount) {
-		this.matchCount =this.matchCount+ matchCount;
+		this.matchCount = this.matchCount + matchCount;
 	}
 
 	public Integer getNotOut() {
@@ -124,9 +128,9 @@ public class BatmanScore {
 	public void setNotOut(Integer notOut) {
 		this.notOut = notOut;
 	}
-	
+
 	public void updateNotOut(Integer notOut) {
-		this.notOut = this.notOut+notOut;
+		this.notOut = this.notOut + notOut;
 	}
 
 	public Integer getFacedBalls() {
@@ -136,9 +140,9 @@ public class BatmanScore {
 	public void setFacedBalls(Integer facedBalls) {
 		this.facedBalls = facedBalls;
 	}
-	
+
 	public void updateFacedBalls(Integer facedBalls) {
-		this.facedBalls = this.facedBalls+facedBalls;
+		this.facedBalls = this.facedBalls + facedBalls;
 	}
 
 	public Integer getRuns() {
@@ -148,9 +152,9 @@ public class BatmanScore {
 	public void setRuns(Integer runs) {
 		this.runs = runs;
 	}
-	
+
 	public void updateRuns(Integer runs) {
-		this.runs = this.runs+runs;
+		this.runs = this.runs + runs;
 	}
 
 	public Integer getFour() {
@@ -160,9 +164,9 @@ public class BatmanScore {
 	public void setFour(Integer four) {
 		this.four = four;
 	}
-	
+
 	public void updateFour(Integer four) {
-		this.four =this.four+four;
+		this.four = this.four + four;
 	}
 
 	public Integer getSix() {
@@ -172,12 +176,12 @@ public class BatmanScore {
 	public void setSix(Integer six) {
 		this.six = six;
 	}
-	
+
 	public void updateSix(Integer six) {
-		this.six = this.six+six;
+		this.six = this.six + six;
 	}
 
-	public Player getPlayerId() {
+	public Player player() {
 		return playerId;
 	}
 
@@ -185,7 +189,6 @@ public class BatmanScore {
 		this.playerId = playerId;
 	}
 
-	
 	public MatchType getMatchTypeId() {
 		return matchTypeId;
 	}
@@ -201,9 +204,9 @@ public class BatmanScore {
 	public void setPoints(Double points) {
 		this.points = points;
 	}
-	
+
 	public void updatePoints(Double points) {
-		this.points = this.points+ points;
+		this.points = this.points + points;
 	}
 
 	public Integer getHalfCenturies() {
@@ -213,9 +216,9 @@ public class BatmanScore {
 	public void setHalfCenturies(Integer halfCenturies) {
 		this.halfCenturies = halfCenturies;
 	}
-	
+
 	public void updateHalfCenturies(Integer halfCenturies) {
-		this.halfCenturies = this.halfCenturies+halfCenturies;
+		this.halfCenturies = this.halfCenturies + halfCenturies;
 	}
 
 	public Integer getCenturies() {
@@ -225,9 +228,9 @@ public class BatmanScore {
 	public void setCenturies(Integer centuries) {
 		this.centuries = centuries;
 	}
-	
+
 	public void updateCenturies(Integer centuries) {
-		this.centuries =this.centuries+ centuries;
+		this.centuries = this.centuries + centuries;
 	}
 
 	public Integer getDoubleCenturies() {
@@ -237,9 +240,9 @@ public class BatmanScore {
 	public void setDoubleCenturies(Integer doubleCenturies) {
 		this.doubleCenturies = doubleCenturies;
 	}
-	
+
 	public void updateDoubleCenturies(Integer doubleCenturies) {
-		this.doubleCenturies = this.doubleCenturies+doubleCenturies;
+		this.doubleCenturies = this.doubleCenturies + doubleCenturies;
 	}
 
 	public Integer getTripleCenturies() {
@@ -249,11 +252,10 @@ public class BatmanScore {
 	public void setTripleCenturies(Integer tripleCenturies) {
 		this.tripleCenturies = tripleCenturies;
 	}
-	
-	public void updateTripleCenturies(Integer tripleCenturies) {
-		this.tripleCenturies = this.tripleCenturies+tripleCenturies;
-	}
 
+	public void updateTripleCenturies(Integer tripleCenturies) {
+		this.tripleCenturies = this.tripleCenturies + tripleCenturies;
+	}
 
 	public Integer getFourbleCenturies() {
 		return fourbleCenturies;
@@ -262,9 +264,9 @@ public class BatmanScore {
 	public void setFourbleCenturies(Integer fourbleCenturies) {
 		this.fourbleCenturies = fourbleCenturies;
 	}
-	
+
 	public void updateFourbleCenturies(Integer fourbleCenturies) {
-		this.fourbleCenturies = this.fourbleCenturies+fourbleCenturies;
+		this.fourbleCenturies = this.fourbleCenturies + fourbleCenturies;
 	}
 
 	public Integer getFivebleCenturies() {
@@ -274,9 +276,9 @@ public class BatmanScore {
 	public void setFivebleCenturies(Integer fivebleCenturies) {
 		this.fivebleCenturies = fivebleCenturies;
 	}
-	
+
 	public void updateFivebleCenturies(Integer fivebleCenturies) {
-		this.fivebleCenturies = this.fivebleCenturies+fivebleCenturies;
+		this.fivebleCenturies = this.fivebleCenturies + fivebleCenturies;
 	}
 
 	public Double getStrikeRate() {

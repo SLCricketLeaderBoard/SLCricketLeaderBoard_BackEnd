@@ -1,5 +1,7 @@
 package com.gp.cricket.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,4 +13,9 @@ public interface BatmanRecordRepository extends JpaRepository<BatmanRecord, Inte
 
 	@Query("FROM BatmanRecord b WHERE b.selectedPlayerId.selectedPlayerId = :selectedPlayerId")
 	public BatmanRecord getbatmanRecordBtSelectedPlayerId(@Param("selectedPlayerId")Integer selectedPlayerId);
+	
+	@Query("FROM BatmanRecord b WHERE b.selectedPlayerId.playerId.playerId = :playerId AND "
+			+ "b.selectedPlayerId.matchId.matchTypeId.matchTypeId = :matchType "
+			+ "ORDER BY b.selectedPlayerId.matchId.finishDate DESC")
+	public List<BatmanRecord> findByPlayerIdANDMatchType(@Param("playerId") Integer playerId,@Param("matchType") Integer matchType);
 }
