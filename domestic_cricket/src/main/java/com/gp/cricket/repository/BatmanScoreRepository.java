@@ -16,8 +16,10 @@ public interface BatmanScoreRepository extends JpaRepository<BatmanScore, Intege
 	BatmanScore getRecordByPlayerIdMatchType(@Param("playerId")Integer playerId,@Param("matchType")String matchType);
 
 	@Query("FROM BatmanScore b WHERE b.playerId.clubId = :clubId "
-			+ "AND b.matchTypeId.matchTypeId = :matchId ORDER BY b.strikeRate DESC")
-	List<BatmanScore> findBatmenRating(@Param("clubId")Club club, @Param("matchId")Integer matchId);
+			+ "AND b.matchTypeId.matchTypeId = :matchId "
+			+ "AND b.playerId.specialType = :playerType "
+			+ "ORDER BY b.points DESC")
+	List<BatmanScore> findBatmenRating(@Param("clubId")Club club, @Param("matchId")Integer matchId,@Param("playerType") Integer playerType);
 
 	@Query("FROM BatmanScore b WHERE b.playerId.playerId = :playerId AND b.matchTypeId.matchTypeId = :matchId ")
 	BatmanScore findByMatchTypeANDPlayerId(@Param("playerId")Integer playerId,@Param("matchId") Integer matchId);

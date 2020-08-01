@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gp.cricket.mapobject.PlayerMatchRecord;
 import com.gp.cricket.mapobject.PlayerRate;
 import com.gp.cricket.service.PlayerScoreService;
 
@@ -28,6 +29,11 @@ public class PlayerScoreController {
 			@Min(0) @Max(2) @PathVariable("playerType") Integer playerType, @Min(0) @Max(2) @PathVariable("order") Integer order) {
 		
 		return ResponseEntity.ok(playerScoreService.getPlayerRateList(clubId, playerType, order));
+	}
+	
+	@GetMapping("playerscore/playerrecord/{playerId}/{playerType}/{matchType}")
+	public ResponseEntity<List<PlayerMatchRecord>> getPlayerMatchRecord(@PathVariable("playerId") Integer playerId,@PathVariable("playerType") Integer playerType,@PathVariable("matchType") Integer matchType){
+		return ResponseEntity.ok(playerScoreService.getPlayerMatchRecord(playerId, playerType, matchType));
 	}
 
 }

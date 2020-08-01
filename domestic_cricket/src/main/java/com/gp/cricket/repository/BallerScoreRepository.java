@@ -17,12 +17,16 @@ public interface BallerScoreRepository extends JpaRepository<BallerScore, Intege
 	BallerScore getRecordByPlayerIdMatchType(@Param("playerId")Integer playerId,@Param("matchType")String matchType);
 
 	
-	@Query("FROM BallerScore b WHERE b.playerId.clubId = :clubId AND b.matchTypeId.matchTypeId = :matchTypeId")
-	List<BatmanScore> findBallerRating(@Param("clubId")Club clubId,@Param("matchTypeId")Integer matchTypeId);
+	@Query("FROM BallerScore b WHERE b.playerId.clubId = :clubId "
+			+ "AND b.matchTypeId.matchTypeId = :matchTypeId "
+			+ "AND b.playerId.specialType = :playerType "
+			+ "ORDER BY b.points DESC")
+	List<BallerScore> findBallerRating(@Param("clubId")Club clubId,@Param("matchTypeId")Integer matchTypeId,@Param("playerType") Integer playerType);
 
 	
 	@Query("FROM BallerScore b WHERE b.playerId.playerId = :playerId AND b.matchTypeId.matchTypeId = :matchId ")
-	BatmanScore findByMatchTypeANDPlayerId(@Param("playerId")Integer playerId,@Param("matchId") Integer matchId);
+	BallerScore findByMatchTypeANDPlayerId(@Param("playerId")Integer playerId,@Param("matchId") Integer matchId);
+	
 	
 //	BallerRecord getballerRecordBtSelectedPlayerId(@Param("selectedPlayerId")Integer selectedPlayerId);
 
