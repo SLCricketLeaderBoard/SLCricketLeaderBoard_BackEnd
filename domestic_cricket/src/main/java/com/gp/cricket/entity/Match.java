@@ -128,7 +128,10 @@ public class Match {
 	@Column(name = "state")
 	private Integer state;
 	
-	
+	@Column(name = "test_match_id")
+	private Integer testMatchId;
+
+
 	public Integer getTournamentIdValue() {
 		return this.tournamentId.getTournamentId();
 	}
@@ -139,6 +142,8 @@ public class Match {
 	}
 
 
+	
+	
 
 	public Match(Integer matchId, @NotNull(message = "Club1 id is mandatory") Integer clubOneId,
 			@NotNull(message = "Club2 name is mandatory") Integer clubTwoId,
@@ -153,7 +158,7 @@ public class Match {
 			Tournament tournamentId, Stadium stadiumId, Referee refereeId, Integer umpireOneId, Integer umpireTwoId,
 			Integer umpireThreeId, Integer tossWinTeam, Integer clubOneViceCaptain, Integer clubTwoViceCaptain,
 			Integer clubOneKeper, Integer clubTwoKeper, Integer manOfTheMatch, float clubOneOvers, float clubTwoOvers,
-			Integer state) {
+			Integer state, Integer testMatchId) {
 		super();
 		this.matchId = matchId;
 		this.clubOneId = clubOneId;
@@ -186,6 +191,17 @@ public class Match {
 		this.clubOneOvers = clubOneOvers;
 		this.clubTwoOvers = clubTwoOvers;
 		this.state = state;
+		this.testMatchId = testMatchId;
+	}
+	
+	
+
+	public Integer getTestMatchId() {
+		return testMatchId;
+	}
+
+	public void setTestMatchId(Integer testMatchId) {
+		this.testMatchId = testMatchId;
 	}
 
 	public Integer getMatchId() {
