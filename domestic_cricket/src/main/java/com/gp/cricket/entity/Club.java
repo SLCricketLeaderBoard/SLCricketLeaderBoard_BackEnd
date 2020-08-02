@@ -41,18 +41,6 @@ public class Club {
 	private String contactNumber;
 
 	@NotNull
-	@Min(0)
-	private Integer winMatch;
-
-	@NotNull
-	@Min(0)
-	private Integer failMatch;
-
-	@NotNull
-	@Min(0)
-	private Integer growMatch;
-
-	@NotNull
 	@DateTimeFormat(pattern = "MM-dd-YYYY")
 	private LocalDate regDate;
 
@@ -62,8 +50,6 @@ public class Club {
 	private Byte status;
 
 	private String clubLogo;
-
-	private Double rating;
 
 	@NotNull
 	@OneToOne
@@ -78,23 +64,18 @@ public class Club {
 			@NotBlank(message = "Address is mandatory") String address,
 			@NotBlank(message = "Email is mandatory") @Email(message = "Email should be valid") String email,
 			@NotBlank(message = "Contact number is mandatory") @Size(min = 10, max = 10, message = "Contact number size should be 10") String contactNumber,
-			@NotNull @Min(0) Integer winMatch, @NotNull @Min(0) Integer failMatch, @NotNull @Min(0) Integer growMatch,
 			@NotNull LocalDate regDate, @NotNull @Min(0) @Max(1) Byte status, String clubLogo,
-			@NotNull Manager managerId, Double rating) {
+			@NotNull Manager managerId) {
 		super();
 		this.clubId = clubId;
 		this.clubName = clubName;
 		this.address = address;
 		this.email = email;
 		this.contactNumber = contactNumber;
-		this.winMatch = winMatch;
-		this.failMatch = failMatch;
-		this.growMatch = growMatch;
 		this.regDate = regDate;
 		this.status = status;
 		this.clubLogo = clubLogo;
 		this.managerId = managerId;
-		this.rating = rating;
 	}
 
 	public Integer getClubId() {
@@ -137,30 +118,6 @@ public class Club {
 		this.contactNumber = contactNumber;
 	}
 
-	public Integer getWinMatch() {
-		return winMatch;
-	}
-
-	public void setWinMatch(Integer winMatch) {
-		this.winMatch = winMatch;
-	}
-
-	public Integer getFailMatch() {
-		return failMatch;
-	}
-
-	public void setFailMatch(Integer failMatch) {
-		this.failMatch = failMatch;
-	}
-
-	public Integer getGrowMatch() {
-		return growMatch;
-	}
-
-	public void setGrowMatch(Integer growMatch) {
-		this.growMatch = growMatch;
-	}
-
 	public LocalDate getRegDate() {
 		return regDate;
 	}
@@ -177,22 +134,6 @@ public class Club {
 		this.status = status;
 	}
 
-	public Manager getManagerId() {
-		return managerId;
-	}
-
-	public void setManagerId(Manager managerId) {
-		this.managerId = managerId;
-	}
-
-	public Double getRating() {
-		return rating;
-	}
-
-	public void setRating(Double rating) {
-		this.rating = rating;
-	}
-
 	public String getClubLogo() {
 		return clubLogo;
 	}
@@ -201,12 +142,19 @@ public class Club {
 		this.clubLogo = clubLogo;
 	}
 
+	public Manager getManagerId() {
+		return managerId;
+	}
+
+	public void setManagerId(Manager managerId) {
+		this.managerId = managerId;
+	}
+
 	@Override
 	public String toString() {
 		return "Club [clubId=" + clubId + ", clubName=" + clubName + ", address=" + address + ", email=" + email
-				+ ", contactNumber=" + contactNumber + ", winMatch=" + winMatch + ", failMatch=" + failMatch
-				+ ", growMatch=" + growMatch + ", regDate=" + regDate + ", status=" + status + ", clubLogo=" + clubLogo
-				+ ", rating=" + rating + ", managerId=" + managerId + "]";
+				+ ", contactNumber=" + contactNumber + ", regDate=" + regDate + ", status=" + status + ", clubLogo="
+				+ clubLogo + ", managerId=" + managerId + "]";
 	}
 
 }

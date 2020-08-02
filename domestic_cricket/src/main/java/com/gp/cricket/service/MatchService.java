@@ -80,8 +80,6 @@ public class MatchService {
 		getCaptainsForMatch(match);
 		Match createdMatch = matchRepo.save(match);
 		
-		//Club ranking
-		clubRankingService.clubRanking(createdMatch);
 		
 		Integer tournamentClubIdforclub1 = tournamnetClubRepository.findIdByTournamentAndClub(match.getTournamentIdValue(),match.getClubOneId());
 		Integer tournamentClubIdforclub12 = tournamnetClubRepository.findIdByTournamentAndClub(match.getTournamentIdValue(),match.getClubTwoId());
@@ -103,6 +101,11 @@ public class MatchService {
 	}
 	
 	public Match updateMatch(Match match) {	
+		System.out.println("#####################");
+		System.out.println(match);
+		//Club ranking
+		clubRankingService.clubRanking(match);
+		
 		Match createdMatch = matchRepo.save(match);
 		return createdMatch;
 	}
