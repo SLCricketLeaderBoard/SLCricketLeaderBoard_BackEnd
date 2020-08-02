@@ -70,10 +70,10 @@ public class PlayerScoreService {
 					ob.setPlayerId(batmen.getPlayerId());
 					ratingList.add(ob);
 				}
-
+				
 				// 2.Get T20
 				for (PlayerRate batmanScore : ratingList) {
-					BatmanScore ob = batmanScoreRepository.findByMatchTypeANDPlayerId(batmanScore.getPlayerId(), 2);
+					BatmanScore ob = batmanScoreRepository.findByMatchTypeANDPlayerId(batmanScore.getPlayerId(), 3);
 					if (ob != null) {
 						batmanScore.setRate2(ob.getPoints());
 					} else {
@@ -81,15 +81,17 @@ public class PlayerScoreService {
 					}
 				}
 
-				// 3.Get Test
+				// 2.Get Test
 				for (PlayerRate batmanScore : ratingList) {
-					BatmanScore ob = batmanScoreRepository.findByMatchTypeANDPlayerId(batmanScore.getPlayerId(), 3);
+					BatmanScore ob = batmanScoreRepository.findByMatchTypeANDPlayerId(batmanScore.getPlayerId(), 2);
 					if (ob != null) {
 						batmanScore.setRate3(ob.getPoints());
 					} else {
 						batmanScore.setRate3(0D);
 					}
 				}
+
+				
 			} else if (playerType == 2) {// Baller
 				// 1.Get ODI
 				List<BallerScore> ballerRatingListODI = ballerScoreRepository.findBallerRating(club, 1, playerType);
@@ -110,10 +112,10 @@ public class PlayerScoreService {
 					ob.setPlayerId(baller.getPlayerId());
 					ratingList.add(ob);
 				}
-
+				
 				// 2.Get T20
 				for (PlayerRate ballerScore : ratingList) {
-					BallerScore ob = ballerScoreRepository.findByMatchTypeANDPlayerId(ballerScore.getPlayerId(), 2);
+					BallerScore ob = ballerScoreRepository.findByMatchTypeANDPlayerId(ballerScore.getPlayerId(), 3);
 					if (ob != null) {
 						ballerScore.setRate2(ob.getPoints());
 					} else {
@@ -121,15 +123,17 @@ public class PlayerScoreService {
 					}
 				}
 
-				// 3.Get Test
+				// 2.Get Test
 				for (PlayerRate ballerScore : ratingList) {
-					BallerScore ob = ballerScoreRepository.findByMatchTypeANDPlayerId(ballerScore.getPlayerId(), 3);
+					BallerScore ob = ballerScoreRepository.findByMatchTypeANDPlayerId(ballerScore.getPlayerId(), 2);
 					if (ob != null) {
 						ballerScore.setRate3(ob.getPoints());
 					} else {
 						ballerScore.setRate3(0D);
 					}
 				}
+
+				
 			}else if(playerType==3){//AllRounder
 				// 1.Get ODI
 				List<BatmanScore> batmenRatingListODI = batmanScoreRepository.findBatmenRating(club, 1, playerType);
@@ -158,11 +162,11 @@ public class PlayerScoreService {
 						allRounderScore.setRate1(allRounderScore.getRate1()+ob.getPoints());
 					}		
 				}
-
-				// 2.Get T20
+				
+				// 3.Get T20
 				for (PlayerRate allRounderScore : ratingList) {
-					BatmanScore ob1 = batmanScoreRepository.findByMatchTypeANDPlayerId(allRounderScore.getPlayerId(), 2);
-					BallerScore ob2 = ballerScoreRepository.findByMatchTypeANDPlayerId(allRounderScore.getPlayerId(), 2);
+					BatmanScore ob1 = batmanScoreRepository.findByMatchTypeANDPlayerId(allRounderScore.getPlayerId(), 3);
+					BallerScore ob2 = ballerScoreRepository.findByMatchTypeANDPlayerId(allRounderScore.getPlayerId(), 3);
 					if (ob1 != null && ob2!=null) {
 						allRounderScore.setRate2(ob1.getPoints()+ob2.getPoints());
 					} else if(ob1!=null && ob2==null) {
@@ -174,10 +178,10 @@ public class PlayerScoreService {
 					}
 				}
 
-				// 3.Get Test
+				// 2.Get Test
 				for (PlayerRate allRounderScore : ratingList) {
-					BatmanScore ob1 = batmanScoreRepository.findByMatchTypeANDPlayerId(allRounderScore.getPlayerId(), 3);
-					BallerScore ob2 = ballerScoreRepository.findByMatchTypeANDPlayerId(allRounderScore.getPlayerId(), 3);
+					BatmanScore ob1 = batmanScoreRepository.findByMatchTypeANDPlayerId(allRounderScore.getPlayerId(), 2);
+					BallerScore ob2 = ballerScoreRepository.findByMatchTypeANDPlayerId(allRounderScore.getPlayerId(), 2);
 					if (ob1 != null && ob2!=null) {
 						allRounderScore.setRate3(ob1.getPoints()+ob2.getPoints());
 					} else if(ob1!=null && ob2==null) {
@@ -188,6 +192,8 @@ public class PlayerScoreService {
 						allRounderScore.setRate3(0D);
 					}
 				}
+
+			
 			}
 		}
 
@@ -196,6 +202,8 @@ public class PlayerScoreService {
 	
 	
 	public List<PlayerMatchRecord> getPlayerMatchRecord(Integer playerId, Integer playerType, Integer matchType){
+		
+		matchType = changeConventionofMatchType(matchType);
 		
 		List<PlayerMatchRecord> playerMatchRecordList = new ArrayList<PlayerMatchRecord>();
 		if(playerId!=null && matchType!=null && playerType!=null) {
@@ -257,6 +265,21 @@ public class PlayerScoreService {
 			}
 		}
 		return playerMatchRecordList;
+	}
+	
+	private Integer changeConventionofMatchType(Integer matchType) {
+		//DB 1:ODI , 2:Test, 3:T20
+		//Angular 1:ODI, 2:T20, 3:Test
+		//Change Angular convention to DB
+		
+		if(matchType==2) {
+			return 3;
+		}
+		if(matchType==3) {
+			return 2;
+		}
+		
+		return 1;
 	}
 
 }

@@ -2,9 +2,12 @@ package com.gp.cricket.service;
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.gp.cricket.entity.ClubRanking;
 import com.gp.cricket.entity.Match;
 import com.gp.cricket.entity.MatchType;
 import com.gp.cricket.entity.Player;
@@ -76,6 +79,8 @@ public class MatchService {
 	// for saving the data of match
 	public Match createMatch(Match match) {	
 		
+		System.out.println("1111111111#####################");
+		
 		//get captain and vice captain
 		getCaptainsForMatch(match);
 		Match createdMatch = matchRepo.save(match);
@@ -101,11 +106,13 @@ public class MatchService {
 	}
 	
 	public Match updateMatch(Match match) {	
-		System.out.println("#####################");
-		System.out.println(match);
-		//Club ranking
-		clubRankingService.clubRanking(match);
 		
+		//Club ranking
+		if(match.getState()==0) {
+			clubRankingService.clubRanking(match);
+		}
+		
+		match.setState(1);
 		Match createdMatch = matchRepo.save(match);
 		return createdMatch;
 	}
@@ -205,7 +212,6 @@ public class MatchService {
 		return matchRepo.getLiveMatchForReferee((Integer)refId,currentDate);
 		
 	}
-	
-	
+
 	
 }

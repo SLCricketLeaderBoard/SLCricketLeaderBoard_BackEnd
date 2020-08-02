@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.gp.cricket.entity.Club;
 import com.gp.cricket.entity.Match;
+import com.gp.cricket.entity.MatchType;
 
 public interface MatchRepository extends JpaRepository<Match, Integer> {
 
@@ -47,8 +48,8 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
 	@Query("FROM Match m WHERE (m.startDate <= :currentDate AND m.finishDate >= :currentDate) AND m.refereeId.userId.userId =:refId ORDER BY m.startDate ASC ")
 	public List<Match> getLiveMatchForReferee(@Param("refId")Integer refId,@Param("currentDate") LocalDate currentDate);
 
-	@Query("SELECT COUNT(*) FROM Match m WHERE m.clubOneId = :clubId OR m.clubTwoId = :clubId")
-	public Integer getNumOfMatchPlayed(@Param("clubId") Integer clubId);
+	@Query("SELECT COUNT(*) FROM Match m WHERE (m.clubOneId = :clubId OR m.clubTwoId = :clubId) AND  m.matchTypeId = :matchTypeId")
+	public Integer getNumOfMatchPlayed(@Param("clubId") Integer clubId,@Param("matchTypeId") MatchType matchType);
 	
 
 }
