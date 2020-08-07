@@ -28,7 +28,7 @@ public class SponsorService {
 	
 	public List<Sponsor>getNonregsponsors() {
 		System.out.println("Get all non registered sponsors here");
-		return this.sponsorRepository.findAll();
+		return this.sponsorRepository.getNonregsponsors();
 
 	}
 	

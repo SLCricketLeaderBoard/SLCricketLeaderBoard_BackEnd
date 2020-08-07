@@ -34,7 +34,7 @@ public class SponsorController {
 	 
 	 @PutMapping("sponsorAccept/{userId}")
 		public ResponseEntity<Integer> sponsorAccept(@PathVariable("userId") Integer userId){
-			Integer result = userService.userAccountDeactivate(userId);
+			Integer result = sponsorService.sponsorAccept(userId);
 			if(result!=null) {
 				return ResponseEntity.ok(result);
 			}
