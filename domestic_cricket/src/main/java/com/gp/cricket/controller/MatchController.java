@@ -37,6 +37,15 @@ public class MatchController {
 		return matchService.createMatch(match);
 		// registerung managers
 	}
+	
+	@PostMapping("/updateMatch")
+	public Match updateMatch(@Valid @RequestBody Match match) {
+		System.out.println(match);
+		return matchService.updateMatch(match);
+		// registerung managers
+	}
+	
+	
 
 	@GetMapping("/matches/{tournamentId}")
 	public List<Match> getMatchesByTournamentId(@PathVariable("tournamentId") Integer tournamentId) {
@@ -108,4 +117,17 @@ public class MatchController {
 		}
 		return ResponseEntity.badRequest().build();
 	}
+	
+	
+	
+	@GetMapping("getLiveMatchTodayForReferee/{refreeId}")
+	public ResponseEntity<List<Match>> getLivetodayMatchForReferee(@PathVariable("refreeId")String refreeId){
+		int refId = Integer.parseInt(refreeId);
+		List<Match> result = matchService.getLiveMatchForReferee(refId);
+		if(result!=null) {
+			return ResponseEntity.ok(result);
+		}
+		return ResponseEntity.badRequest().build();
+	}
+	
 }

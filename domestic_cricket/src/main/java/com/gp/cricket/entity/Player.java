@@ -25,7 +25,7 @@ public class Player {
 	 * 1 : Batman, 2 : Baller, 3 : AllRounder
 	 */
 	@NotBlank
-	private String specialType;
+	private Integer specialType;
 
 	@NotNull
 	@OneToOne
@@ -50,7 +50,7 @@ public class Player {
 	public Player() {
 	}
 
-	public Player(Integer playerId, @NotNull String specialType, @NotNull User userId,
+	public Player(Integer playerId, @NotNull Integer specialType, @NotNull User userId,
 			@NotNull BallerType ballerTypeId, @NotNull BatmanType batmanTypeId, @NotNull Club clubId) {
 		super();
 		this.playerId = playerId;
@@ -69,11 +69,11 @@ public class Player {
 		this.playerId = playerId;
 	}
 
-	public String getSpecialType() {
+	public Integer getSpecialType() {
 		return specialType;
 	}
 
-	public void setSpecialType(String specialType) {
+	public void setSpecialType(Integer specialType) {
 		this.specialType = specialType;
 	}
 

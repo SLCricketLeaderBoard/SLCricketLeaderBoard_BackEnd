@@ -20,6 +20,9 @@ public class ClubService {
 	@Autowired
 	PlayerRepository playerRepository;
 	
+	@Autowired
+	ClubRankingService clubRankingService;
+	
 
 	public Integer clubRegister(Club club) {
 
@@ -29,6 +32,10 @@ public class ClubService {
 					club.getAddress());
 			if (existClub == null) {
 				clubRepository.save(club);
+				
+				//Create Ranking Object for club
+				clubRankingService.createRankingObject(club);
+				
 				return 1;// save success
 			}
 			return 0;// There exist another club with same clubName or email or contactNum or address

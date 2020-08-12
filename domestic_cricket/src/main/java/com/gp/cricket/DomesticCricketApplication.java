@@ -10,3 +10,4 @@ public class DomesticCricketApplication {
 		SpringApplication.run(DomesticCricketApplication.class, args);
 	}
 }
+
