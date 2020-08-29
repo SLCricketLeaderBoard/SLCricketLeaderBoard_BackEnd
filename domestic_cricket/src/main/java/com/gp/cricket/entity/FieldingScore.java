@@ -21,6 +21,9 @@ public class FieldingScore {
 	@Column(name = "num_catches")
 	private Integer numberOfCatch;
 	
+	@Column(name = "points")
+	private Double points;
+	
 	@ManyToOne
 	@JoinColumn(name = "player_id", referencedColumnName = "player_id")
 	private Player playerId;
@@ -35,14 +38,21 @@ public class FieldingScore {
 		// TODO Auto-generated constructor stub
 	}
 
-	public FieldingScore(Integer fieldingId, Integer numberOfCatch, Player playerId, MatchType matchTypeId) {
+
+	
+
+	public FieldingScore(Integer fieldingId, Integer numberOfCatch, Double fieldingPoints, Player playerId,
+			MatchType matchTypeId) {
 		super();
 		this.fieldingId = fieldingId;
 		this.numberOfCatch = numberOfCatch;
+		this.points = fieldingPoints;
 		this.playerId = playerId;
 		this.matchTypeId = matchTypeId;
 	}
-	
+
+
+
 
 	public Integer getFieldingId() {
 		return fieldingId;
@@ -79,5 +89,23 @@ public class FieldingScore {
 	public void setMatchTypeId(MatchType matchTypeId) {
 		this.matchTypeId = matchTypeId;
 	}
+
+	public Double getFieldingPoints() {
+		return points;
+	}
+
+	public void setFieldingPoints(Double fieldingPoints) {
+		this.points = fieldingPoints;
+	}
+
+
+
+
+	public void updateFieldingPoints(Double fieldingPoints2) {
+		this.points=this.points+fieldingPoints2;
+		// TODO Auto-generated method stub
+		
+	}
+	
 	
 }

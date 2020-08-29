@@ -70,6 +70,7 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.OPTIONS, "/**")
 				.and().ignoring()
 				.antMatchers(HttpMethod.GET, "/" // Other Stuff You want to Ignore
-				);	   
+				).antMatchers(HttpMethod.GET, "/playeRanking/**" // Other Stuff You want to Ignore
+						);	   
 	}
 }

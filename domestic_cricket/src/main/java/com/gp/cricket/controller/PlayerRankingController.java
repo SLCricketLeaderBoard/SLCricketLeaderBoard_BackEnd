@@ -19,47 +19,47 @@ public class PlayerRankingController {
 	@Autowired
 	PlayerRankingService playerRanking;
 	
-	@GetMapping("/topBallersOneDay")
+	@GetMapping("/playeRanking/topBallersOneDay")
 	public List<BallerScore> getTopBallersOneDay() {
 		return playerRanking.topBallerPlayers(1);
 	}
 	
-	@GetMapping("/topBallers34Days")
+	@GetMapping("/playeRanking/topBallers34Days")
 	public List<BallerScore> getTopBallers34Days() {
 		return playerRanking.topBallerPlayers(2);
 	}
 	
-	@GetMapping("/topBallersT20")
+	@GetMapping("/playeRanking/topBallersT20")
 	public List<BallerScore> getTopBallersT20() {
 		return playerRanking.topBallerPlayers(3);
 	}
 	
-	@GetMapping("/topBatmenOneDay")
+	@GetMapping("/playeRanking/topBatmenOneDay")
 	public List<BatmanScore> getTopBatmenOneDay() {
 		return playerRanking.topBatmanPlayers(1);
 	}
 	
-	@GetMapping("/topBatmen34Days")
+	@GetMapping("/playeRanking/topBatmen34Days")
 	public List<BatmanScore> getTopBatmen34Days() {
 		return playerRanking.topBatmanPlayers(2);
 	}
 	
-	@GetMapping("/topBatmenT20")
+	@GetMapping("/playeRanking/topBatmenT20")
 	public List<BatmanScore> getTopBatmenT20() {
 		return playerRanking.topBatmanPlayers(3);
 	}
 	
-	@GetMapping("/topFilderOneDay")
+	@GetMapping("/playeRanking/topFilderOneDay")
 	public List<FieldingScore> getTopFielderOneDay() {
 		return playerRanking.topFieldingPlayers(1);
 	}
 	
-	@GetMapping("/topFilder34Days")
+	@GetMapping("/playeRanking/topFilder34Days")
 	public List<FieldingScore> getTopFielder34Days() {
 		return playerRanking.topFieldingPlayers(2);
 	}
 	
-	@GetMapping("/topFilderT20")
+	@GetMapping("/playeRanking/topFilderT20")
 	public List<FieldingScore> getTopFielderT20() {
 		return playerRanking.topFieldingPlayers(3);
 	}

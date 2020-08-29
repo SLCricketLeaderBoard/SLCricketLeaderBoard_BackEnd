@@ -34,8 +34,11 @@ public class FieldingRecordService {
 			fieldingScore.setPlayerId(record.getSelectedPlayerId().getPlayerId());
 			fieldingScore.setMatchTypeId(record.getSelectedPlayerId().getMatchId().getMatchTypeId());
 			fieldingScore.setNumberOfCatch(record.getCatches());
+			fieldingScore.setFieldingPoints(record.getFieldingPoints());
+			
 		}else{
 			fieldingScore.updateNumberOfCatch(record.getCatches());
+			fieldingScore.updateFieldingPoints(record.getFieldingPoints());
 		}
 		
 		FieldingScore updatedResult = fieldingScoreService.saveFieldingRecord(fieldingScore);
