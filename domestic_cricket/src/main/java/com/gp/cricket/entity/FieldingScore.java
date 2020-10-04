@@ -98,6 +98,17 @@ public class FieldingScore {
 		this.points = fieldingPoints;
 	}
 
+	public Double getPoints() {
+		return points;
+	}
+
+
+
+
+	public void setPoints(Double points) {
+		this.points = points;
+	}
+
 
 
 
