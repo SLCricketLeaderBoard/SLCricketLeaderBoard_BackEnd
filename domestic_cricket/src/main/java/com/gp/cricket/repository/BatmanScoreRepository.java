@@ -26,4 +26,8 @@ public interface BatmanScoreRepository extends JpaRepository<BatmanScore, Intege
 	
 	@Query("FROM BatmanScore b WHERE b.matchTypeId.matchTypeId = :matchTypeId ORDER BY b.points DESC")
 	List<BatmanScore> topBatmanPlayers(Integer matchTypeId);
+	
+	@Query("FROM BatmanScore b WHERE b.playerId.playerId = :playerId")
+	BatmanScore getDetailsByPlayerId(Integer playerId);
+	
 }
