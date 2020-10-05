@@ -212,6 +212,14 @@ public class MatchService {
 		return matchRepo.getLiveMatchForReferee((Integer)refId,currentDate);
 		
 	}
+	
+	public List<Match> findMatchesByTournamentIdForCalender(Integer tournamentId) {
+		
+			
+		return matchRepo.getMatchForpublic(tournamentId);
+		
+	}
 
+	
 	
 }

@@ -18,4 +18,7 @@ public interface FieldingScoreRepository extends JpaRepository<FieldingScore, In
 	@Query("FROM FieldingScore b WHERE b.matchTypeId.matchTypeId = :matchTypeId ORDER BY b.points DESC")
 	List<FieldingScore> topFieldingPlayers(Integer matchTypeId);
 
+	@Query("FROM FieldingScore b WHERE b.playerId.playerId =:playerId")
+	FieldingScore getDetailsByPlayerId(Integer playerId);
+
 }
