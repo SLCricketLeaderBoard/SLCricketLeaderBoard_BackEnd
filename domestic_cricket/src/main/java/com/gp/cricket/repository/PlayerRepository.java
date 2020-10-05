@@ -35,5 +35,8 @@ public interface PlayerRepository extends JpaRepository<Player, Integer>{
 			+ "AND b.playerId.specialType = :playerType "
 			+ "AND b.matchTypeId.matchTypeId = :matchTypeId) ")
 	List<Player> findRemainingBallerPlayers(@Param("clubId")Club club,@Param("playerType")Integer playerType,@Param("matchTypeId") Integer matchTypeId);
+
+	@Query("SELECT COUNT(*) FROM Player p WHERE p.clubId = :club AND p.userId.status = 1")
+	Integer getNumofPlayerinClub(@Param("club")Club club);
 	
 }
