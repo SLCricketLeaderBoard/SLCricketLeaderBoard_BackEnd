@@ -29,6 +29,9 @@ public interface BallerScoreRepository extends JpaRepository<BallerScore, Intege
 
 	@Query("FROM BallerScore b WHERE b.matchTypeId.matchTypeId = :matchTypeId ORDER BY b.points DESC")
 	List<BallerScore> topBallerPlayers(Integer matchTypeId);
+
+	@Query("FROM BallerScore b WHERE b.playerId.playerId= :playerId")
+	BallerScore getDetailsByPlayerId(Integer playerId);
 	
 
 }

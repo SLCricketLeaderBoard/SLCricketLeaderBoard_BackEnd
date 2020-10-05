@@ -28,5 +28,8 @@ public interface TournamentRepository extends JpaRepository<Tournament, Integer>
 				 + "tournament_id NOT IN (SELECT tournament_id FROM tournament_club  "
 				 + "WHERE club_id = :clubId)", nativeQuery = true)
 	List<Tournament> findUpcomingTournamentForClubByClubId(Club clubId);
+
+	@Query("FROM Tournament t WHERE t.startDate >:currenDate ORDER By t.startDate ASC")
+	List<Tournament> getTournamentByDateOrder(@Param("currenDate") Date currenDate);
 	
 }

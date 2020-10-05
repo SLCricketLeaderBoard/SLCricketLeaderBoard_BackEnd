@@ -50,6 +50,10 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
 
 	@Query("SELECT COUNT(*) FROM Match m WHERE (m.clubOneId = :clubId OR m.clubTwoId = :clubId) AND  m.matchTypeId = :matchTypeId")
 	public Integer getNumOfMatchPlayed(@Param("clubId") Integer clubId,@Param("matchTypeId") MatchType matchType);
+
+	
+	@Query("FROM Match m WHERE m.tournamentId.tournamentId = :tournamentId  ORDER BY m.startDate ASC")
+	public List<Match> getMatchForpublic(Integer tournamentId);
 	
 
 }
