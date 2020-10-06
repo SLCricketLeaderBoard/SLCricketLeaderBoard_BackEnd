@@ -155,6 +155,12 @@ public class PlayerRankingController {
     public List<Tournament> getAlltournament() {
         return this.tournamentService.getTournamentsByDateOrder();
     }
+    
+    @GetMapping("/playeRanking/tournamentsForHistory")
+    public List<Tournament> getTournamentForHistory() {
+        return this.tournamentService.getTournamentsHistory();
+    }
+	
 	
     
     @GetMapping("/playeRanking/matchesForCalender/{tournamentId}")

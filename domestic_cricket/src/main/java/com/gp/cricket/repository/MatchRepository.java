@@ -54,6 +54,38 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
 	
 	@Query("FROM Match m WHERE m.tournamentId.tournamentId = :tournamentId  ORDER BY m.startDate ASC")
 	public List<Match> getMatchForpublic(Integer tournamentId);
+
+	@Query("FROM Match m WHERE m.tournamentId.tournamentId = :tournamentId")
+	public List<Match> findBytournamentId(@Param("tournamentId") Integer tournamentId);
+	
+	@Query("FROM Match m WHERE m.finishDate >:currentDate AND m.tournamentId.tournamentId = :tournamentId AND m.refereeId.userId.userId =:refereeId AND m.matchTypeId.matchTypeId = 1 AND m.state = 0 ORDER BY m.tournementRound ASC")
+	public List<Match> getRefereeMatchesUpcommingOneDay(@Param("currentDate") LocalDate currentDate,@Param("tournamentId") Integer tournamentId,@Param("refereeId") Integer refereeId);
+	
+	@Query("FROM Match m WHERE m.finishDate >:currentDate AND m.tournamentId.tournamentId = :tournamentId AND m.refereeId.userId.userId =:refereeId AND m.matchTypeId.matchTypeId = 2 AND m.state = 0 ORDER BY m.tournementRound ASC")
+	public List<Match> getRefereeMatchesUpcomming34Days(@Param("currentDate") LocalDate currentDate,@Param("tournamentId") Integer tournamentId,@Param("refereeId") Integer refereeId);
+	
+	@Query("FROM Match m WHERE m.finishDate >:currentDate AND m.tournamentId.tournamentId = :tournamentId AND m.refereeId.userId.userId =:refereeId AND m.matchTypeId.matchTypeId = 3 AND m.state = 0 ORDER BY m.tournementRound ASC")
+	public List<Match> getRefereeMatchesUpcommingTTwenty(@Param("currentDate") LocalDate currentDate,@Param("tournamentId") Integer tournamentId,@Param("refereeId") Integer refereeId);
+	
+	@Query("FROM Match m WHERE m.finishDate <:currentDate AND m.tournamentId.tournamentId = :tournamentId AND m.refereeId.userId.userId =:refereeId AND m.matchTypeId.matchTypeId = 1 AND m.state = 0 ORDER BY m.tournementRound ASC")
+	public List<Match> getRefereeMatchesPlayedOneDay(@Param("currentDate") LocalDate currentDate,@Param("tournamentId") Integer tournamentId,@Param("refereeId") Integer refereeId);
+	
+	@Query("FROM Match m WHERE m.finishDate <:currentDate AND m.tournamentId.tournamentId = :tournamentId AND m.refereeId.userId.userId =:refereeId AND m.matchTypeId.matchTypeId = 2  AND m.state = 0 ORDER BY m.tournementRound ASC")
+	public List<Match> getRefereeMatchesPlayed34Days(@Param("currentDate") LocalDate currentDate,@Param("tournamentId") Integer tournamentId,@Param("refereeId") Integer refereeId);
+	
+	@Query("FROM Match m WHERE m.finishDate <:currentDate AND m.tournamentId.tournamentId = :tournamentId AND m.refereeId.userId.userId =:refereeId AND m.matchTypeId.matchTypeId = 3  AND m.state = 0 ORDER BY m.tournementRound ASC")
+	public List<Match> getRefereeMatchesPlayedTTwenty(@Param("currentDate") LocalDate currentDate,@Param("tournamentId") Integer tournamentId,@Param("refereeId") Integer refereeId);
+	
+	
+	
+	@Query("FROM Match m WHERE m.finishDate <:currentDate AND m.tournamentId.tournamentId = :tournamentId AND m.refereeId.userId.userId =:refereeId AND m.matchTypeId.matchTypeId = 1  AND m.state =1 ORDER BY m.tournementRound ASC")
+	public List<Match> getRefereeMatchesPlayedUpdatedOneDay(@Param("currentDate") LocalDate currentDate,@Param("tournamentId") Integer tournamentId,@Param("refereeId") Integer refereeId);
+	
+	@Query("FROM Match m WHERE m.finishDate <:currentDate AND m.tournamentId.tournamentId = :tournamentId AND m.refereeId.userId.userId =:refereeId AND m.matchTypeId.matchTypeId = 2  AND m.state =1 ORDER BY m.tournementRound ASC")
+	public List<Match> getRefereeMatchesPlayedUpdated34Days(@Param("currentDate") LocalDate currentDate,@Param("tournamentId") Integer tournamentId,@Param("refereeId") Integer refereeId);
+	
+	@Query("FROM Match m WHERE m.finishDate <:currentDate AND m.tournamentId.tournamentId = :tournamentId AND m.refereeId.userId.userId =:refereeId AND m.matchTypeId.matchTypeId = 3  AND m.state =1 ORDER BY m.tournementRound ASC")
+	public List<Match> getRefereeMatchesPlayedUpdatedTTwenty(@Param("currentDate") LocalDate currentDate,@Param("tournamentId") Integer tournamentId,@Param("refereeId") Integer refereeId);
 	
 
 }

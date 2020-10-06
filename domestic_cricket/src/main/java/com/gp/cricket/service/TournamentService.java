@@ -1,5 +1,6 @@
 package com.gp.cricket.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -55,10 +56,31 @@ public class TournamentService {
 
 	public List<Tournament> getTournamentsByDateOrder() {
 		Date currentDate = new Date();
-		 return tournamentRepo.findAll();
-//		return tournamentRepo.getTournamentByDateOrder(currentDate);
+//		 return tournamentRepo.findAll();
+		return tournamentRepo.getTournamentByDateOrder(currentDate);
 	}
+	
+	public List<Tournament> getTournamentsByType(Integer type){
+		List<Tournament> tournamentData = new ArrayList<Tournament>();
+		if(type==1) {
+			tournamentData = tournamentRepo.findPastTournament(new Date());
+		}
+		else if(type==2) {
+			tournamentData = tournamentRepo.findUpcomingTournament(new Date());
+		}else if(type==3) {
+			tournamentData = tournamentRepo.findOnGoingTournament(new Date());
+		}
+		return tournamentData;
+	}
+	
     
+	
+
+	public List<Tournament> getTournamentsHistory() {
+		Date currentDate = new Date();
+//		 return tournamentRepo.findAll();
+		return tournamentRepo.getTournamentHistory(currentDate);
+	}
     
 
 }
