@@ -228,7 +228,7 @@ public class MatchService {
 	public List<Match> getRefereeMatchesPlayedTTwenty(Integer tournamentId,Integer refreeId){
 		LocalDate currentDate = LocalDate.now();
 		System.out.println(tournamentId+"   "+refreeId);
-        return matchRepo.getRefereeMatchesPlayedOneDay(currentDate,tournamentId,refreeId);
+        return matchRepo.getRefereeMatchesPlayedTTwenty(currentDate,tournamentId,refreeId);
 	}
 	
 	
