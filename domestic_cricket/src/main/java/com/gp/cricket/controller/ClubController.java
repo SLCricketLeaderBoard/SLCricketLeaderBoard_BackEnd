@@ -67,7 +67,8 @@ public class ClubController {
 	}
 	
 	@GetMapping("club/manager/{userId}")
-	public ResponseEntity<Club> getClubDataOfManager(@NotNull @Min(1) @PathVariable Integer userId){
+	public ResponseEntity<Club> getClubDataOfManager(@PathVariable("userId") Integer userId){
+		System.out.println("-----------------------"+userId);
 		Club object = clubService.getClubDataOfManager(userId);
 		if(object!=null) {
 			return ResponseEntity.ok(object);

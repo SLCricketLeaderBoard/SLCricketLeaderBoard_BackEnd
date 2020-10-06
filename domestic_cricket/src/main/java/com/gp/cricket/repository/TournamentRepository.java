@@ -31,6 +31,18 @@ public interface TournamentRepository extends JpaRepository<Tournament, Integer>
 
 	@Query("FROM Tournament t WHERE t.startDate >:currenDate ORDER By t.startDate ASC")
 	List<Tournament> getTournamentByDateOrder(@Param("currenDate") Date currenDate);
+
+	@Query("FROM Tournament t ORDER BY t.startDate ASC")
+	List<Tournament> findAllTournaments();
+
+	@Query("FROM Tournament t WHERE t.endDate < :date ORDER By t.startDate ASC ")
+	List<Tournament> findPastTournament(@Param("date") Date date);
+	
+	@Query("FROM Tournament t WHERE t.startDate > :date ORDER By t.startDate ASC ")
+	List<Tournament> findUpcomingTournament(@Param("date") Date date);
+	
+	@Query("FROM Tournament t WHERE t.startDate < :date AND t.endDate > :date ORDER By t.startDate ASC ")
+	List<Tournament> findOnGoingTournament(@Param("date") Date date);
 	
 	@Query("FROM Tournament t WHERE t.endDate <:currenDate ORDER By t.startDate ASC")
 	List<Tournament> getTournamentHistory(@Param("currenDate") Date currenDate);

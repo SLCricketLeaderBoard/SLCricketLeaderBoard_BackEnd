@@ -173,7 +173,9 @@ public class MatchService {
 	
 	
 	public List<Match> getPlayedMatchList(Integer clubId){
+		System.out.println("----"+clubId);
 		if(clubId!=null && clubRepository.existsById(clubId)) {
+			System.out.println("Hello");
 			return matchRepo.findPlayedMatchesByClubId(clubId);
 		}
 		return null;

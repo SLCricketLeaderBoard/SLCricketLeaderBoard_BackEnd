@@ -16,4 +16,8 @@ public interface ClubPaymentRepository extends JpaRepository<ClubPayment, Intege
 	
 	@Query("FROM ClubPayment c WHERE c.clubId = :clubId ORDER BY c.paymentForYear DESC")
 	public List<ClubPayment> findByClubId(@Param("clubId") Club clubId);
+
+	@Query("FROM ClubPayment c WHERE c.clubId = :clubId AND c.paymentForYear = :year")
+	public ClubPayment findByClubIdAndYear(@Param("clubId")Club club,@Param("year") Integer year);
+
 }

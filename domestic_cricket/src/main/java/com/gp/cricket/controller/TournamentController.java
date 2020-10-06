@@ -84,5 +84,10 @@ public class TournamentController {
 		}
 		return ResponseEntity.badRequest().build();
 	}
+	
+	@GetMapping("tournament/type/{type}")
+	public ResponseEntity<List<Tournament>> getTournamentsByType(@PathVariable("type") Integer type){
+		return ResponseEntity.ok(tournamentService.getTournamentsByType(type));
+	}
 
 }
