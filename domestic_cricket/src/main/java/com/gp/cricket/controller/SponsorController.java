@@ -36,6 +36,11 @@ public class SponsorController {
 		 return this.sponsorService.getNonregsponsors();
 	 }
 	 
+	 @GetMapping("/regsponsors")
+	 public List<Sponsor> getregsponsors(){
+		 return this.sponsorService.getregsponsors();
+	 }
+	 
 	 @PutMapping("sponsorAccept/{userId}")
 		public ResponseEntity<Integer> sponsorAccept(@PathVariable("userId") Integer userId){
 			Integer result = sponsorService.sponsorAccept(userId);
@@ -45,10 +50,17 @@ public class SponsorController {
 			return ResponseEntity.badRequest().build();
 		}
 	 
-	 @PostMapping("/sponsorclubrequest/{sponsorId}/{clubId}")
-		public Boolean sponsorClubRequest(@PathVariable("sponsorId") String sponId, @PathVariable("clubId") String clubId) {
-		 	System.out.println("============="+sponId+"  "+clubId);
-			return sponsorService.sponsorClubRequest(Integer.parseInt(sponId),Integer.parseInt(clubId));
+	 @PostMapping("/sponsorclubrequest/{userId}/{clubId}")
+		public Boolean sponsorClubRequest(@PathVariable("userId") String userId, @PathVariable("clubId") String clubId) {
+		 	System.out.println("============="+userId+"  "+clubId);
+			return sponsorService.sponsorClubRequest(Integer.parseInt(userId),Integer.parseInt(clubId));
 
 		}
+	 
+	/* @GetMapping("/getclubsponsor/{userId}")
+	 public List<Sponsor> getclubsponsor(@PathVariable("userId") Integer userId){
+		 System.out.println(userId);
+		 
+		 return sponsorService.getclubsponsor(userId);
+	 }*/
 }

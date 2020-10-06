@@ -228,7 +228,7 @@ public class MatchService {
 	public List<Match> getRefereeMatchesPlayedTTwenty(Integer tournamentId,Integer refreeId){
 		LocalDate currentDate = LocalDate.now();
 		System.out.println(tournamentId+"   "+refreeId);
-        return matchRepo.getRefereeMatchesPlayedOneDay(currentDate,tournamentId,refreeId);
+        return matchRepo.getRefereeMatchesPlayedTTwenty(currentDate,tournamentId,refreeId);
 	}
 	
 	
@@ -275,6 +275,13 @@ public class MatchService {
 			
 		return matchRepo.getMatchForpublic(tournamentId);
 		
+	}
+	
+	public Match updateMatchFor34Days(Match match) {	
+		
+		match.setState(1);
+		Match createdMatch = matchRepo.save(match);
+		return createdMatch;
 	}
 
 	

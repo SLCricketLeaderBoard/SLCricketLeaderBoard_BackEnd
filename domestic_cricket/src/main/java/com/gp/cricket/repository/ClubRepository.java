@@ -28,7 +28,6 @@ public interface ClubRepository extends JpaRepository<Club, Integer>{
 	@Query("FROM Club c WHERE c.managerId.managerId = :managerId")
 	public Club findClubByManagerId(@Param("managerId") Integer managerId);
 	
-	
 }	
 
 

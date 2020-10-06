@@ -192,4 +192,12 @@ public class MatchController {
 		return ResponseEntity.badRequest().build();
 	}
 	
+
+	@PostMapping("/updateMatchFor34Days")
+	public Match updateMatchFor34Days(@Valid @RequestBody Match match) {
+		System.out.println(match);
+		return matchService.updateMatchFor34Days(match);
+		// registerung managers
+	}
+	
 }
