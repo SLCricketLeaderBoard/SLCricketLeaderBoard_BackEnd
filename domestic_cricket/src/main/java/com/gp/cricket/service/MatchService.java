@@ -186,17 +186,72 @@ public class MatchService {
         return matchRepo.getRefereeMatchesUpcomming(currentDate,tournamentId,refreeId);
 	}
 	
+	public List<Match> getRefereeMatchesUpcommingOneDay(Integer tournamentId,Integer refreeId){
+		LocalDate currentDate = LocalDate.now();
+        return matchRepo.getRefereeMatchesUpcommingOneDay(currentDate,tournamentId,refreeId);
+	}
+	
+	
+	
+	public List<Match> getRefereeMatchesUpcomming34Days(Integer tournamentId,Integer refreeId){
+		LocalDate currentDate = LocalDate.now();
+        return matchRepo.getRefereeMatchesUpcomming34Days(currentDate,tournamentId,refreeId);
+	}
+	
+	public List<Match> getRefereeMatchesUpcommingTTwenty(Integer tournamentId,Integer refreeId){
+		LocalDate currentDate = LocalDate.now();
+        return matchRepo.getRefereeMatchesUpcommingTTwenty(currentDate,tournamentId,refreeId);
+	}
+	
 	public List<Match> refereeMatchesPlayed(Integer tournamentId,Integer refreeId){
+		LocalDate currentDate = LocalDate.now();
+		System.out.println(tournamentId+"   "+refreeId);
+        return matchRepo.getRefereeMatchesPlayed(currentDate,tournamentId,refreeId);
+        
+	}
+	
+	public List<Match> getRefereeMatchesPlayedOneDay(Integer tournamentId,Integer refreeId){
+		LocalDate currentDate = LocalDate.now();
+		System.out.println(tournamentId+"   "+refreeId);
+        return matchRepo.getRefereeMatchesPlayedOneDay(currentDate,tournamentId,refreeId);
+	}
+	
+	public List<Match> getRefereeMatchesPlayed34Days(Integer tournamentId,Integer refreeId){
 		
 		LocalDate currentDate = LocalDate.now();
-        return matchRepo.getRefereeMatchesPlayed(currentDate,tournamentId,refreeId);
+		System.out.println(tournamentId+"   "+refreeId);
+        return matchRepo.getRefereeMatchesPlayed34Days(currentDate,tournamentId,refreeId);
 	}
+	
+	public List<Match> getRefereeMatchesPlayedTTwenty(Integer tournamentId,Integer refreeId){
+		LocalDate currentDate = LocalDate.now();
+		System.out.println(tournamentId+"   "+refreeId);
+        return matchRepo.getRefereeMatchesPlayedOneDay(currentDate,tournamentId,refreeId);
+	}
+	
 	
 	public List<Match> refereeMatchesPlayedUpdated(Integer tournamentId,Integer refereeId){
 		
 		LocalDate currentDate = LocalDate.now();
         return matchRepo.getRefereeMatchesPlayedUpdated(currentDate, tournamentId, refereeId);
 	}
+	
+	public List<Match> getRefereeMatchesPlayedUpdatedOneDay(Integer tournamentId,Integer refereeId){
+		LocalDate currentDate = LocalDate.now();
+        return matchRepo.getRefereeMatchesPlayedUpdatedOneDay(currentDate, tournamentId, refereeId);
+	}
+	
+	public List<Match> getRefereeMatchesPlayedUpdated34Days(Integer tournamentId,Integer refereeId){
+		LocalDate currentDate = LocalDate.now();
+        return matchRepo.getRefereeMatchesPlayedUpdated34Days(currentDate, tournamentId, refereeId);
+	}
+	
+	public List<Match> getRefereeMatchesPlayedUpdatedTTwenty(Integer tournamentId,Integer refereeId){
+		LocalDate currentDate = LocalDate.now();
+        return matchRepo.getRefereeMatchesPlayedUpdatedTTwenty(currentDate, tournamentId, refereeId);
+	}
+	
+	
 	
 	public List<Match> upComingMatchList(Integer clubId){
 		if(clubId!=null && clubRepository.existsById(clubId)) {

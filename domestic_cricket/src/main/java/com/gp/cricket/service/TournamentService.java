@@ -55,10 +55,17 @@ public class TournamentService {
 
 	public List<Tournament> getTournamentsByDateOrder() {
 		Date currentDate = new Date();
-		 return tournamentRepo.findAll();
-//		return tournamentRepo.getTournamentByDateOrder(currentDate);
+//		 return tournamentRepo.findAll();
+		return tournamentRepo.getTournamentByDateOrder(currentDate);
 	}
     
+	
+
+	public List<Tournament> getTournamentsHistory() {
+		Date currentDate = new Date();
+//		 return tournamentRepo.findAll();
+		return tournamentRepo.getTournamentHistory(currentDate);
+	}
     
 
 }

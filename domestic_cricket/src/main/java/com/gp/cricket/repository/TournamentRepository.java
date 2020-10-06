@@ -32,4 +32,7 @@ public interface TournamentRepository extends JpaRepository<Tournament, Integer>
 	@Query("FROM Tournament t WHERE t.startDate >:currenDate ORDER By t.startDate ASC")
 	List<Tournament> getTournamentByDateOrder(@Param("currenDate") Date currenDate);
 	
+	@Query("FROM Tournament t WHERE t.endDate <:currenDate ORDER By t.startDate ASC")
+	List<Tournament> getTournamentHistory(@Param("currenDate") Date currenDate);
+	
 }

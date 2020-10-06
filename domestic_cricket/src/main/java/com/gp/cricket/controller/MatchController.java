@@ -95,17 +95,79 @@ public class MatchController {
 			@PathVariable("refereeId") Integer refereeId) {
 		return matchService.refereeMatchesUpcomming(tournamentId, refereeId);
 	}
+	
+	@GetMapping("getRefereeMatchesUpcommingOneDay/{tournamentId}/{refereeId}")
+	public List<Match> getRefereeMatchesUpcommingOneDay(@PathVariable("tournamentId") Integer tournamentId,
+			@PathVariable("refereeId") Integer refereeId) {
+		return matchService.getRefereeMatchesUpcommingOneDay(tournamentId, refereeId);
+	}
+	
+	@GetMapping("getRefereeMatchesUpcomming34Days/{tournamentId}/{refereeId}")
+	public List<Match> getRefereeMatchesUpcomming34Days(@PathVariable("tournamentId") Integer tournamentId,
+			@PathVariable("refereeId") Integer refereeId) {
+		return matchService.getRefereeMatchesUpcomming34Days(tournamentId, refereeId);
+	}
+	
+	@GetMapping("getRefereeMatchesUpcommingTTwenty/{tournamentId}/{refereeId}")
+	public List<Match> getRefereeMatchesUpcommingTTwenty(@PathVariable("tournamentId") Integer tournamentId,
+			@PathVariable("refereeId") Integer refereeId) {
+		return matchService.getRefereeMatchesUpcommingTTwenty(tournamentId, refereeId);
+	}
+
 
 	@GetMapping("refereeMatchesPlayed/{tournamentId}/{refereeId}")
 	public List<Match> getRefereeMatchesPlayed(@PathVariable("tournamentId") Integer tournamentId,
 			@PathVariable("refereeId") Integer refereeId) {
+		System.out.println("Played matches "+tournamentId+""+refereeId);
 		return matchService.refereeMatchesPlayed(tournamentId, refereeId);
 	}
-
+	
+	@GetMapping("getRefereeMatchesPlayedTTwenty/{tournamentId}/{refereeId}")
+	public List<Match> getRefereeMatchesPlayedTTwenty(@PathVariable("tournamentId") Integer tournamentId,
+			@PathVariable("refereeId") Integer refereeId) {
+		System.out.println("Played matches "+tournamentId+""+refereeId);
+		return matchService.getRefereeMatchesPlayedTTwenty(tournamentId, refereeId);
+	}
+	
+	@GetMapping("getRefereeMatchesPlayedOneDay/{tournamentId}/{refereeId}")
+	public List<Match> getRefereeMatchesPlayedOneDay(@PathVariable("tournamentId") Integer tournamentId,
+			@PathVariable("refereeId") Integer refereeId) {
+		System.out.println("Played matches "+tournamentId+""+refereeId);
+		return matchService.getRefereeMatchesPlayedOneDay(tournamentId, refereeId);
+	}
+	
+	@GetMapping("getRefereeMatchesPlayed34Days/{tournamentId}/{refereeId}")
+	public List<Match> getRefereeMatchesPlayed34Days(@PathVariable("tournamentId") Integer tournamentId,
+			@PathVariable("refereeId") Integer refereeId) {
+		System.out.println("Played matches "+tournamentId+""+refereeId);
+		return matchService.getRefereeMatchesPlayed34Days(tournamentId, refereeId);
+	}
+	
 	@GetMapping("refereeMatchesPlayedUpdated/{tournamentId}/{refereeId}")
 	public List<Match> getRefereeMatchesPlayedUpdated(@PathVariable("tournamentId") Integer tournamentId,
 			@PathVariable("refereeId") Integer refereeId) {
 		return matchService.refereeMatchesPlayedUpdated(tournamentId, refereeId);
+
+	}
+	
+	@GetMapping("getRefereeMatchesPlayedUpdatedOneDay/{tournamentId}/{refereeId}")
+	public List<Match> getRefereeMatchesPlayedUpdatedOneDay(@PathVariable("tournamentId") Integer tournamentId,
+			@PathVariable("refereeId") Integer refereeId) {
+		return matchService.getRefereeMatchesPlayedUpdatedOneDay(tournamentId, refereeId);
+
+	}
+	
+	@GetMapping("getRefereeMatchesPlayedUpdated34Days/{tournamentId}/{refereeId}")
+	public List<Match> getRefereeMatchesPlayedUpdated34Days(@PathVariable("tournamentId") Integer tournamentId,
+			@PathVariable("refereeId") Integer refereeId) {
+		return matchService.getRefereeMatchesPlayedUpdated34Days(tournamentId, refereeId);
+
+	}
+	
+	@GetMapping("getRefereeMatchesPlayedUpdatedTTwenty/{tournamentId}/{refereeId}")
+	public List<Match> getRefereeMatchesPlayedUpdatedTTwenty(@PathVariable("tournamentId") Integer tournamentId,
+			@PathVariable("refereeId") Integer refereeId) {
+		return matchService.getRefereeMatchesPlayedUpdatedTTwenty(tournamentId, refereeId);
 
 	}
 	
