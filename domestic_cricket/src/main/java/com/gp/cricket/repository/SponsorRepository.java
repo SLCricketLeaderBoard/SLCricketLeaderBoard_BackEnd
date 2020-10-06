@@ -14,9 +14,15 @@ public interface SponsorRepository extends JpaRepository<Sponsor, Integer>{
 	
 	@Query("FROM Sponsor m WHERE  m.userId.status = 0")
 	public List<Sponsor> getNonregsponsors();
+	
+	@Query("FROM Sponsor m WHERE  m.userId.status = 1")
+	public List<Sponsor> getregsponsors();
+	
 
-	@Query("FROM Sponsor s WHERE s.sponsorId = :sponsorId")
-	public Sponsor findSponsorBySponsorId(@Param("sponsorId") Integer sponsorId);
+	@Query("FROM Sponsor s WHERE s.userId.userId = :userId")
+	public Sponsor findSponsorByUserId(@Param("userId") Integer userId);
+	
+	
 
 
 }
