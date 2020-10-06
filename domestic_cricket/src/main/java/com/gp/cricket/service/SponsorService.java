@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.gp.cricket.config.security.JwtInMemoryUserDetailsService;
 import com.gp.cricket.entity.Sponsor;
+import com.gp.cricket.entity.SponsorClub;
 import com.gp.cricket.entity.User;
+import com.gp.cricket.repository.ClubRepository;
+import com.gp.cricket.repository.SponsorClubRepository;
 import com.gp.cricket.repository.SponsorRepository;
 import com.gp.cricket.repository.UserRepository;
 
@@ -22,9 +25,18 @@ public class SponsorService {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	SponsorClubRepository sponsorClubRepository;
+
 
 	@Autowired
 	JwtInMemoryUserDetailsService jwtUser;
+	
+	@Autowired 
+	ClubRepository clubRepository;
+	
+	
 	
 	public List<Sponsor>getNonregsponsors() {
 		System.out.println("Get all non registered sponsors here");
@@ -40,5 +52,18 @@ public class SponsorService {
 			return 1;
 		}
 		return null;
+	}
+	
+	public Boolean sponsorClubRequest(Integer sponsorId, Integer clubId) {
+		System.out.println(sponsorId);
+		System.out.println(clubId);
+		SponsorClub sponsor = new SponsorClub();
+		sponsor.setStatus(0);
+		sponsor.setClubId(clubRepository.findClubByClubId(clubId));
+		sponsor.setSponsorId(sponsorRepository.findSponsorBySponsorId(sponsorId));
+	
+		
+		sponsorClubRepository.save(sponsor);
+		return true;
 	}
 }
