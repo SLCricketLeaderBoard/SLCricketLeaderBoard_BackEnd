@@ -276,6 +276,13 @@ public class MatchService {
 		return matchRepo.getMatchForpublic(tournamentId);
 		
 	}
+	
+	public Match updateMatchFor34Days(Match match) {	
+		
+		match.setState(1);
+		Match createdMatch = matchRepo.save(match);
+		return createdMatch;
+	}
 
 	
 	
