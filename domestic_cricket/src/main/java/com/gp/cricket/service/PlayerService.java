@@ -1,14 +1,20 @@
 package com.gp.cricket.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gp.cricket.entity.BallerRecord;
+import com.gp.cricket.entity.BatmanRecord;
 import com.gp.cricket.entity.Player;
 import com.gp.cricket.entity.TournamentClub;
 import com.gp.cricket.entity.TournamentClubPlayer;
 import com.gp.cricket.entity.User;
+import com.gp.cricket.mapobject.PlayerMatchData;
+import com.gp.cricket.repository.BallerRecordRepository;
+import com.gp.cricket.repository.BatmanRecordRepository;
 import com.gp.cricket.repository.ClubRepository;
 import com.gp.cricket.repository.PlayerRepository;
 import com.gp.cricket.repository.TournamentClubPlayerRepository;
@@ -27,7 +33,13 @@ public class PlayerService {
 	TournamentClubPlayerRepository tournamentClubPlayerRepository;
 	
 	@Autowired
+	BatmanRecordRepository batmanRecordRepository;
+	
+	@Autowired
 	UserService userService;
+	
+	@Autowired
+	BallerRecordRepository ballerRecordRepository;
 
 	public Integer playerSignup(Player player) {
 		if (validPlayerObject(player)) {
@@ -87,5 +99,37 @@ public class PlayerService {
 			return 0;//Player already play tournament or play tournament in the future
 		}
 		return null;
+	}
+	
+	public List<PlayerMatchData> getPlayerMatchData(Integer playerType, Integer userId){
+		List<PlayerMatchData> dataList = new ArrayList<PlayerMatchData>();
+		
+		if(playerType==1) {//Battment
+			List<BatmanRecord> data = new ArrayList<BatmanRecord>();
+			data = batmanRecordRepository.findByUserId(userId);
+			for(BatmanRecord batmen : data) {
+				PlayerMatchData ob = new PlayerMatchData();
+				ob.setTournament(batmen.getSelectedPlayerId().getMatchId().getTournamentId().getTournamentName());
+				ob.setMatch(batmen.getSelectedPlayerId().getMatchId().getMatchTypeId().getMatchType()+"("+batmen.getSelectedPlayerId().getMatchId().getStartDate().toString()+"");
+				ob.setResult1(batmen.getBattingRuns().toString());
+				ob.setResult2(batmen.getFacedBalls().toString());
+				
+				dataList.add(ob);
+			}
+		}else if(playerType==2) {//Baller
+			List<BallerRecord> data = new ArrayList<BallerRecord>();
+			data = ballerRecordRepository.findByUserId(userId);
+			for(BallerRecord baller : data) {
+				PlayerMatchData ob = new PlayerMatchData();
+				ob.setMatch(baller.getSelectedPlayerId().getMatchId().getMatchTypeId().getMatchType() + "("+baller.getSelectedPlayerId().getMatchId().getStartDate().toString()+")");
+				ob.setTournament(baller.getSelectedPlayerId().getMatchId().getTournamentId().getTournamentName());
+				ob.setResult1(baller.getOvers().toString());
+				ob.setResult2(baller.getWickets().toString());
+				
+				dataList.add(ob);
+			}
+		}
+		
+		return dataList;
 	}
 }

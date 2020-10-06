@@ -18,4 +18,7 @@ public interface BatmanRecordRepository extends JpaRepository<BatmanRecord, Inte
 			+ "b.selectedPlayerId.matchId.matchTypeId.matchTypeId = :matchType "
 			+ "ORDER BY b.selectedPlayerId.matchId.finishDate DESC")
 	public List<BatmanRecord> findByPlayerIdANDMatchType(@Param("playerId") Integer playerId,@Param("matchType") Integer matchType);
+
+	@Query("FROM BatmanRecord b WHERE b.selectedPlayerId.playerId.playerId = :userId")
+	public List<BatmanRecord> findByUserId(@Param("userId")Integer userId);
 }

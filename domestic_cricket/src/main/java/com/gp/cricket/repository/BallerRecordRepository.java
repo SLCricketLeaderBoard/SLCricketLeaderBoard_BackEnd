@@ -24,4 +24,7 @@ public interface BallerRecordRepository extends JpaRepository<BallerRecord,Integ
 			+ "b.selectedPlayerId.matchId = :matchId")
 	BallerRecord findByPlayerIdANDMatchId(@Param("playerId")Integer playerId,@Param("matchId") Match matchId);
 
+	@Query("FROM BallerRecord b WHERE b.selectedPlayerId.playerId.playerId = :userId")
+	List<BallerRecord> findByUserId(@Param("userId") Integer userId);
+
 }

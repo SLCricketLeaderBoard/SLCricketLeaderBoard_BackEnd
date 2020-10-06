@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gp.cricket.entity.Player;
+import com.gp.cricket.mapobject.PlayerMatchData;
 import com.gp.cricket.service.PlayerService;
 
 @RestController
@@ -69,5 +70,9 @@ public class PlayerController {
 		return ResponseEntity.badRequest().build();
 	}
 	
+	@GetMapping("player/match/data/{playerType}/{userId}")
+	public List<PlayerMatchData> getPlayerMatchData(@PathVariable("playerType")Integer playerType,@PathVariable("userId")Integer userId){
+		return playerService.getPlayerMatchData(playerType, userId);
+	}
 
 }
