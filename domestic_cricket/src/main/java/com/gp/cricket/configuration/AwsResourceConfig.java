@@ -7,8 +7,8 @@ import org.springframework.context.annotation.ImportResource;
 @Configuration
 @ImportResource("classpath:/aws-config.xml")
 @EnableRdsInstance(databaseName = "club_cricket", 
-dbInstanceIdentifier = "crickdom-database", 
-password = "#c1234#1234")
+dbInstanceIdentifier = "sample-db", 
+password = "12345678")
 public class AwsResourceConfig {
 
 }
