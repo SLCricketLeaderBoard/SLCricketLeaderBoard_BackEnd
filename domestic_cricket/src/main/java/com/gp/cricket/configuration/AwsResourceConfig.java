@@ -9,6 +9,6 @@ import org.springframework.context.annotation.ImportResource;
 @EnableRdsInstance(databaseName = "club_cricket", 
 dbInstanceIdentifier = "crickdom-database", 
 password = "#c1234#1234")
-public class AWSConfiguration {
+public class AwsResourceConfig {
 
 }
