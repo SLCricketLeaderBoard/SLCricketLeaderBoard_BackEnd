@@ -261,6 +261,19 @@ public class ReportService {
 
 			count++;
 		}
+		
+		if(tournamentMatchFutureReportData.size()==0) {
+			TournamentMatchFutureReport ob = new TournamentMatchFutureReport();
+			ob.setNo(count);
+			ob.setClub1("");
+			ob.setClub2("");
+			ob.setDate("");
+			ob.setStadium("");
+			ob.setType("");
+			ob.setTime("");
+
+			tournamentMatchFutureReportData.add(ob);
+		}
 
 		// Load the file and compiler it
 		File file = ResourceUtils.getFile("classpath:tournamentMatchFuture.jrxml");

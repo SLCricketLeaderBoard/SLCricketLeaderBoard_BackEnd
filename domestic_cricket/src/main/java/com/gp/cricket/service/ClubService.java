@@ -33,6 +33,7 @@ public class ClubService {
 			if (existClub == null) {
 				clubRepository.save(club);
 				
+				club = clubRepository.findClubByManagerId(club.getManagerId().getManagerId());
 				//Create Ranking Object for club
 				clubRankingService.createRankingObject(club);
 				

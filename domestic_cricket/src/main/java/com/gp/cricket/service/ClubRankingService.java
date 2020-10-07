@@ -137,6 +137,7 @@ public class ClubRankingService {
 	}
 
 	public void createRankingObject(Club club) {
+		System.out.println(club);
 
 		List<MatchType> matchTypeList = matchTypeRepository.findAll();
 
