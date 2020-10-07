@@ -6,7 +6,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
+
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -44,42 +44,42 @@ import com.gp.cricket.service.TournamentClubService;
 @SpringBootTest(classes=DomesticCricketApplication.class)
 class DomesticCricketApplicationTests {
 
-	@Autowired
-	MatchTypeRepository matchType;
+//	@Autowired
+//	MatchTypeRepository matchType;
+//	
+//	@Autowired
+//	TournamentRepository tourRepo;
+//	
+//	@Autowired
+//	StadiumRepository stdRepo;
+//	
+//	@Autowired
+//	RefereeRepository refrepo;
+//	
+//	@Autowired
+//	MatchRepository matchRepo;
+//	
+//	@Autowired
+//	MatchService matchService;
+//	
+//	@Autowired
+//	SponsorService sponserservicel;
+//	
+//	@Autowired
+//	SelectedPlayerRepository selectedPlayerRepo;
+//	
+//	@Autowired
+//	BallerRecordService ballerRecordService;
+//	
+//	
+//	@Autowired
+//	BatmanRecordService batmanRecordService;
+//	
+//	@Autowired
+//	FieldingRecordService fieldingRecordService;
 	
-	@Autowired
-	TournamentRepository tourRepo;
-	
-	@Autowired
-	StadiumRepository stdRepo;
-	
-	@Autowired
-	RefereeRepository refrepo;
-	
-	@Autowired
-	MatchRepository matchRepo;
-	
-	@Autowired
-	MatchService matchService;
-	
-	@Autowired
-	SponsorService sponserservicel;
-	
-	@Autowired
-	SelectedPlayerRepository selectedPlayerRepo;
-	
-	@Autowired
-	BallerRecordService ballerRecordService;
-	
-	
-	@Autowired
-	BatmanRecordService batmanRecordService;
-	
-	@Autowired
-	FieldingRecordService fieldingRecordService;
-	
-	@Autowired
-	PlayerRecordService playerRecordService;
+//	@Autowired
+//	PlayerRecordService playerRecordService;
 //	private Integer matchId = null;
 //	private Integer club1Id = 2;
 //	private Integer club2Id = 2;
@@ -154,8 +154,8 @@ class DomesticCricketApplicationTests {
 //	 }
 	
 	
-	@Test
-	public void selectedPlayers() {
+//	@Test
+//	public void selectedPlayers() {
 //		matchService.selectedPlayers(53,2);
 //		matchService.playedMatches(1);
 //		matchService.refereeMatchesPlayed(1,"26");
@@ -184,6 +184,6 @@ class DomesticCricketApplicationTests {
 		
 //		playerRecordService.getPlayerRecord(55);
 		
-	}
-	
+//	}
+//	
 }
