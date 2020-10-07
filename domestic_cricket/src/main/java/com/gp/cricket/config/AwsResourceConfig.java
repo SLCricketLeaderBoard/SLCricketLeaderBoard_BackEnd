@@ -1,4 +1,4 @@
-package com.gp.cricket.configuration;
+package com.gp.cricket.config;
 
 import org.springframework.cloud.aws.jdbc.config.annotation.EnableRdsInstance;
 import org.springframework.context.annotation.Configuration;

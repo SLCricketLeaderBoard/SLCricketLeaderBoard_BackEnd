@@ -1,4 +1,4 @@
-package com.gp.cricket.configuration;
+package com.gp.cricket.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

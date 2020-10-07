@@ -9,7 +9,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import com.gp.cricket.configuration.EmailConfiguration;
+import com.gp.cricket.config.EmailConfiguration;
 import com.gp.cricket.mapobject.PaymentEmailBody;
 
 @Service
