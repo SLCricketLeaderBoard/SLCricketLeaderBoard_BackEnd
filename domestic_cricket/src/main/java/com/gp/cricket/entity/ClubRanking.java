@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
-import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "club_ranking")
@@ -20,7 +20,7 @@ public class ClubRanking {
 	@Column(name = "club_ranking_id")
 	private Integer clubRankingId;
 
-	@NotNull
+	@NotNull 
 	private Double points;
 
 	@NotNull

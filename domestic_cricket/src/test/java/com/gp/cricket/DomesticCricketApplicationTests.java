@@ -6,7 +6,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
+
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -40,8 +40,7 @@ import com.gp.cricket.service.SponsorService;
 import com.gp.cricket.service.TournamentClubService;
 
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes=DomesticCricketApplication.class)
+
 class DomesticCricketApplicationTests {
 
 	@Autowired
@@ -154,8 +153,8 @@ class DomesticCricketApplicationTests {
 //	 }
 	
 	
-	@Test
-	public void selectedPlayers() {
+//	@Test
+//	public void selectedPlayers() {
 //		matchService.selectedPlayers(53,2);
 //		matchService.playedMatches(1);
 //		matchService.refereeMatchesPlayed(1,"26");
@@ -184,6 +183,6 @@ class DomesticCricketApplicationTests {
 		
 //		playerRecordService.getPlayerRecord(55);
 		
-	}
+//	}
 	
 }
